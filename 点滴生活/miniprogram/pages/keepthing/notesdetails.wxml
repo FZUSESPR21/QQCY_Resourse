@@ -6,7 +6,7 @@
     <view class="content">
     <text class="notes-titlt">{{note_title}}</text>
     <view class="line"></view>
-    <text class="notes-content">{{note_content}}</text>
+    <view class="notes-content" style="margin-right:220rpx">{{note_content}}</view>
     <view class="picList" style="margin-top:220rpx">
         <view wx:key="pic" wx:for="{{pic}}">
             <view class="pic">

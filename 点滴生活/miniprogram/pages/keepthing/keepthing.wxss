@@ -22,7 +22,7 @@
   font-size: 35rpx;
   color: #0c0c0c;
   width: auto;
-  height: 50%;
+  height: auto;
 }
 .bottom_menu{
   position: absolute;

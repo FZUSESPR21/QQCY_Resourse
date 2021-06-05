@@ -4,7 +4,7 @@
     <view class="content">
         <input class="notes-titlt" value="{{addtext}}" type="text" placeholder="请输入标题" maxlength="25" bindtap="inputTitle" bindinput="titlechange" data-id="title" bindblur="titleBlur"/>
         <view class="line"></view>
-        <textarea data-id="content" value="{{addcontent}}" class="notes-content" placeholder="记录下今天的日常吧……" bindfocus="inputFocus"  bindinput="contentchange" bindblur="inputBlur" maxlength="-1" auto-height="true" show-confirm-bar="{{false}}"></textarea>
+        <textarea data-id="content" value="{{addcontent}}" class="notes-content" placeholder="记录下今天的日常吧……" bindfocus="inputFocus"  bindinput="contentchange" bindblur="inputBlur" maxlength="-1" auto-height="true" show-confirm-bar="{{false}}" adjust-position="true"></textarea>
     </view>
 
     <view class="select_img">
