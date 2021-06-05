@@ -30,21 +30,21 @@
     <input class="quotainput" type="number" bindblur="setLimit" value="{{limit}}"></input>
     <view class="element">元</view>
   </view>
-  <view class="myrelease_notification" bindtap="toRelease" style="border-bottom:white;" style="display:none">
+  <view class="myrelease_notification" bindtap="toRelease" style="border-bottom:white;">
     <image src="../../images/release.png" class="release_notification"></image>
     <view class="release_notificationtext">我的发布</view>
     <image src="../../images/goto.png" class="goto"></image>
   </view>
-  <view class="myrelease_notification" bindtap="toNotification" style="display:none">
+  <view class="myrelease_notification" bindtap="toNotification">
     <image src="../../images/notification.png" class="release_notification"></image>
     <view class="release_notificationtext">我的通知</view>
     <image src="../../images/goto.png" class="goto"></image>
   </view>
-  <view class="myabout" style="border-bottom:white;" style="display:none">
+  <view class="myabout" style="border-bottom:white;">
     <image src="../../images/we.png" class="about"></image>
     <view class="abouttext">关于我们</view>
   </view>
-  <view class="myhelp"style="display:none">
+  <view class="myhelp">
     <image src="../../images/help.png" class="help"></image>
     <view class="helptext">帮助</view>
   </view>
