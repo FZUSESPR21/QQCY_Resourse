@@ -29,6 +29,11 @@
         "pagePath": "pages/keepaccounts/keepaccounts"
       },
       {
+        "selectedIconPath": "images/community.png",
+        "iconPath": "images/uncommunity.png",
+        "pagePath": "pages/community/community"
+      },
+      {
         "selectedIconPath": "images/keepthing.png",
         "iconPath": "images/unkeepthing.png",
         "pagePath": "pages/keepthing/noteslist"
