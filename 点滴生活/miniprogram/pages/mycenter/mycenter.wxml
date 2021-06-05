@@ -48,5 +48,9 @@
     <image src="../../images/help.png" class="help"></image>
     <view class="helptext">帮助</view>
   </view>
+  <view wx:if="{{permission}}"  class="auditing" >
+    <image src="../../images/we.png" class="about"></image>
+    <view class="abouttext">审核</view>
+  </view>
 </view>
 
