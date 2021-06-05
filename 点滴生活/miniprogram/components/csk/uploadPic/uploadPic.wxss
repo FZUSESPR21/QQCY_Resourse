@@ -11,8 +11,8 @@
 }
 .pic{
   border: 5rpx;
-  border-style: solid;
-  border-color: rgba(165, 155, 155, 0.452);
+  /* border-style: solid;
+  border-color: rgba(165, 155, 155, 0.452); */
   width: 200rpx;
   height: 200rpx;
   margin-left: 15rpx;

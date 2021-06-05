@@ -14,7 +14,7 @@ exports.main = async (event, context) => {
   // var sum
   await db.collection('user')
   .where({
-    userid:openid  //测试用，后面test01要改成openid
+    userid:openid 
   })
   .get()
   .then(res=>{
@@ -29,6 +29,5 @@ exports.main = async (event, context) => {
   // .then(res=>{
   //   sum = res.total
   // })
-
   return rest
 }

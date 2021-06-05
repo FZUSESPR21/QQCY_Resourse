@@ -37,19 +37,19 @@
     <view class="week" bindtap="weekselect"
       style="border-style:{{weekborder}};background-color:{{weekbackcolor}};color:{{weekcolor}}">周</view>
 
-    <!-- 去掉属性 force-use-old-canvas="true"，使用新版canvas -->
+    <!-- 去掉属性 force-use-old-canvas="true"，使用新版canvas-->
     <ec-canvas  class="datatable" id="mychart-dom" canvas-id="mychart" ec="{{ec}}">
     </ec-canvas>
 
     <view class="statistic">
       <view class="total">
-        <view style="font-weight:bold">总计</view>
-        <view class="num">{{totalAccount}}</view>
+        <view wx:if="{{chartchange}}" style="font-weight:bold">总计</view>
+        <view wx:if="{{chartchange}}" class="num">{{totalAccount}}</view>
       </view>
-      <view class="separete"></view>
+      <view wx:if="{{chartchange}}" class="separete"></view>
       <view class="average">
-        <view style="font-weight:bold">平均</view>
-        <viwe class="num">{{avgAccount}}</viwe>
+        <view wx:if="{{chartchange}}" style="font-weight:bold">平均</view>
+        <viwe wx:if="{{chartchange}}" class="num">{{avgAccount}}</viwe>
       </view>
     </view>
 
@@ -62,9 +62,10 @@
     <accountlist accountlist='{{costaccountlist}}' account-type="0"></accountlist>
   </view>
   <!--movable-area class="movearea" style="height:{{moveareaheight}}rpx"-->
-    <view class="moveview" >
-      <cover-image bindtap="makeaccount" class="makeaccount" src="../../images/makeaccount.png" mode='scaleToFill'>
-      </cover-image>
-    </view>
   <!--/movable-area-->
+</view>
+
+<view class="moveview" >
+      <image bindtap="makeaccount" class="makeaccount" src="../../images/makeaccount.png" mode='scaleToFill'>
+      </image>
 </view>

@@ -22,11 +22,13 @@
   font-size: 35rpx;
   color: #0c0c0c;
   width: auto;
+  height: auto;
 }
 .bottom_menu{
   position: absolute;
   width: 100%;
   left: 30rpx;
+  background-color: #ffffff;
 }
 .img{
   position: relative;
@@ -53,6 +55,9 @@
   color: #ffffff;
   margin-left: 200rpx;
   bottom: 55rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .select_img{
   position: relative;

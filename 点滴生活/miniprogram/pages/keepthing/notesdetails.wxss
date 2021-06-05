@@ -4,7 +4,7 @@
   margin-top: 350rpx;
   margin-left: 35rpx;
   width: 100%;
-  height: 100%;
+  height: 70%;
 }
 .content{
   position: absolute;
@@ -26,17 +26,22 @@
 }
 .notes-content{
   position: relative;
-  padding-left: 2rpx;
+  width: 95%;
+  padding-left: 5rpx;
   top: 35rpx;
   font-size: 35rpx;
   color: #0c0c0c;
 }
 .edit{
-  position: relative;
-  width: 80rpx;
-  height: 80rpx;
-  top: 900rpx;
-  left: 550rpx;
+  position: fixed;
+  width: 100rpx;
+  height: 100rpx;
+  top: 1300rpx;
+  left: 600rpx;
+  z-index: 30;
+  background-color: #ffffff;
+  box-shadow: 2rpx 2rpx 2rpx #bbbaba;
+  border-radius: 50px 50px 50px 50px;
 }
 
 .pic{
