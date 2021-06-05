@@ -13,6 +13,7 @@
         <view class="contenttype">{{item.type}}</view>
         <view class="contenttext">{{item.content}}</view>
     </view>
+    
 </block>
 <block wx:if="{{condition1}}" wx:for='{{nonchosenList}}' wx:key='id' wx:for-item="item">
     <image src="../../images/modification.png" class="modification"></image>

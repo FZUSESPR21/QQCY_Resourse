@@ -63,6 +63,12 @@
         {
           "name": "pages/mycenter/norelease",
           "pathName": "pages/mycenter/norelease",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/mycenter/notificationlist",
+          "pathName": "pages/mycenter/notificationlist",
           "scene": null
         }
       ]

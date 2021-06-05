@@ -12,6 +12,25 @@ Page({
       showcancel: 0,//是否显示左上角关闭图标   1表示显示    0表示不显示
       title: '我的通知', //导航栏 中间的标题
     },
+    showtab: 0,  //顶部选项卡索引
+    tabnav: {
+      tabnum: 5,
+      tabitem: [
+        {
+          "id": 0,
+          "text": "文章审核"
+        },
+        {
+          "id": 1,
+          "text": "评论"
+        },
+        {
+          "id": 2,
+          "text": "赞"
+        },
+      ]
+    },
+    productList: [],
     list: 0,
   },
 
@@ -35,6 +54,14 @@ Page({
         console.log("失败", err)
       })
   },
+  setTab: function (e) {
+    const edata = e.currentTarget.dataset;
+    this.setData({
+      showtab: edata.tabindex,
+      
+    })
+  },
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成
