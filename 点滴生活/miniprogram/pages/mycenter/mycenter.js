@@ -9,6 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    permission:false,
     list:[],
     hasUserInfo: false,
     userInfo:{
@@ -63,7 +64,20 @@ Page({
   },
 
   onLoad(option){
-    
+    //根据权限码确定是否显示审核界面
+    wx.cloud.callFunction({
+      name: 'getPermission',
+      data: {
+      }
+    }).then(res => {
+      console.log(res);
+      if(res.result=='1')
+      {
+        this.setData({
+          permission:true,
+        })
+      }
+    })
   },
   toNotification:function(){
     wx.navigateTo({
