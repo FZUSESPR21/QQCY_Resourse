@@ -14,7 +14,30 @@ Page({
       title: '每日精选', //导航栏 中间的标题
     },
     height: app.globalData.height * 2 + 20 , // 此页面 页面内容距最顶部的距离
+
+    bannerCurrent: 0, // 当前显示的banner
+    bannerData: [
+      {
+        'id': 1, 'focus': 'https://www.duoguyu.com/dist/flip/flipImg-1.jpg'},
+      {
+        'id': 2, 'focus': 'https://www.duoguyu.com/dist/flip/flipImg-2.jpg'},
+      { 'id': 3, 'focus': 'https://www.duoguyu.com/dist/flip/flipImg-3.jpg'},
+      { 'id': 4, 'focus': 'https://www.duoguyu.com/dist/flip/flipImg-4.jpg'},
+      {
+        'id': 5, 'focus': 'https://www.duoguyu.com/dist/flip/flipImg-5.jpg'},
+    ],
   },
+
+
+  // bannerSwiper
+  bannerSwiper(e) {
+    const that = this,
+   bannerCurrent = e.detail.current;
+    that.setData({
+      bannerCurrent
+    })
+  },
+
 
   /**
    * 生命周期函数--监听页面加载

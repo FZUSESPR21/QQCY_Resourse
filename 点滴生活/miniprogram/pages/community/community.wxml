@@ -1,4 +1,48 @@
 // 'navbar-data'中navbar是自定义导航栏标题
 <navbar navbar-data='{{nvabarData}}'></navbar>
 
-<view class="word" style="color: #FFC8A1">社区功能正在开发中，敬请期待~</view>
+<view class="swiper">
+
+  <swiper class='bannerGrid' previous-margin="60rpx" next-margin="60rpx" bindchange="bannerSwiper">
+
+    <swiper-item class="item" wx:for="{{ bannerData }}" wx:key="index">
+      <view class="swiper-item">
+        <view class='boxItem'>
+
+          <view class="postBox">
+            <view class="today">
+                <view class="cskday">
+                  <text>
+                    08
+                  </text>
+                </view>
+                <view class="yishu">
+                </view>
+                <view>
+                  <view style="color: #F5B5AC">
+                      星期四
+                  </view>
+                  <viwe style="color: #F5B5AC">
+                      2021.04
+                  </viwe>
+                </view>
+            </view>
+            <image class='img' src="{{ item.focus }}" mode="aspectFill"></image>
+          </view>
+
+
+
+        </view>
+      </view>
+    </swiper-item>
+
+
+  </swiper>
+</view>
+
+
+<!-- 海报背景 -->
+<view class='poster'>
+  <view class='bgImg' style=" background: url({{ bannerData[bannerCurrent].focus }}); background-size:cover;"></view>
+  <view class='cover'></view>
+</view>

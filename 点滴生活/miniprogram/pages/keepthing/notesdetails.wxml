@@ -10,7 +10,7 @@
     <view class="picList" style="margin-top:220rpx">
         <view wx:key="pic" wx:for="{{pic}}">
             <view class="pic">
-                 <image class="picItem" src="{{item}}" bindtap="preview" data-src="{{item}}"></image>
+                 <image class="picItem" src="{{item}}" bindtap="preview" data-src="{{item}}" mode="aspectFill"></image>
             </view>
         </view>
     </view>
