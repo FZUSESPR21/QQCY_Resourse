@@ -40,15 +40,6 @@ Page({
   },
 
 
-  // bannerSwiper
-  bannerSwiper(e) {
-    const that = this,
-      bannerCurrent = e.detail.current;
-    that.setData({
-      bannerCurrent
-    })
-  },
-
 
   /**
    * 生命周期函数--监听页面加载

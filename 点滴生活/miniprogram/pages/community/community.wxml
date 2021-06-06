@@ -3,7 +3,7 @@
 
 <view class="swiper">
 
-  <swiper class='bannerGrid' previous-margin="60rpx" next-margin="60rpx" bindchange="bannerSwiper">
+  <swiper class='bannerGrid' previous-margin="60rpx" next-margin="60rpx">
 
     <swiper-item class="item" wx:for="{{ bannerData }}" wx:key="index">
       <view class="swiper-item">
@@ -13,21 +13,26 @@
             <view class="today">
                 <view class="cskday">
                   <text>
-                    08
+                    05
                   </text>
                 </view>
                 <view class="yishu">
                 </view>
                 <view>
                   <view style="color: #474444">
-                      星期四
+                      星期六
                   </view>
                   <viwe style="color: #474444">
-                      2021.04
+                      2021.06
                   </viwe>
                 </view>
             </view>
-            <image class='img' src="{{ item.focus }}" mode="aspectFill"></image>
+            <!-- 文章主体内容 -->
+            <view class="post">
+              文章内容
+            </view>
+             <!-- 文章主体内容 -->
+            <!-- <image class='img' src="{{ item.focus }}" mode="aspectFill"></image> -->
           </view>
 
 
@@ -43,6 +48,6 @@
 
 <!-- 海报背景 -->
 <view class='poster'>
-  <view class='bgImg' style=" background: url({{ bannerData[bannerCurrent].focus }}); background-size:cover;"></view>
+  <view class='bgImg'></view>
   <view class='cover'></view>
 </view>
