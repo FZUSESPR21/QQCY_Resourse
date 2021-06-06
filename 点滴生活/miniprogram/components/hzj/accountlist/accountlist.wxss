@@ -1,6 +1,9 @@
 /* components/hzj/accountlist/accountlist.wxss */
 
 .accountlist{
+  position: relative;
+  height: 100%;
+  width:100%;
 }
 .accountgroup:nth-child(1){
   position: relative;
@@ -40,11 +43,13 @@
   float: left;
 }
 .account{
+  z-index:1;
   position:absolute;
   top:86rpx;
   left: 22rpx;
 }
 .onedayaccount{
+  z-index:1;
   height:120rpx;
   width:680rpx;
   position:relative;
@@ -82,4 +87,9 @@
   top:118rpx;
   left:62rpx;
   float: left;
+}
+.slideview{
+  height:120rpx;
+  width:680rpx;
+  position:relative;
 }

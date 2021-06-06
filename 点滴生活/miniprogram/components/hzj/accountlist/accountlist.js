@@ -38,14 +38,19 @@ Component({
    */
   data: {
     vlheight:"",
+    length:[{
+      index:1,
+    },{index:2}],
     slideButtons: [{
-      text: '普通',
+      text: '查看详情',
+     
     },{
-      text: '普通',
+      text: '修改',
       extClass: 'test',
+      
     },{
       type: 'warn',
-      text: '警示',
+      text: '删除',
       extClass: 'test',
     }],
     accountlist: {
@@ -111,7 +116,9 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    slideButtonTap(e) {
+      console.log('slide button tap', e.detail)
+  }
   }
 
 })

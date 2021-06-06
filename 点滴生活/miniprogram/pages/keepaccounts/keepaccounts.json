@@ -4,6 +4,7 @@
     "navbar":"../../components/navbar/navbar",
     "ec-canvas":"../../components/hb/ec-canvas/ec-canvas",
     "accountlist":"../../components/hzj/accountlist/accountlist",
-    "select":"../../components/select/select"
+    "select":"../../components/select/select",
+    "mp-slideview": "weui-miniprogram/slideview/slideview"
   }
 }

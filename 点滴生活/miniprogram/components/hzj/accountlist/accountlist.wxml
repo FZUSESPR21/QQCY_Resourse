@@ -2,15 +2,16 @@
 <view class="accountlist">
   <view class="accountgroup" wx:for="{{accountlist}}">
     <view class="date">{{item.accountgroup.date}}</view>
-    <view class="verticalline" style="height:{{item.accountgroup.vlheight}}rpx"></view>
+    <view class="verticalline" style="height:{{item.accountgroup.vlheight}}rpx;z-index:99;"></view>
     <view class="startmark"></view>
     <view class="account">
-      <view class="onedayaccount" wx:for="{{item.accountgroup.account}}" wx:for-item="account">
+      <mp-slideview buttons="{{slideButtons}}" bindbuttontap="slideButtonTap" class="onedayaccount" wx:for="{{item.accountgroup.account}}" wx:for-item="account">
         <image src="{{account.type}}" class="typeimage"></image>
         <view class="remark">{{account.selecttype}}</view>
         <view class="num">{{account.num}}</view>
         <view class="bottomline"></view>
-      </view>
+        <view class="ignore" style="position:absolue;z-index:1;width:680rpx;height:120rpx;background-color:white;"></view>
+      </mp-slideview>
     </view>
     <view class="clear" style="height:{{item.accountgroup.onedayaccountheight}}rpx"></view>
   </view>
