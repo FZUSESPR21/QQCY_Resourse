@@ -10,6 +10,7 @@
     "pages/keepthing/notesdetails",
     "pages/keepthing/noteslist",
     "pages/mycenter/release",
+    
     "pages/mycenter/auditing"
   ],
   "window": {
