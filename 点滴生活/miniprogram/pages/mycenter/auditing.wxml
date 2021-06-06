@@ -1,0 +1,1 @@
+<navbar navbar-data='{{nvabarData}}' bindnavback="returnback"></navbar>

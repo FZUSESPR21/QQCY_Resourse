@@ -9,7 +9,8 @@
     "pages/testpage/testpage",
     "pages/keepthing/notesdetails",
     "pages/keepthing/noteslist",
-    "pages/mycenter/release"
+    "pages/mycenter/release",
+    "pages/mycenter/auditing"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
