@@ -69,6 +69,12 @@
         {
           "name": "pages/mycenter/notificationlist",
           "pathName": "pages/mycenter/notificationlist",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/mycenter/auditing",
+          "pathName": "pages/mycenter/auditing",
           "scene": null
         }
       ]

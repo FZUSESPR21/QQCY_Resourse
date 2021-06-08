@@ -1,30 +1,40 @@
 <!--pages/mycenter/notificationlist.wxml-->
 <navbar navbar-data='{{nvabarData}}' bindnavback='backToMycenter'></navbar>
-  <text bindtap="backToMycenter">这里将是通知列表</text>
+<text bindtap="backToMycenter">这里将是通知列表</text>
+<view class="tab">
 
-    <view class="tab">
-      <view class="tab-nav" style='font-size:12px'>
-        <view  wx:for="{{tabnav.tabitem}}" bindtap="setTab"  data-tabindex="{{index}}" style="min-width:20%;max-width:20%;text-align:center;color: rgba(16, 16, 16, 100);height: 80rpx;">{{item.text}}</view>
-        <view >
-        <view class="tab-line" style="width:{{100/tabnav.tabnum}}%;transform:translateX({{100*showtab}}%);"></view>
-        </view>
-      </view>
+  <view class="tab-nav" style='font-size:12px'>
+    <view wx:for="{{tabnav.tabitem}}" wx:key='id' bindtap="setTab" data-tabindex="{{index}}"
+      style="min-width:20%;max-width:20%;text-align:center;color: rgba(16, 16, 16, 100);height: 80rpx;display: inline-block;">{{item.text}}
     </view>
-    <view class="content">
-      <image src="../../images/passage.png" class="passage"></image>
-      <view class="title">文章审核信息</view>
-      <view class="time">04-08 00:20</view>
-      <view class="notification">今日你发布的小妙招已审核，很遗憾未通过~期待你的下次来稿！</view>
+    <view>
+      <view class="tab-line" style="width:{{100/tabnav.tabnum}}%;transform:translateX({{100*showtab}}%);"></view>
     </view>
-    <view class="content">
-      <image src="../../images/passage.png" class="passage"></image>
-      <view class="title">文章审核信息</view>
-      <view class="time">04-08 00:20</view>
-      <view class="notification">今日你发布的小妙招已审核，很遗憾未通过~期待你的下次来稿！</view>
-    </view>
-        <view class="content">
-      <image src="../../images/passage.png" class="passage"></image>
-      <view class="title">文章审核信息</view>
-      <view class="time">04-08 00:20</view>
-      <view class="notification">今日你发布的小妙招已审核，很遗憾未通过~期待你的下次来稿！</view>
-    </view>
+  </view>
+</view>
+
+
+<block wx:if="{{condition}}" wx:for='{{examinelist}}' wx:key='id' wx:for-item="item">
+  <view class="content">
+    <image src="../../images/passage.png" class="passage"></image>
+    <view class="title">{{item.title}}</view>
+    <view class="time">{{item.time}}</view>
+    <view class="notification">{{item.content}}</view>
+  </view>
+</block>
+<block wx:if="{{condition1}}" wx:for='{{commentlist}}' wx:key='id' wx:for-item="item">
+  <view class="content">
+    <image src="../../images/comment.png" class="commentpic"></image>
+    <view class="title">{{item.title}}</view>
+    <view class="time">{{item.time}}</view>
+    <view class="notification">{{item.content}}</view>
+  </view>
+</block>
+<block wx:if="{{condition2}}" wx:for='{{thumbsuplist}}' wx:key='id' wx:for-item="item">
+  <view class="content">
+    <image src="../../images/thumbsup.png" class="thumbsuppic"></image>
+    <view class="title">{{item.title}}</view>
+    <view class="time">{{item.time}}</view>
+    <view class="notification">{{item.content}}</view>
+  </view>
+</block>

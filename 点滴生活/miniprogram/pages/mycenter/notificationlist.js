@@ -12,6 +12,87 @@ Page({
       showcancel: 0,//是否显示左上角关闭图标   1表示显示    0表示不显示
       title: '我的通知', //导航栏 中间的标题
     },
+    condition:true,
+    condition1:false,
+    condition2:false,
+    commentlist:[
+      {
+        id:0,
+        title:"评论信息",
+        time:"04-08 00:20",
+        content:"有人评论了今日你发布的小妙招，快前往社区查看吧！",
+      },
+      {
+        id:1,
+        title:"评论信息",
+        time:"04-08 00:20",
+        content:"有人评论了今日你发布的小妙招，快前往社区查看吧！",
+      },
+      {
+        id:2,
+        title:"评论信息",
+        time:"04-08 00:20",
+        content:"有人评论了今日你发布的小妙招，快前往社区查看吧！",
+      },
+      {
+        id:2,
+        title:"评论信息",
+        time:"04-08 00:20",
+        content:"有人评论了今日你发布的小妙招，快前往社区查看吧！",
+      },
+    ],
+    examinelist:[
+      {
+        id:0,
+        title:"文章审核信息",
+        time:"04-08 00:20",
+        content:"今日你发布的小妙招已审核，很遗憾未通过~期待你的下次来稿！",
+      },
+      {
+        id:1,
+        title:"文章审核信息",
+        time:"04-08 00:20",
+        content:"今日你发布的小妙招已审核，很遗憾未通过~期待你的下次来稿！",
+      },
+      {
+        id:2,
+        title:"文章审核信息",
+        time:"04-08 00:20",
+        content:"今日你发布的小妙招已审核，很遗憾未通过~期待你的下次来稿！",
+      },
+      {
+        id:3,
+        title:"文章审核信息",
+        time:"04-08 00:20",
+        content:"今日你发布的小妙招已审核，很遗憾未通过~期待你的下次来稿！",
+      },
+    ],
+    thumbsuplist:[
+      {
+        id:0,
+        title:"点赞信息",
+        time:"04-08 00:20",
+        content:"有人评论了今日你发布的小妙招，快前往社区查看吧！",
+      },
+      {
+        id:1,
+        title:"点赞信息",
+        time:"04-08 00:20",
+        content:"有人评论了今日你发布的小妙招，快前往社区查看吧！",
+      },
+      {
+        id:2,
+        title:"点赞信息",
+        time:"04-08 00:20",
+        content:"有人评论了今日你发布的小妙招，快前往社区查看吧！",
+      },
+      {
+        id:3,
+        title:"点赞信息",
+        time:"04-08 00:20",
+        content:"有人评论了今日你发布的小妙招，快前往社区查看吧！",
+      },
+    ],
     showtab: 0,  //顶部选项卡索引
     tabnav: {
       tabnum: 5,
@@ -57,9 +138,30 @@ Page({
   setTab: function (e) {
     const edata = e.currentTarget.dataset;
     this.setData({
-      showtab: edata.tabindex,
-      
+      showtab:edata.tabindex,
     })
+    console.log(edata.tabindex);
+    if(edata.tabindex==0){
+      this.setData({
+        condition:true,
+        condition1:false,
+        condition2:false,
+      })
+    }
+    else if(edata.tabindex==1){
+      this.setData({
+        condition:false,
+        condition1:true,
+        condition2:false,
+      })
+    }
+    else{
+      this.setData({
+        condition:false,
+        condition1:false,
+        condition2:true,
+      })
+    }
   },
 
 

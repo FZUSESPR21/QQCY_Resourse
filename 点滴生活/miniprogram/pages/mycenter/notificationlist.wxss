@@ -83,3 +83,19 @@ font-size: 28rpx;
 text-align: left;
 font-family: PingFangSC-regular;
 }
+.commentpic{
+  position: absolute;
+  width: 50rpx;
+  height: 50rpx;
+  left: 40rpx;
+  top: 40rpx;
+  float: left;
+}
+.thumbsuppic{
+  position: absolute;
+  width: 55rpx;
+  height: 55rpx;
+  left: 35rpx;
+  top: 35rpx;
+  float: left;
+}
