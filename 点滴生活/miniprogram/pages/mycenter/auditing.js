@@ -1,8 +1,6 @@
 // miniprogram/pages/makeaccount/makeaccount.js
 const app = getApp()
-const db = wx.cloud.database();
-let arrval = [];
-var pixelRatio1 = 750 / wx.getSystemInfoSync().windowWidth;   
+const db = wx.cloud.database(); 
 Page({
 
   /**
@@ -15,6 +13,86 @@ Page({
       showcancel:0,//是否显示左上角关闭图标   1表示显示    0表示不显示
       title: '审核', //导航栏 中间的标题
     },
+    
+    vlheight:"",
+    length:[{
+      index:1,
+    },{index:2}],
+    slideButtons: [{
+      text: '查看具体',
+     
+    },{
+      text: '通过',
+      extClass: 'test',
+      
+    },{
+      type: 'warn',
+      text: '删除',
+      extClass: 'test',
+    }],
+
+    posts: [
+      {
+        id:"1",
+        username:"用户1",
+        content:"文章内容1",
+        createTime: "2021年6月8日21:14:05"
+      },
+      {
+        id:"2",
+        username:"用户2",
+        content:"文章内容2",
+        createTime: "2021年6月9日21:14:28"
+      },
+      {
+        id:"1",
+        username:"用户1",
+        content:"文章内容1",
+        createTime: "2021年6月8日21:14:05"
+      },
+      {
+        id:"1",
+        username:"用户1",
+        content:"文章内容1",
+        createTime: "2021年6月8日21:14:05"
+      },
+      {
+        id:"1",
+        username:"用户1",
+        content:"文章内容1",
+        createTime: "2021年6月8日21:14:05"
+      },
+      {
+        id:"1",
+        username:"用户1",
+        content:"文章内容1",
+        createTime: "2021年6月8日21:14:05"
+      },
+      {
+        id:"1",
+        username:"用户1",
+        content:"文章内容1",
+        createTime: "2021年6月8日21:14:05"
+      },
+      {
+        id:"1",
+        username:"用户1",
+        content:"文章内容1",
+        createTime: "2021年6月8日21:14:05"
+      },
+      {
+        id:"1",
+        username:"用户1",
+        content:"文章内容1",
+        createTime: "2021年6月8日21:14:05"
+      },
+      {
+        id:"1",
+        username:"用户1",
+        content:"文章内容1",
+        createTime: "2021年6月8日21:14:05"
+      },
+    ]
   },
 
   returnback:function(){
@@ -24,18 +102,25 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // wx.cloud.callFunction({
-    //   name:"getType",
-    //   data:{
-    //     "type": 1,
-    //   }
-    // }).then(res=>{
-    //   this.setData({
-    //     type:res.result.data
-    //   })
-    //   console.log(this.data.type);
-    // })
-  },
+    var data 
+    wx.cloud.callFunction({
+      name: 'getNotAuditingPost',
+    }).then(res => {
+      data =res.result
+      console.log(res.result)
+      this.setData({
+        posts: data,
+      })
+    })
+},
+slideButtonTap(e) {
+  
+  var index = e.currentTarget.dataset.index;
+  console.log(index)
+  console.log(this.data.posts[content].id)
+  console.log('slide button tap', e.detail)
+},
+  
 
   /**
    * 生命周期函数--监听页面初次渲染完成

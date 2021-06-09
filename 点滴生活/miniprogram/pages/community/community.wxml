@@ -1,5 +1,5 @@
 // 'navbar-data'中navbar是自定义导航栏标题
-<navbar navbar-data='{{nvabarData}}'></navbar>
+<navbar navbar-data='{{nvabarData}}' bindnavedit='toWritePost'></navbar>
 
 <view class="swiper">
 
@@ -29,10 +29,10 @@
             </view>
             <!-- 文章主体内容 -->
             <view class="post">
-              文章内容
+              <view class="userPic">
+                <image class="picItem" src="../../images/tt3x.png"></image>
+              </view>
             </view>
-             <!-- 文章主体内容 -->
-            <!-- <image class='img' src="{{ item.focus }}" mode="aspectFill"></image> -->
           </view>
 
 

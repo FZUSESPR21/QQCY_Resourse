@@ -1,0 +1,52 @@
+.page{
+  position: relative;
+  height: 100%;
+  width:100%;
+}
+.page__bd
+{
+  position: relative;
+  width:100%;
+  height:100%;
+  margin-top:88rpx;
+}
+.weui-slideview__btn{
+  border-radius: 12rpx;
+  margin-top: 6rpx;
+}
+.weui-slidecells{margin-top: 10rpx;
+  content: close-quote;
+  padding: 4rpx;
+  border-radius: 12px;
+  position: relative;
+  width: 680rpx;
+  height: 150rpx;
+  top: 100rpx;
+  left: 30rpx;
+  border-bottom: 6rpx solid #9E9E9E;
+  background: #ffc8a18c;
+}
+.weui-slidecell{
+  padding-top: 10rpx;
+  padding-left: 20rpx;
+  height: 40rpx;
+}
+.onedayaccount{
+  z-index:1;
+  height:120rpx;
+  width:680rpx;
+  position:relative;
+}
+.context{
+  padding-left: 20rpx;
+  position: relative;
+  top: 1rpx;
+  height: 50rpx;
+}
+
+.time{
+  position: relative;
+  display: inline;
+  top: 1rpx;
+  padding-left: 300rpx;
+}
