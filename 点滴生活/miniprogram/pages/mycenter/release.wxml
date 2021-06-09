@@ -1,5 +1,8 @@
 <!--miniprogram/pages/mycenter/release.wxml-->
 <navbar navbar-data='{{nvabarData}}' bindnavback='backToMycenter'></navbar>
+<loading hidden="{{loadingHidden}}">
+    加载中...
+</loading>
 <view class="in_pay_tapbar" bindtap="slidemove" >
       <image class="slide" animation="{{animation}}"src="../../images/income.png" mode='scaleToFill' ></image>
       <text class="income" style="color:{{incomecolor}}">未入选</text>
