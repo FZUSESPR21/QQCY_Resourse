@@ -1,6 +1,8 @@
 /* miniprogram/pages/makeaccount/makeaccount.wxss */
 .border{
   margin-top: 200rpx;
+  position:relative;
+  top:45rpx;
   width: 100%;
   height: 0;
 }
