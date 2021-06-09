@@ -29,7 +29,10 @@
             </view>
             <!-- 文章主体内容 -->
             <view class="post">
-              文章内容
+              <view class="userPic">
+                <image class="picItem" src="../../images/tt3x.png"></image>
+              </view>
+              
             </view>
              <!-- 文章主体内容 -->
             <!-- <image class='img' src="{{ item.focus }}" mode="aspectFill"></image> -->

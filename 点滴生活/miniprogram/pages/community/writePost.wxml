@@ -4,14 +4,14 @@
 
 
 <view class="postBox">
-  <textarea class="postText" placeholder="发布你的小妙招...." maxlength="200" bindinput="setText"></textarea>
+  <textarea class="postText" value="{{text}}" placeholder="发布你的小妙招...." maxlength="200" bindinput="setText"></textarea>
 </view>
 
 <view class="picList" hidden="{{hide}}">
   <block wx:key="picBox" wx:for="{{picBox}}">
       <view class="pic">
           <image class="picItem" src="{{item}}" catchtap="preview" data-src="{{item}}" mode="aspectFill"></image>
-          <view class='img-delect' data-index='{{index}}' catchtap='imgDelete1'>
+          <view class='img-delect' data-index='{{index}}' bindtap='imgDelete1'>
             <image class="picItem" mode="scaleToFill" src="../../images/jianhao.png"></image>
           </view>
       </view>

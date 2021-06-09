@@ -30,70 +30,87 @@ Page({
   },
 
   uploadPost:function(){
-    if(this.data.text!=""){
-        var createTime;
-        var date = new Date();
-        createTime = date.toLocaleString('zh', { hour12: false});
-        createTime = createTime.replace(',',' ');
-
-        wx.showLoading({
-          title: '正在上传',
-          mask:true
-        })
-        let promiseArr = [];
-        for (let index = 0; index < this.data.picBox.length; index++) {
-          promiseArr.push(new Promise((reslove,reject)=>{
-            let item = this.data.picBox[index];
-            let suffix = /\.\w+$/.exec(item)[0];//正则表达式返回文件的扩展名
-            wx.cloud.uploadFile({
-              cloudPath: new Date().getTime() + index +suffix, // 上传至云端的路径
-              filePath: item,
-              success: res=>{
-                this.setData({
-                  picId:this.data.picId.concat(res.fileID)
-                })
-                reslove();
-              },
-              fail: res=>{
-                wx.hideLoading();
-                wx.showToast({
-                  title: "上传失败",
-                })
-              }
+    if(this.data.text.replace(/\s*/g,"")!=""){
+        wx.cloud.callFunction({
+          name:'msgesc',
+          data:{
+            text:this.data.text,
+          }
+        }).then(res=>{
+          if(res.result.errCode==0){
+            var createTime;
+            var date = new Date();
+            createTime = date.toLocaleString('zh', { hour12: false});
+            createTime = createTime.replace(',',' ');
+    
+            wx.showLoading({
+              title: '正在上传',
+              mask:true
             })
-          }))
-        }
-        Promise.all(promiseArr).then(res=>{
-          console.log(this.data.picId)
-          wx.hideLoading();
-          wx.showToast({
-            title: "上传成功",
-          })
-
-          //发布文章之后的函数
-          wx.cloud.callFunction({
-            name:"addPost",
-            data:{
-              text:this.data.text,
-              picArray:this.data.picId,
-              createTime:createTime,
-            }
-          }).then(res=>{
-            console.log(res);
-            console.log(createTime);
-          })
-          wx.showToast({
-            title: '发布成功！', // 标题
-            icon: 'success',  // 图标类型，默认success
-            duration: 1500  // 提示窗停留时间，默认1500ms
-          })
-          setTimeout(function (){
-                //跳转
-                wx.navigateBack({
-                  delta: 0,
+            let promiseArr = [];
+            for (let index = 0; index < this.data.picBox.length; index++) {
+              promiseArr.push(new Promise((reslove,reject)=>{
+                let item = this.data.picBox[index];
+                let suffix = /\.\w+$/.exec(item)[0];//正则表达式返回文件的扩展名
+                wx.cloud.uploadFile({
+                  cloudPath: new Date().getTime() + index +suffix, // 上传至云端的路径
+                  filePath: item,
+                  success: res=>{
+                    this.setData({
+                      picId:this.data.picId.concat(res.fileID)
+                    })
+                    reslove();
+                  },
+                  fail: res=>{
+                    wx.hideLoading();
+                    wx.showToast({
+                      title: "上传失败",
+                    })
+                  }
                 })
-            }, 1500) //延迟时间 这里是1.5秒
-          })
+              }))
+            }
+            Promise.all(promiseArr).then(res=>{
+              console.log(this.data.picId)
+              wx.hideLoading();
+              wx.showToast({
+                title: "上传成功",
+              })
+    
+              //发布文章之后的函数
+              wx.cloud.callFunction({
+                name:"addPost",
+                data:{
+                  text:this.data.text,
+                  picArray:this.data.picId,
+                  createTime:createTime,
+                }
+              }).then(res=>{
+                console.log(res);
+                console.log(createTime);
+              })
+              wx.showToast({
+                title: '发布成功！', // 标题
+                icon: 'success',  // 图标类型，默认success
+                duration: 1500  // 提示窗停留时间，默认1500ms
+              })
+              setTimeout(function (){
+                    //跳转
+                    wx.navigateBack({
+                      delta: 0,
+                    })
+                }, 1500) //延迟时间 这里是1.5秒
+              })
+          }else{
+            wx.showToast({
+              title: '含有违规内容，请重新编辑',
+              icon:'none'
+            })
+            this.setData({
+              text:""
+            })
+          }
+        })
     }else{
       wx.showToast({
         title: '还未输入内容',
