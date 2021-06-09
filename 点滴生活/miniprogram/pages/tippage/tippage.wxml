@@ -13,7 +13,7 @@
     这里是小贴士内容
   </view>
   <view class="tip-images-area">
-    <view wx:for="{{5}}">
+    <view wx:for="{{5}}" wx:key="index">
     <image src="../../images/community.png" ></image>
     </view>
   </view>
@@ -37,7 +37,7 @@
 </view>
 <view class="comment-area">
   <view class="comment-area-title">评论</view>
-  <view wx:for="{{commentList}}" class="comment-content-area" wx:for-index="myIndex" wx:for-item="myItem">
+  <view wx:for="{{commentList}}" class="comment-content-area" wx:for-index="myIndex" wx:for-item="myItem" wx:key="index">
     <view class="comment-publisher-message-area">
     <image class="commenter-head" src="{{myItem. commenterHead}}"></image>
     <view class="publisher-message">
