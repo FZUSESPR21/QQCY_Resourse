@@ -1,5 +1,5 @@
 // 'navbar-data'中navbar是自定义导航栏标题
-<navbar navbar-data='{{nvabarData}}'></navbar>
+<navbar navbar-data='{{nvabarData}}' bindnavedit='toWritePost'></navbar>
 
 <view class="swiper">
 

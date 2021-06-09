@@ -1,0 +1,28 @@
+<!--miniprogram/pages/community/writePost.wxml-->
+<navbar navbar-data='{{nvabarData}}' bindnavback="returnToC"></navbar>
+<view class="border"></view>
+
+
+<view class="postBox">
+  <textarea class="postText" placeholder="发布你的小妙招...." maxlength="200" bindinput="setText"></textarea>
+</view>
+
+<view class="picList" hidden="{{hide}}">
+  <block wx:key="picBox" wx:for="{{picBox}}">
+      <view class="pic">
+          <image class="picItem" src="{{item}}" catchtap="preview" data-src="{{item}}" mode="aspectFill"></image>
+          <view class='img-delect' data-index='{{index}}' catchtap='imgDelete1'>
+            <image class="picItem" mode="scaleToFill" src="../../images/jianhao.png"></image>
+          </view>
+      </view>
+  </block>
+  <block>
+    <view class="pic" catchtap="addPic" wx:if="{{picBox.length<9}}">
+    <image class="picItem2" src="../../images/addhao.png"></image>
+    </view>
+  </block>
+</view>
+
+<view class="submit">
+  <button class="submitButton" catchtap="uploadPost">发布</button>
+</view>
