@@ -526,26 +526,24 @@ Page({
               }
             }
           }
+          if(this.data.weekselect=="block")
+          this.setaccountlistbyweek(pickweek)
+          else 
+          this.setaccountlist(nowmonth)
+          console.log(this.data.costaccountlist)
         },
         fail: err => {
         }
       })
     }
-    if(this.data.weekselect=="block")
-    this.setaccountlistbyweek(pickweek)
-    else 
-    this.setaccountlist(nowmonth)
-    console.log(this.data.costaccountlist)
     this.setData({
       dialogShow: false,
     })
-    this.onShow()
   },
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.onLoad()
     var date = new Date()
     pickyear = date.getFullYear();
     nowmonth = date.getMonth();
