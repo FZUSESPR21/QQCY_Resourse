@@ -102,7 +102,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var data 
+    this.getNotAuditingPost();
+},
+
+getNotAuditingPost:function(){
+  var data 
     wx.cloud.callFunction({
       name: 'getNotAuditingPost',
     }).then(res => {
@@ -113,12 +117,27 @@ Page({
       })
     })
 },
+
 slideButtonTap(e) {
   
   var index = e.currentTarget.dataset.index;
-  console.log(index)
-  console.log(this.data.posts[content].id)
-  console.log('slide button tap', e.detail)
+  var id;
+  if(e.detail.index==0)
+  {
+    id=this.data.posts[index]._id;
+    wx.navigateTo({
+      url: '../mycenter/auditingdetail?id='+id
+    })
+    console.log("跳转详细文章内容")
+  }
+  else if(e.detail.index==1)
+  {
+    console.log("审核通过")
+    console.log(this.data.posts[index])
+  }
+  else if(e.detail.index==2){
+    console.log("删除该妙招")
+  }
 },
   
 

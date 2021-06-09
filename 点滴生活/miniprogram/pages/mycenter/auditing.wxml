@@ -6,7 +6,7 @@
         <mp-slideview buttons="{{slideButtons}}" bindbuttontap="slideButtonTap" 
         class="ondayaccount" data-index="{{index}}">
           <view class="weui-slidecell">{{item.userName}}</view>
-          <view class="context">{{item.content}}</view>
+          <text class="context">{{item.content}}</text>
           <view class="time">{{item.createTime}}</view>
         </mp-slideview>
       </view>
