@@ -8,7 +8,7 @@
 </view>
 <view class="mainblock" catchtap="close">
   <view class="limit_hb">
-    <limitprogress></limitprogress>
+    <limitprogress style="display:{{limitIsShow}}"></limitprogress>
   </view>
 
   <view class="in_pay_tapbar" bindtap="slidemove">

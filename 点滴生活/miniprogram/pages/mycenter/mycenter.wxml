@@ -52,5 +52,9 @@
     <image src="../../images/we.png" class="about"></image>
     <view class="abouttext">审核</view>
   </view>
+  <button class='btn1' bindtap="exportbtn">
+    <image class='btnImg' src='../../images/export.png'></image>
+    <view>导出账单</view>
+ </button>
 </view>
 
