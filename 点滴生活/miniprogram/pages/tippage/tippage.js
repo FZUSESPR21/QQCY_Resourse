@@ -19,7 +19,8 @@ Page({
       userName:"",//用户名
       publishTime:""//发布时间
     },
-    tipContent:"",//小贴士文字内容
+
+    tipContent:'',//小贴士文字内容
     tipImgUrls:[],//小贴士图像url数组
     tipNumData:{//小贴士数字数组
       likeNum:0,
@@ -27,28 +28,28 @@ Page({
     },
     commentList:[//小贴士评论列表
       {
-        commenterHead:'../../images/tt3x.png',//评论者头像
+        /*commenterHead:'../../images/tt3x.png',//评论者头像
         commenterName:"用户1",//评论者用户名
         commentCreateTime:"2000.10.16.10.31",//评论发布时间
-        commentContent:"哈喽朋友们",//评论内容
+        commentContent:"哈喽朋友们",//评论内容*/
       },
       {
-        commenterHead:'../../images/tt3x.png',//评论者头像
+        /*commenterHead:'../../images/tt3x.png',//评论者头像
         commenterName:"用户1",//评论者用户名
         commentCreateTime:"2000.10.16.10.31",//评论发布时间
-        commentContent:"哈喽朋友们",//评论内容
+        commentContent:"哈喽朋友们",//评论内容*/
       },
       {
-        commenterHead:'../../images/tt3x.png',//评论者头像
+        /*commenterHead:'../../images/tt3x.png',//评论者头像
         commenterName:"用户1",//评论者用户名
         commentCreateTime:"2000.10.16.10.31",//评论发布时间
-        commentContent:"哈喽朋友们",//评论内容
+        commentContent:"哈喽朋友们",//评论内容*/
       },
       {
-        commenterHead:'../../images/tt3x.png',//评论者头像
+        /*commenterHead:'../../images/tt3x.png',//评论者头像
         commenterName:"用户1",//评论者用户名
         commentCreateTime:"2000.10.16.10.31",//评论发布时间
-        commentContent:"哈喽朋友们",//评论内容
+        commentContent:"哈喽朋友们",//评论内容*/
       },
     ],
     commentInputText:"",//文字框输入内容
@@ -68,8 +69,40 @@ Page({
   postComment:function (e) {
     
   },
+
   onLoad(option){
+    
+    //从数据库获取内容
+    wx.cloud.callFunction({
+      name:'getTipdetail',
+      data : {
+        id: '28ee4e3e60c1cbdf213c1e356dd8c453'  //post_id由小贴士列表传送
+      }
+    }).then( res =>{
+      console.log( res.data );
+      this.setData({
+        tipContent: res[0].id,
+        tipImgUrls: res[0].picArray,
+        // ['tipNumData.likeNum']: tip[0].likes,
+        // ['tipNumData.commentNum']: tip[0].comments,
+      })
+    })
+
+    // wx.cloud.callFunction({
+    //   name:'getComment',
+    //   data : {
+    //     id: post_id   //post_id由小贴士列表传送
+    //   }
+    // }).then(commentList=>{
+    //   console.log(res.result);
+    //   this.setData({
+    //     commentList:commentList.result,
+    //   })
+    // })
+    
   },
+
+
   bindTextAreaBlur:function(e)
   {
     this.setData({

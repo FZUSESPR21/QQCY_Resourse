@@ -10,7 +10,7 @@
     </view>
   </view>
   <view class="tip-content-area">
-    这里是小贴士内容
+    {{tip.tipContent}}
   </view>
   <view class="tip-images-area">
     <view wx:for="{{5}}" wx:key="index">
@@ -39,15 +39,15 @@
   <view class="comment-area-title">评论</view>
   <view wx:for="{{commentList}}" class="comment-content-area" wx:for-index="myIndex" wx:for-item="myItem" wx:key="index">
     <view class="comment-publisher-message-area">
-    <image class="commenter-head" src="{{myItem. commenterHead}}"></image>
+    <image class="commenter-head" src="{{myItem. userPic}}"></image>
     <view class="publisher-message">
-    <view class="publisher-name">{{myItem.commenterName}}</view>
-    <view class="tip-createtime">{{myItem.commentCreateTime}}</view>
+    <view class="publisher-name">{{myItem.username}}</view>
+    <view class="tip-createtime">{{myItem.CreateTime}}</view>
     
     </view>
   </view>
   <view class="comment-content">
-      {{myItem.commentContent}}
+      {{myItem.content}}
     </view>
   </view>
 </view>

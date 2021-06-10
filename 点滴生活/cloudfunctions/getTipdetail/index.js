@@ -5,6 +5,7 @@ cloud.init()
 
 const db = cloud.database();
 const _ = db.command
+var $ = cloud.database().command.aggregate   //定义聚合操作符
 
 // 云函数入口函数
 exports.main = async (event, context) => {
@@ -13,25 +14,16 @@ exports.main = async (event, context) => {
   var openid = wxContext.OPENID
   var id = event.id
   var tip
-  var comment
+  var commentList = new Array()
+  
   db.collection('post').where({
-    _id:id,
-    userid:openid,
+    _id:'28ee4e3e60c1cbdf213c1e356dd8c453',
+    /*userid:'openid',*/
   })
   .get()
   .then(res=>{
-    tip = res.data
+    console.log(res.data)
+    return res.data
   })
-
-  db.collection('comment').where({
-    postid:id,
-    userid:openid,
-  })
-  .get()
-  .then(res=>{
-    comment = res.data
-  })
-
-  return detail
 }
 // 只读取了数据 还没写完
