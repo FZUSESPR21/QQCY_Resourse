@@ -14,8 +14,7 @@ exports.main = async (event, context) => {
 
   await db.collection('post')
     .where({
-        _id:'28ee4e3e60c1cbdf213c1e356dd8c453',
-        /*userid:'openid',*/
+        _id: id,
     })
     .get()
     .then(res=>{
@@ -25,4 +24,3 @@ exports.main = async (event, context) => {
      console.log(tip);
      return tip;
 }
-// 只读取了数据 还没写完

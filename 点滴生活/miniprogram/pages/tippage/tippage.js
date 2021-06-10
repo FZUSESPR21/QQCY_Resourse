@@ -28,6 +28,9 @@ Page({
     },
     commentList:[//小贴士评论列表
       {
+        _id: '',
+        content: '',
+
         /*commenterHead:'../../images/tt3x.png',//评论者头像
         commenterName:"用户1",//评论者用户名
         commentCreateTime:"2000.10.16.10.31",//评论发布时间
@@ -71,21 +74,26 @@ Page({
   },
 
   onLoad(option){
-    
+    const post_id = option.id;
+    this.setData({
+      tipContent: post_id,
+    })
     //从数据库获取内容
     wx.cloud.callFunction({
       name:'getTipsDetail',
-      // data : {
-      //   id: '28ee4e3e60c1cbdf213c1e356dd8c453'  //post_id由小贴士列表传送
-      // }
+       data : {
+         id: post_id  //post_id由小贴士列表传送
+       }
     }).then( tip =>{
-      console.log('@@@@!!!!')
-      console.log(tip);
+
       this.setData({
         tipContent: tip.result[0].content,
         tipImgUrls: tip.result[0].picArray,
         ['tipNumData.likeNum']: tip.result[0].likes,
         ['tipNumData.commentNum']: tip.result[0].comments,
+        ['tipPublisherMessage.headUrl']: tip.result[0].userPic,
+        ['tipPublisherMessage.userName']: tip.result[0].userName,
+        ['tipPublisherMessage.publishTime']: tip.result[0].createTime,
       })
       console.log(tip.result[0].content)
     })
@@ -95,10 +103,10 @@ Page({
     //   data : {
     //     id: post_id   //post_id由小贴士列表传送
     //   }
-    // }).then(commentList=>{
+    // }).then(res=>{
     //   console.log(res.result);
     //   this.setData({
-    //     commentList:commentList.result,
+    //     commentList: commentList.result,
     //   })
     // })
     

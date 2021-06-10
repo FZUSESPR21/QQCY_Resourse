@@ -5,16 +5,16 @@
   <view class="publisher-message-area">
     <image class="publisher-head" src="{{tipPublisherMessage.headUrl}}"></image>
     <view class="publisher-message">
-    <view class="publisher-name">用户1</view>
-    <view class="tip-createtime">2000.10.16.00000</view>
+    <view class="publisher-name">{{tipPublisherMessage.userName}}</view>
+    <view class="tip-createtime">{{tipPublisherMessage.publishTime}}</view>
     </view>
   </view>
   <view class="tip-content-area">
     {{tipContent}}
   </view>
   <view class="tip-images-area">
-    <view wx:for="{{5}}" wx:key="index">
-    <image src="../../images/community.png" ></image>
+    <view wx:for="{{tipImgUrls}}" wx:key="index" wx:for-item="item">
+    <image src="{{item}}" ></image>
     </view>
   </view>
   <view class="tip-operation-area">
