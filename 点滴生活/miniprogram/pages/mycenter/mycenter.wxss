@@ -208,4 +208,22 @@
   border: 1px solid rgba(187, 187, 187, 33);
   height: 86rpx;
 }
+.btn1 {
+     border:1px solid black; 
+  width: 100%;
+  margin-top: 20rpx;
+  background-color: rgb(152, 158, 233);
+  color: white;
+  border-radius: 98rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.btnImg {
+  margin-right: 8rpx;
+  width: 46rpx;
+  height: 46rpx;
+}
+
 
