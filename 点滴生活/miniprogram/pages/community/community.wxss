@@ -102,6 +102,7 @@ swiper,
   border-radius: 30rpx;
   flex-wrap: wrap;
   flex-direction: row;
+  align-content:space-between;
 }
 .userPic{
   width: 65rpx;
@@ -149,8 +150,11 @@ swiper,
   height: 120rpx;
 }
 
-.inPic{
+.inOpe{
   display: flex;
+  height: 80rpx;
+  width: 100%;
+  margin-bottom: 25rpx;
 }
 
 .like{

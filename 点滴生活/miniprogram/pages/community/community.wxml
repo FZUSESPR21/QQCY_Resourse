@@ -5,7 +5,7 @@
 
   <swiper class='bannerGrid' previous-margin="60rpx" next-margin="60rpx">
 
-    <swiper-item class="item" wx:for="{{ bannerData }}" wx:key="index">
+    <swiper-item class="item" wx:for="{{ posts }}" wx:key="index">
       <view class="swiper-item">
         <view class='boxItem'>
 
@@ -28,44 +28,44 @@
                 </view>
             </view>
             <!-- 文章主体内容 -->
-            <view class="post">
+            <view class="post" catchtap="move2detail" data-index="{{index}}">
 
               <view class="userPic">
-                <image class="picItem" src="../../images/tt3x.png" mode="aspectFill"></image>
+                <image class="picItem" src="{{item.userPic}}" mode="aspectFill"></image>
               </view>
 
               <view class="userName">
                 <view class="name">
-                  userName
+                  {{item.userName}}
                 </view>
                 <view  class="time">
-                  2021-06-10 11:12:15
+                  {{item.createTime}}
                 </view>
               </view>
               <view class="postText">
-                  每日精选每日精选每日精选每日精选每日精选每日精选每日精选每日精选每日精选每日精选每日精选每日精选每日精选每日精选每日精选每日精选每每日精选每每日精选每每日精选每每日精选每每日精选每每日精选每每日精选每每日精选每每日精选每每日精选每每日精选每每日精选每每日精选每每日精选每每日精选每每日精选每每日精选每每日精选每每日精选每每日精选每每日精选每
+                  {{item.content}}
               </view>
               <!-- 预览3张图 -->
-              <view class="inPic">
-                <view class="imgView">
-                  <image class="picItem" src="cloud://cloud1-2g1cvw78a2d7648f.636c-cloud1-2g1cvw78a2d7648f-1305707823/1619450164112.jpg" mode="aspectFill"></image>
-                </view>
-                <view class="imgView">
-                  <image class="picItem" src="cloud://cloud1-2g1cvw78a2d7648f.636c-cloud1-2g1cvw78a2d7648f-1305707823/1619450164112.jpg" mode="aspectFill"></image>
-                </view>
-                <view class="imgView">
-                  <image class="picItem" src="cloud://cloud1-2g1cvw78a2d7648f.636c-cloud1-2g1cvw78a2d7648f-1305707823/1619450164112.jpg" mode="aspectFill"></image>
+              <view class="inPic" wx:for="{{item.picArray}}" wx:key="index">
+                <view class="imgView" wx:if="{{index<3}}">
+                  <image class="picItem" src="{{item}}" mode="aspectFill"></image>
                 </view>
               </view>
-              <view class="inPic">
+              <view class="inOpe">
                 <view class="like">
                   <image class="picItem" src="../../images/agree.png" mode="aspectFill"></image>
                 </view>
-                <view class="number-cs">0</view>
+                <view class="number-cs">{{item.likes}}</view>
                 <view class="like">
                   <image class="picItem" src="../../images/comment2.png" mode="aspectFill"></image>
                 </view>
-                <view class="number-cs">0</view>
+                <view class="number-cs">{{item.comments}}</view>
+                <view class="like">
+                  <image class="picItem" src="../../images/shoucan2.png" mode="aspectFill"></image>
+                </view>
+                <view class="like">
+                  <image class="picItem" src="../../images/fenxiang2.png" mode="aspectFill"></image>
+                </view>
               </view>
               
               

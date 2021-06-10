@@ -536,6 +536,9 @@ Page({
         }
       })
     }
+    /**
+     * 下面设置可用额度
+     */
     this.setData({
       dialogShow: false,
     })
