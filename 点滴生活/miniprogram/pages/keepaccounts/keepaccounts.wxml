@@ -8,9 +8,8 @@
 </view>
 <view class="mainblock" catchtap="close">
   <view class="limit_hb">
-    <limitprogress></limitprogress>
+    <limitprogress remain="{{remain}}" noticetext="{{noticetext}}" percent="{{percent}}" progresscolor="{{progresscolor}}"></limitprogress>
   </view>
-
   <view class="in_pay_tapbar" bindtap="slidemove">
     <image class="slide" animation="{{animation}}" src="../../images/income.png" mode='scaleToFill'></image>
     <text class="income" style="color:{{incomecolor}}">收入</text>
@@ -18,7 +17,7 @@
   </view>
   <image class="tablechange" src='{{imageSrc}}' mode='aspectFit' bindtap="handleChartChange"></image>
 
-  <view class="datatableblock">
+  <view class="datatableblock" style="display:none">
 
     <view class="select_wrap" style="display:{{yearselect}}">
       <select id="select" current="{{yearcurrent}}" defaultOption="{{yeardefaultoption}}" options="{{yearoptions}}" key="time_id" text="time_name"
@@ -70,4 +69,14 @@
     </mp-dialog>
   <!--movable-area class="movearea" style="height:{{moveareaheight}}rpx"-->
   <!--/movable-area-->
+  <view class="viewdetail">
+  <view class="yellowpoint"></view>
+  <view class="detailline"></view>
+  <view class="detailremark">备注：{{detailremark}}</view>
+  <view class="detailtype">类型：{{detailtype}}</view>
+  <view class="detailnum">金额：{{detailnum}}</view>
+  <view class="detaildate">日期：{{detaildate}}</view>
+  <view class="linkthings">关联日记：</view>
+  <view class="thingstitle" bindtap="thingsjump">{{thingstitle}}</view>
+  </view>
 </view>

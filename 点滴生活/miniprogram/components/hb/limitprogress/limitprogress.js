@@ -10,7 +10,29 @@ Component({
    * 组件的属性列表
    */
   properties: {
+    remain:{
+      type:Number,
+      value:{
+      }
+    },
+    noticetext:{
+      type:String,
+      value:{
 
+      }
+    },
+    percent:{
+      type:Number,
+      value:{
+
+      }
+    },
+    progresscolor:{
+      type:String,
+      value:{
+        
+      }
+    }
   },
 
   /**

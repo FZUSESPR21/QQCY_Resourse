@@ -190,3 +190,63 @@
   height:158rpx;
   z-index:100;
 }
+.viewdetail{
+  width:528rpx;
+  height:500rpx;
+  position:fixed;
+  top:608rpx;
+  left:128rpx;
+  z-index:100;
+  background-color: white;
+  border-radius: 30rpx;
+  box-shadow: 0rpx 4rpx 12rpx 0rpx rgba(0, 0, 0, 0.4);
+  border: 2rpx solid rgba(187, 187, 187, 100);
+}
+.yellowpoint{
+  width:24rpx;
+  height:24rpx;
+  position:absolute;
+  top:18rpx;
+  left:42rpx;
+  border-radius: 24rpx;
+  background-color: rgba(254, 215, 102, 100);
+  border: 1px solid rgba(187, 187, 187, 100);
+}
+.detailline{
+  width:6rpx;
+  background-color: #BBBBBB;
+  height:400rpx;
+  position: absolute;
+  top:50rpx;
+  left:52rpx;
+}
+.detaildate{
+  position:absolute;
+  top:64rpx;
+  left:78rpx;
+}
+.detailtype{
+  position:absolute;
+  top:138rpx;
+  left:78rpx;
+}
+.detailnum{
+  position:absolute;
+  top:216rpx;
+  left:78rpx;
+}
+.detailremark{
+  position:absolute;
+  top:294rpx;
+  left:78rpx;
+}
+.linkthings{
+  position:absolute;
+  top:372rpx;
+  left:78rpx;
+}
+.thingstitle{
+  position:absolute;
+  top:372rpx;
+  left:240rpx;
+}
