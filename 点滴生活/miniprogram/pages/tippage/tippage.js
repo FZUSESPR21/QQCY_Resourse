@@ -20,40 +20,40 @@ Page({
       publishTime:""//发布时间
     },
 
-    tipContent:'',//小贴士文字内容
-    tipImgUrls:[],//小贴士图像url数组
-    tipNumData:{//小贴士数字数组
+      tipContent:'',//小贴士文字内容
+      tipImgUrls:[],//小贴士图像url数组
+      tipNumData:{//小贴士数字数组
       likeNum:0,
       commentNum:0,
     },
-    commentList:[//小贴士评论列表
+    commenterHead: [],   //评论者头像
+    commentList: [//小贴士评论列表
       {
         _id: '',
         content: '',
-
-        /*commenterHead:'../../images/tt3x.png',//评论者头像
-        commenterName:"用户1",//评论者用户名
-        commentCreateTime:"2000.10.16.10.31",//评论发布时间
-        commentContent:"哈喽朋友们",//评论内容*/
+        createTime: '',
+        postid: '',
+        userid:'',
+        username:'',
       },
-      {
-        /*commenterHead:'../../images/tt3x.png',//评论者头像
-        commenterName:"用户1",//评论者用户名
-        commentCreateTime:"2000.10.16.10.31",//评论发布时间
-        commentContent:"哈喽朋友们",//评论内容*/
-      },
-      {
-        /*commenterHead:'../../images/tt3x.png',//评论者头像
-        commenterName:"用户1",//评论者用户名
-        commentCreateTime:"2000.10.16.10.31",//评论发布时间
-        commentContent:"哈喽朋友们",//评论内容*/
-      },
-      {
-        /*commenterHead:'../../images/tt3x.png',//评论者头像
-        commenterName:"用户1",//评论者用户名
-        commentCreateTime:"2000.10.16.10.31",//评论发布时间
-        commentContent:"哈喽朋友们",//评论内容*/
-      },
+      // {
+      //   /*commenterHead:'../../images/tt3x.png',//评论者头像
+      //   commenterName:"用户1",//评论者用户名
+      //   commentCreateTime:"2000.10.16.10.31",//评论发布时间
+      //   commentContent:"哈喽朋友们",//评论内容*/
+      // },
+      // {
+      //   /*commenterHead:'../../images/tt3x.png',//评论者头像
+      //   commenterName:"用户1",//评论者用户名
+      //   commentCreateTime:"2000.10.16.10.31",//评论发布时间
+      //   commentContent:"哈喽朋友们",//评论内容*/
+      // },
+      // {
+      //   /*commenterHead:'../../images/tt3x.png',//评论者头像
+      //   commenterName:"用户1",//评论者用户名
+      //   commentCreateTime:"2000.10.16.10.31",//评论发布时间
+      //   commentContent:"哈喽朋友们",//评论内容*/
+      // },
     ],
     commentInputText:"",//文字框输入内容
     isLike:false,//是否点赞
@@ -85,7 +85,6 @@ Page({
          id: post_id  //post_id由小贴士列表传送
        }
     }).then( tip =>{
-
       this.setData({
         tipContent: tip.result[0].content,
         tipImgUrls: tip.result[0].picArray,
@@ -98,17 +97,31 @@ Page({
       console.log(tip.result[0].content)
     })
 
-    // wx.cloud.callFunction({
-    //   name:'getComment',
-    //   data : {
-    //     id: post_id   //post_id由小贴士列表传送
-    //   }
-    // }).then(res=>{
-    //   console.log(res.result);
-    //   this.setData({
-    //     commentList: commentList.result,
-    //   })
-    // })
+    //读取评论列表
+    wx.cloud.callFunction({
+      name:'getComment',
+      data : {
+        id: post_id   //post_id由小贴士列表传送
+      }
+    }).then(res=>{
+      console.log(res.result);
+      this.setData({
+        commentList: commentList.result,
+      })
+    })
+    for( var i = 0 ; i<commentListlength ; i++){
+      wx.cloud.callFunction({
+        name:'getCommentUser',
+        data : {
+          id: ['commentList[i].userid']   //post_id由小贴士列表传送
+        }
+      }).then(res=>{
+        console.log(res.result);
+        this.setData({
+          commenterHead: res.result[0],
+        })
+      })
+    }
     
   },
 
