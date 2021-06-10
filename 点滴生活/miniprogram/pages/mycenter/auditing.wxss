@@ -8,7 +8,8 @@
   position: relative;
   width:100%;
   height:100%;
-  margin-top:88rpx;
+  margin-top: 130rpx;
+
 }
 .weui-slideview__btn{
   border-radius: 12rpx;
