@@ -13,14 +13,14 @@
             <view class="today">
                 <view class="cskday">
                   <text>
-                    05
+                    10
                   </text>
                 </view>
                 <view class="yishu">
                 </view>
                 <view>
                   <view style="color: #474444">
-                      星期六
+                      星期四
                   </view>
                   <viwe style="color: #474444">
                       2021.06
@@ -29,9 +29,46 @@
             </view>
             <!-- 文章主体内容 -->
             <view class="post">
+
               <view class="userPic">
-                <image class="picItem" src="../../images/tt3x.png"></image>
+                <image class="picItem" src="../../images/tt3x.png" mode="aspectFill"></image>
               </view>
+
+              <view class="userName">
+                <view class="name">
+                  userName
+                </view>
+                <view  class="time">
+                  2021-06-10 11:12:15
+                </view>
+              </view>
+              <view class="postText">
+                  每日精选每日精选每日精选每日精选每日精选每日精选每日精选每日精选每日精选每日精选每日精选每日精选每日精选每日精选每日精选每日精选每每日精选每每日精选每每日精选每每日精选每每日精选每每日精选每每日精选每每日精选每每日精选每每日精选每每日精选每每日精选每每日精选每每日精选每每日精选每每日精选每每日精选每每日精选每每日精选每每日精选每每日精选每
+              </view>
+              <!-- 预览3张图 -->
+              <view class="inPic">
+                <view class="imgView">
+                  <image class="picItem" src="cloud://cloud1-2g1cvw78a2d7648f.636c-cloud1-2g1cvw78a2d7648f-1305707823/1619450164112.jpg" mode="aspectFill"></image>
+                </view>
+                <view class="imgView">
+                  <image class="picItem" src="cloud://cloud1-2g1cvw78a2d7648f.636c-cloud1-2g1cvw78a2d7648f-1305707823/1619450164112.jpg" mode="aspectFill"></image>
+                </view>
+                <view class="imgView">
+                  <image class="picItem" src="cloud://cloud1-2g1cvw78a2d7648f.636c-cloud1-2g1cvw78a2d7648f-1305707823/1619450164112.jpg" mode="aspectFill"></image>
+                </view>
+              </view>
+              <view class="inPic">
+                <view class="like">
+                  <image class="picItem" src="../../images/agree.png" mode="aspectFill"></image>
+                </view>
+                <view class="number-cs">0</view>
+                <view class="like">
+                  <image class="picItem" src="../../images/comment2.png" mode="aspectFill"></image>
+                </view>
+                <view class="number-cs">0</view>
+              </view>
+              
+              
             </view>
           </view>
 

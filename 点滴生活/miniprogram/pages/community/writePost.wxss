@@ -1,5 +1,5 @@
 .border{
-  margin-top: 260rpx;
+  margin-top: 240rpx;
   width: 100%;
   height: 0;
 }
