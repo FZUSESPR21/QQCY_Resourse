@@ -69,7 +69,7 @@
     </mp-dialog>
   <!--movable-area class="movearea" style="height:{{moveareaheight}}rpx"-->
   <!--/movable-area-->
-  <view class="viewdetail">
+  <view class="viewdetail" style="display:none">
   <view class="yellowpoint"></view>
   <view class="detailline"></view>
   <view class="detailremark">备注：{{detailremark}}</view>
