@@ -10,7 +10,7 @@
     </view>
   </view>
   <view class="tip-content-area">
-    {{tip.tipContent}}
+    {{tipContent}}
   </view>
   <view class="tip-images-area">
     <view wx:for="{{5}}" wx:key="index">

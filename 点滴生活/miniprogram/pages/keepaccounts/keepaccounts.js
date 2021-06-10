@@ -43,6 +43,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    limitIsShow:'',
     dialogShow: false,
     dialogbuttons: [{ text: '取消' }, { text: '确定' }],
     tempYearSelected: { id: "y001", name: "2021年" },
@@ -582,7 +583,10 @@ Page({
      * 下面设置可用额度
      */
     this.setData({
-      dialogShow: false,
+      dialogShow: false
+    })
+    wx.navigateTo({
+      url: '../keepaccounts/none',
     })
   },
   /**

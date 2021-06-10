@@ -4,7 +4,7 @@
 
 <view class="main">
     <view class="content">
-    <text class="notes-titlt">{{note_title}}</text>
+    <text class="notes-title">{{note_title}}</text>
     <view class="line"></view>
     <view class="notes-content" style="margin-right:220rpx">{{note_content}}</view>
     <view class="picList" style="margin-top:220rpx">
