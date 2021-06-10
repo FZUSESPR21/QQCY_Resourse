@@ -1,6 +1,6 @@
 <!--pages/keepthing/notesdetails.wxml-->
 
-<navbar navbar-data='{{nvabarData}}' bindnavback="returnback" id="nav"></navbar>
+<navbar navbar-data='{{nvabarData}}' bindnavback="backToNoteslist" id="nav"></navbar>
 
 <view class="main">
     <view class="content">
