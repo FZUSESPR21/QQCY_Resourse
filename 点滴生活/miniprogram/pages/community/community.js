@@ -40,6 +40,14 @@ Page({
     })
   },
 
+  move2detail:function(e){
+    var index = e.currentTarget.dataset.index;
+    console.log(index);
+    console.log(this.data.posts[index]._id);
+    wx.navigateTo({
+      url: '../tippage/tippage?id='+this.data.posts[index]._id,
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

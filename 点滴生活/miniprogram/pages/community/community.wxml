@@ -28,7 +28,7 @@
                 </view>
             </view>
             <!-- 文章主体内容 -->
-            <view class="post">
+            <view class="post" catchtap="move2detail" data-index="{{index}}">
 
               <view class="userPic">
                 <image class="picItem" src="{{item.userPic}}" mode="aspectFill"></image>
