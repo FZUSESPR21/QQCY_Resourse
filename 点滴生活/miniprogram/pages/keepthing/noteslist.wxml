@@ -10,6 +10,7 @@
             <view class="week">{{item.week}}</view>
             <view class="year">{{item.year}}-{{item.month}}</view>
             <view class="text">
+                <image  class="del" src="cloud://cloud1-2g1cvw78a2d7648f.636c-cloud1-2g1cvw78a2d7648f-1305707823/删除.png" alt="alt" hover-stop-propagation='true' catchtap='delete' data-index="{{index}}"/>
                 <view class="title">{{item.title}}</view>
                 <view class="content">{{item.content}}</view>
             </view>

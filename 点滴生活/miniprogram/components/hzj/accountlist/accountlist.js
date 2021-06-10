@@ -9,8 +9,8 @@ Component({
       value: {
         accountgroup: [{
           date: "",
-          vlheight:"",//在数据库获取完数据的时候就设置好这个高度 垂直线的高度 vlheight=ondayaccountheight-80rpx
-          onedayaccountheight:"",
+          vlheight: "",//在数据库获取完数据的时候就设置好这个高度 垂直线的高度 vlheight=ondayaccountheight-80rpx
+          onedayaccountheight: "",
           account: [
             {
               type: "",
@@ -29,7 +29,7 @@ Component({
     accounttype: {
       type: Object,
       value: {
-        
+
       }
     },//判断收入或支出 0支出，1收入
   },
@@ -37,21 +37,22 @@ Component({
    * 组件的初始数据
    */
   data: {
-    vlheight:"",
-    length:[{
-      index:1,
-    },{index:2}],
+    vlheight: "",
+    length: [{
+      index: 1,
+    }, { index: 2 }],
     slideButtons: [{
       text: '查看详情',
-     
-    },{
+      src: "../../../images/view-detail.png",
+      data:1,
+    }, {
       text: '修改',
-      extClass: 'test',
-      
-    },{
-      type: 'warn',
+      src: "../../../images/edit.png",
+      data:1,
+    }, {
       text: '删除',
-      extClass: 'test',
+      src: "../../../images/delete.png",
+      data:1,
     }],
     accountlist: {
       accountgroup: [{
@@ -91,7 +92,7 @@ Component({
   lifetimes: {
     attached: function () {
       // 在组件实例进入页面节点树时执行
-      
+
     },
     detached: function () {
       // 在组件实例被从页面节点树移除时执行
@@ -117,8 +118,8 @@ Component({
    */
   methods: {
     slideButtonTap(e) {
-      console.log('slide button tap', e.detail)
-  }
+      this.triggerEvent('slidebutton',e.detail);
+    }
   }
 
 })

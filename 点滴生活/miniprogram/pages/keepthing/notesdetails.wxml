@@ -1,10 +1,10 @@
 <!--pages/keepthing/notesdetails.wxml-->
 
-<navbar navbar-data='{{navbarData}}' bindnavback='backToNoteslist' id="nav"></navbar>
+<navbar navbar-data='{{nvabarData}}' bindnavback="backToNoteslist" id="nav"></navbar>
 
 <view class="main">
     <view class="content">
-    <text class="notes-titlt">{{note_title}}</text>
+    <text class="notes-title">{{note_title}}</text>
     <view class="line"></view>
     <view class="notes-content" style="margin-right:220rpx">{{note_content}}</view>
     <view class="picList" style="margin-top:220rpx">
@@ -15,7 +15,5 @@
         </view>
     </view>
     </view>
-    
-    <image src="/images/edit.png" class="edit" mode="aspectFit"></image>
 </view>
     

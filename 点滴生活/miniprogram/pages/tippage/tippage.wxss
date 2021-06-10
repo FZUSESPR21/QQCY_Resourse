@@ -1,0 +1,141 @@
+/* pages/tippage.wxss */
+.main-area{
+  margin-top:200rpx;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.content-area
+{
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+}
+.publisher-head{
+  height: 50px;
+  width: 50px;
+  border-radius: 20rem;
+}
+.publisher-message-area,.comment-publisher-message-area
+{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+
+}
+.tip-operation-area
+{
+  height: 80rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content:space-evenly;
+  align-items: center;
+}
+.tip-content-area
+{
+  margin-top:20rpx;
+  min-height: 200rpx;
+  color: gray;
+}
+.operation-icon{
+  height: 24px;
+  width: 24px;
+  margin-right: 4px;
+}
+.operation
+{
+  width: 200rpx;
+  display: flex;
+  align-items: center;
+}
+.commenter-head{
+  height: 40px;
+  width: 40px;
+  border-radius: 20rem;
+}
+.publisher-message{
+  margin-left: 10px;
+}
+.comment-content{
+  margin-top: 5px;
+  width: 90%;
+  margin-left: 5px;
+}
+.input-box{
+  width: 100%;
+  position: fixed;
+  bottom: 0rpx;
+  height: 50px;
+  border-top: 3px solid #f9f9f9;
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+}
+.input-area{
+  background-color: #fff;
+  min-height: 40px;
+  height: 40px;
+  margin-left: 10px;
+  width: 80%;
+}
+.comment-area
+{
+ width: 100%;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ flex-direction: column;
+ margin-top:5px;
+ margin-bottom: 100px;
+}
+.send-button{
+  width: 60px;
+  height: 40px;
+  margin-left: 5px;
+  margin-right: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f4b3b3;
+  color: #ffffff;
+  border-radius: 0.5rem;
+}
+.comment-box-head{
+  height: 40px;
+  width: 40px;
+  border-radius: 20rem;
+  margin-left: 10px;
+}
+.comment-content-area{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-bottom:4px solid #fafafa;
+}
+.comment-publisher-message-area{
+ width: 90%;
+ display: flex;
+ align-items: center;
+}
+.comment-area-title{
+  width: 100%;
+  padding-left: 80rpx;
+  font-size: 20px;
+  border-bottom:4px solid #fafafa;
+}
+.tip-images-area image{
+  width: 100px;
+  height: 100px;
+  float: left;
+  margin-right: 40rpx;
+}
+.tip-images-area
+{
+  width: 100%;
+
+}
+.tip-createtime{
+  color: gray;
+}

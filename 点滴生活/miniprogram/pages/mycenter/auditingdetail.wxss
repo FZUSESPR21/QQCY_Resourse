@@ -1,0 +1,69 @@
+/* miniprogram/pages/mycenter/auditingdetail.wxss */
+
+/* pages/keepthing/notesdetails.wxss */
+
+.main{
+  margin-top: 350rpx;
+  margin-left: 35rpx;
+  width: 100%;
+  height: 70%;
+}
+.content{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+.notes-titlt{
+  font-size: larger;
+  padding-left: 2rpx;
+  color: #0c0c0c;
+  font-weight: bold;
+}
+.line{
+  position: relative;
+  background-color: #c5c5c5;
+  top: 20rpx;
+  width: 85%;
+  height: 1rpx;
+}
+.notes-content{
+  position: relative;
+  width: 95%;
+  padding-left: 5rpx;
+  top: 35rpx;
+  font-size: 35rpx;
+  color: #0c0c0c;
+}
+.edit{
+  position: fixed;
+  width: 100rpx;
+  height: 100rpx;
+  top: 1300rpx;
+  left: 600rpx;
+  z-index: 30;
+  background-color: #ffffff;
+  box-shadow: 2rpx 2rpx 2rpx #bbbaba;
+  border-radius: 50px 50px 50px 50px;
+}
+
+.pic{
+  border: 5rpx;
+  width: 200rpx;
+  height: 200rpx;
+  margin-left: 15rpx;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+  position: relative;
+}
+.picItem{
+  width: 100%;
+  height: 100%;
+}
+.picList{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  background-color: white;
+}

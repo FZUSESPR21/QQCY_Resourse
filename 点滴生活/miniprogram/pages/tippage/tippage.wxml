@@ -1,0 +1,58 @@
+<!--pages/tippage.wxml-->
+<navbar navbar-data='{{nvabarData}}'></navbar>
+<view class="main-area">
+<view class="content-area">
+  <view class="publisher-message-area">
+    <image class="publisher-head" src="{{tipPublisherMessage.headUrl}}"></image>
+    <view class="publisher-message">
+    <view class="publisher-name">用户1</view>
+    <view class="tip-createtime">2000.10.16.00000</view>
+    </view>
+  </view>
+  <view class="tip-content-area">
+    {{tipContent}}
+  </view>
+  <view class="tip-images-area">
+    <view wx:for="{{5}}" wx:key="index">
+    <image src="../../images/community.png" ></image>
+    </view>
+  </view>
+  <view class="tip-operation-area">
+    <view class="operation">
+      <image class="operation-icon" src="{{isLike?'../../images/agree-active.png':'../../images/agree.png'}}" bindtap="LikeTip">
+      </image>
+      {{tipNumData.likeNum}}
+    </view>
+    <view class="operation">
+      <image class="operation-icon" src="../../images/comment2.png" >
+      </image>
+      {{tipNumData.commentNum}}
+    </view>
+    <view class="operation">
+      <image class="operation-icon" src="{{isMark?'../../images/love it.png':'../../images/mark.png'}}" bindtap="MarkTip">
+      </image>
+      {{}}
+    </view>
+  </view>
+</view>
+<view class="comment-area">
+  <view class="comment-area-title">评论</view>
+  <view wx:for="{{commentList}}" class="comment-content-area" wx:for-index="myIndex" wx:for-item="myItem" wx:key="index">
+    <view class="comment-publisher-message-area">
+    <image class="commenter-head" src="{{myItem. userPic}}"></image>
+    <view class="publisher-message">
+    <view class="publisher-name">{{myItem.username}}</view>
+    <view class="tip-createtime">{{myItem.CreateTime}}</view>
+    
+    </view>
+  </view>
+  <view class="comment-content">
+      {{myItem.content}}
+    </view>
+  </view>
+</view>
+<view class="input-box">
+  <image class="comment-box-head" src="{{ tipPublisherMessage.headUrl}}"></image>
+<textarea bindblur="bindTextAreaBlur" class="input-area" placeholder="留下评论..."></textarea>
+<view class="send-button">发送</view></view>
+</view>

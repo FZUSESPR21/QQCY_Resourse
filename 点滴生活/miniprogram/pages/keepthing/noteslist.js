@@ -16,9 +16,11 @@ Page({
     },
     height: app.globalData.height * 2 + 20 , // 此页面 页面内容距最顶部的距离
 
+      item_id:[],
     
       noteslist:[
         {
+          id:'',
           mood:'',
           day:'...',
           week:'...',
@@ -81,6 +83,41 @@ Page({
     console.log(year)
     wx.navigateTo({
       url: '../keepthing/notesdetails?year='+year+'&day='+day+'&month='+month+'&week='+week+'&title='+title+'&content='+content+'&mood='+mood+'&picArray='+JSON.stringify(this.data.noteslist[index].picArray)
+    })
+  },
+
+  delete: function(e) {
+    //确定点击的框
+    var index = e.currentTarget.dataset.index;
+    var index_id = this.data.noteslist[index]._id;
+    console.log(index_id);
+    //弹框提示
+    wx.showModal({
+      title: '提示',
+      content: '确认要删除该日记?',
+      success: function (res) {
+        if (res.confirm) {
+          //提示删除成功
+          wx.showToast({
+            title: '删除成功',
+            icon: 'success',//图标
+            duration: 3000
+          })
+          console.log('用户点击确定')
+          wx.cloud.callFunction({
+            name: 'deldiary',
+            data: {
+              id: index_id,
+            }
+          }).then(res=>{
+            wx.reLaunch({
+              url: '../keepthing/noteslist',
+            })
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
     })
   },
 

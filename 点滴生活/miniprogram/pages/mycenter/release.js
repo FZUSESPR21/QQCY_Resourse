@@ -19,6 +19,7 @@ Page({
       showcancel: 0,//是否显示左上角关闭图标   1表示显示    0表示不显示
       title: '我的发布', //导航栏 中间的标题
     },
+    loadingHidden: false,
     slideposition:"0",//0表示此时滑块在左边，1表示在右边
     incomecolor:"",
     expendcolor:"",
@@ -39,6 +40,9 @@ Page({
   onLoad: function (options) {
     this.getChosen();
     this.getNonChosen()
+    this.setData({
+      loadingHidden: true
+    })
   },
 
   /**
@@ -129,13 +133,6 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
 
   },
 

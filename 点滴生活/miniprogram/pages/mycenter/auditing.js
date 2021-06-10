@@ -30,6 +30,69 @@ Page({
       text: '删除',
       extClass: 'test',
     }],
+
+    posts: [
+      {
+        id:"1",
+        username:"用户1",
+        content:"文章内容1",
+        createTime: "2021年6月8日21:14:05"
+      },
+      {
+        id:"2",
+        username:"用户2",
+        content:"文章内容2",
+        createTime: "2021年6月9日21:14:28"
+      },
+      {
+        id:"1",
+        username:"用户1",
+        content:"文章内容1",
+        createTime: "2021年6月8日21:14:05"
+      },
+      {
+        id:"1",
+        username:"用户1",
+        content:"文章内容1",
+        createTime: "2021年6月8日21:14:05"
+      },
+      {
+        id:"1",
+        username:"用户1",
+        content:"文章内容1",
+        createTime: "2021年6月8日21:14:05"
+      },
+      {
+        id:"1",
+        username:"用户1",
+        content:"文章内容1",
+        createTime: "2021年6月8日21:14:05"
+      },
+      {
+        id:"1",
+        username:"用户1",
+        content:"文章内容1",
+        createTime: "2021年6月8日21:14:05"
+      },
+      {
+        id:"1",
+        username:"用户1",
+        content:"文章内容1",
+        createTime: "2021年6月8日21:14:05"
+      },
+      {
+        id:"1",
+        username:"用户1",
+        content:"文章内容1",
+        createTime: "2021年6月8日21:14:05"
+      },
+      {
+        id:"1",
+        username:"用户1",
+        content:"文章内容1",
+        createTime: "2021年6月8日21:14:05"
+      },
+    ]
   },
 
   returnback:function(){
@@ -39,9 +102,42 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.getNotAuditingPost();
 },
+
+getNotAuditingPost:function(){
+  var data 
+    wx.cloud.callFunction({
+      name: 'getNotAuditingPost',
+    }).then(res => {
+      data =res.result
+      console.log(res.result)
+      this.setData({
+        posts: data,
+      })
+    })
+},
+
 slideButtonTap(e) {
-  console.log('slide button tap', e.detail)
+  
+  var index = e.currentTarget.dataset.index;
+  var id;
+  if(e.detail.index==0)
+  {
+    id=this.data.posts[index]._id;
+    wx.navigateTo({
+      url: '../mycenter/auditingdetail?id='+id
+    })
+    console.log("跳转详细文章内容")
+  }
+  else if(e.detail.index==1)
+  {
+    console.log("审核通过")
+    console.log(this.data.posts[index])
+  }
+  else if(e.detail.index==2){
+    console.log("删除该妙招")
+  }
 },
   
 

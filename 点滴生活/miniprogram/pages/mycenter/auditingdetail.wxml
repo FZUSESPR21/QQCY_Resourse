@@ -1,0 +1,18 @@
+<!--miniprogram/pages/mycenter/auditingdetail.wxml-->
+<navbar navbar-data='{{nvabarData}}' bindnavback="returnback"></navbar>
+
+<view class="main">
+    <view class="content">
+    <text class="notes-titlt">{{note_title}}</text>
+    <view class="line"></view>
+    <view class="notes-content" style="margin-right:220rpx">{{note_content}}</view>
+    <view class="picList" style="margin-top:220rpx">
+        <view wx:key="pic" wx:for="{{pic}}">
+            <view class="pic">
+                 <image class="picItem" src="{{item}}" bindtap="preview" data-src="{{item}}" mode="aspectFill"></image>
+            </view>
+        </view>
+    </view>
+    </view>
+    
+</view>

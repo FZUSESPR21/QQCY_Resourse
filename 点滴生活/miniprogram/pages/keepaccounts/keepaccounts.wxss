@@ -1,5 +1,6 @@
 .mainblock{
   position: relative;
+  top:45rpx;
 }
 .limit_hb{
   width:750rpx;
@@ -176,13 +177,8 @@
   left: 50rpx;
   width: 180rpx;
 }
-.movearea{
-  position:fixed;
-  pointer-events: none;
-  width:750rpx;
-  top:179rpx;
-}
 .moveview{
+  z-index:10;
   position: fixed;
   bottom:0rpx;
   left:600rpx;
@@ -192,5 +188,5 @@
 .makeaccount{
   width:152rpx;
   height:158rpx;
-  z-index:99;
+  z-index:100;
 }

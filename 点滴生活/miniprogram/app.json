@@ -10,8 +10,11 @@
     "pages/keepthing/notesdetails",
     "pages/keepthing/noteslist",
     "pages/mycenter/release",
+    "pages/mycenter/auditing",
+    "pages/community/writePost",
+    "pages/mycenter/auditingdetail",
+    "pages/tippage/tippage"
     
-    "pages/mycenter/auditing"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

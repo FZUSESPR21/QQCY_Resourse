@@ -1,0 +1,76 @@
+.border{
+  margin-top: 240rpx;
+  width: 100%;
+  height: 0;
+}
+
+.postBox{
+  display: flex;
+  vertical-align: center;
+  justify-content: center;
+  align-items: center;
+  width: 85%;
+  height: 90%;
+  margin: auto;
+}
+.postText{
+  width: 100%;
+  height: 500rpx;
+}
+
+/* components/csk/uploadPic/uploadPic.wxss */
+
+
+.picList{
+  width: 90%;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  background-color: white;
+}
+.pic{
+  border: 5rpx;
+  border-style: dashed;
+  border-color: rgba(187, 177, 177, 0.452);
+  width: 200rpx;
+  height: 200rpx;
+  margin-left: 15rpx;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+  position: relative;
+}
+.picItem{
+  width: 100%;
+  height: 100%;
+}
+.picItem2{
+  margin: 35%;
+  width: 30%;
+  height: 30%;
+}
+.img-delect{
+  width:50rpx;
+  height:50rpx;
+  border-radius:50%;
+  position:absolute;
+  right:-20rpx;
+  top:-20rpx;
+}
+
+.submit{
+  width: 20%;
+  height: 75rpx;
+  margin-left: 27%;
+  position:absolute;
+  bottom: 60rpx;
+}
+.submitButton{
+  background: #FFDDD3 100%;
+  width: 100%;
+  height: 100%;
+  border-radius: 100rpx;
+  font-size: 27rpx;
+  color: #A2928D;
+}

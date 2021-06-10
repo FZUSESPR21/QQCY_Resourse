@@ -13,59 +13,20 @@ Page({
       title: '我的通知', //导航栏 中间的标题
     },
     condition:true,
+    loadingHidden: false,
     condition1:false,
     condition2:false,
     commentlist:[
       {
-        id:0,
+        _id:0,
         title:"评论信息",
-        time:"04-08 00:20",
-        content:"有人评论了今日你发布的小妙招，快前往社区查看吧！",
-      },
-      {
-        id:1,
-        title:"评论信息",
-        time:"04-08 00:20",
-        content:"有人评论了今日你发布的小妙招，快前往社区查看吧！",
-      },
-      {
-        id:2,
-        title:"评论信息",
-        time:"04-08 00:20",
-        content:"有人评论了今日你发布的小妙招，快前往社区查看吧！",
-      },
-      {
-        id:2,
-        title:"评论信息",
+        mark:"已读",
         time:"04-08 00:20",
         content:"有人评论了今日你发布的小妙招，快前往社区查看吧！",
       },
     ],
     examinelist:[
-      {
-        id:0,
-        title:"文章审核信息",
-        time:"04-08 00:20",
-        content:"今日你发布的小妙招已审核，很遗憾未通过~期待你的下次来稿！",
-      },
-      {
-        id:1,
-        title:"文章审核信息",
-        time:"04-08 00:20",
-        content:"今日你发布的小妙招已审核，很遗憾未通过~期待你的下次来稿！",
-      },
-      {
-        id:2,
-        title:"文章审核信息",
-        time:"04-08 00:20",
-        content:"今日你发布的小妙招已审核，很遗憾未通过~期待你的下次来稿！",
-      },
-      {
-        id:3,
-        title:"文章审核信息",
-        time:"04-08 00:20",
-        content:"今日你发布的小妙招已审核，很遗憾未通过~期待你的下次来稿！",
-      },
+      
     ],
     thumbsuplist:[
       {
@@ -119,21 +80,27 @@ Page({
     wx.navigateBack();
   },
 
+  getExamine(){
+    wx.cloud.callFunction({
+      name:'getNotification',
+      data:{
+        type:'审核'
+      }
+    }).then(res=>{
+      console.log('审核通知请求成功',res)
+      this.setData({
+        examinelist: res.result
+      })
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    db.collection('user').get()
-      .then(res=>{
-        console.log("成功",res)
-        this.setData({
-          list: res.data
-        }
-        )
-      })
-      .catch(err=>{
-        console.log("失败", err)
-      })
+    this.getExamine()
+    this.setData({
+      loadingHidden: true
+    })
   },
   setTab: function (e) {
     const edata = e.currentTarget.dataset;
@@ -172,12 +139,6 @@ Page({
 
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
 
   /**
    * 生命周期函数--监听页面隐藏
@@ -199,18 +160,4 @@ Page({
   onPullDownRefresh: function () {
 
   },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })
