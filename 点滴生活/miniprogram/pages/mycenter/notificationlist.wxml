@@ -1,5 +1,8 @@
 <!--pages/mycenter/notificationlist.wxml-->
 <navbar navbar-data='{{nvabarData}}' bindnavback='backToMycenter'></navbar>
+<loading hidden="{{loadingHidden}}">
+    加载中...
+</loading>
 <text bindtap="backToMycenter">这里将是通知列表</text>
 <view class="tab">
 

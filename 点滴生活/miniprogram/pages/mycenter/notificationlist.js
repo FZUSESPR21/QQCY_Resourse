@@ -13,6 +13,7 @@ Page({
       title: '我的通知', //导航栏 中间的标题
     },
     condition:true,
+    loadingHidden: false,
     condition1:false,
     condition2:false,
     commentlist:[
@@ -97,6 +98,9 @@ Page({
    */
   onLoad: function (options) {
     this.getExamine()
+    this.setData({
+      loadingHidden: true
+    })
   },
   setTab: function (e) {
     const edata = e.currentTarget.dataset;
