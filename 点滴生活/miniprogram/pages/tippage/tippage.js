@@ -74,18 +74,20 @@ Page({
     
     //从数据库获取内容
     wx.cloud.callFunction({
-      name:'getTipdetail',
-      data : {
-        id: '28ee4e3e60c1cbdf213c1e356dd8c453'  //post_id由小贴士列表传送
-      }
-    }).then( res =>{
-      console.log( res.data );
+      name:'getTipsDetail',
+      // data : {
+      //   id: '28ee4e3e60c1cbdf213c1e356dd8c453'  //post_id由小贴士列表传送
+      // }
+    }).then( tip =>{
+      console.log('@@@@!!!!')
+      console.log(tip);
       this.setData({
-        tipContent: res[0].id,
-        tipImgUrls: res[0].picArray,
-        // ['tipNumData.likeNum']: tip[0].likes,
-        // ['tipNumData.commentNum']: tip[0].comments,
+        tipContent: tip.result[0].content,
+        tipImgUrls: tip.result[0].picArray,
+        ['tipNumData.likeNum']: tip.result[0].likes,
+        ['tipNumData.commentNum']: tip.result[0].comments,
       })
+      console.log(tip.result[0].content)
     })
 
     // wx.cloud.callFunction({
