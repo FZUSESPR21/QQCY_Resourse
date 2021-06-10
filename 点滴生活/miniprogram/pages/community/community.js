@@ -48,6 +48,18 @@ Page({
       url: '../tippage/tippage?id='+this.data.posts[index]._id,
     })
   },
+
+  thumbup:function(e){
+    var index = e.currentTarget.dataset.index;
+    
+    wx.cloud.callFunction({
+      name:'thumbup',
+      data:{
+        id:this.data.posts[index]._id,
+      }
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */

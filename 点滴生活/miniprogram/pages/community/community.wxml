@@ -52,7 +52,7 @@
                 </view>
               </view>
               <view class="inOpe">
-                <view class="like">
+                <view class="like" catchtap="thumbup" hover-stop-propagation="true" data-index="{{index}}">
                   <image class="picItem" src="../../images/agree.png" mode="aspectFill"></image>
                 </view>
                 <view class="number-cs">{{item.likes}}</view>
