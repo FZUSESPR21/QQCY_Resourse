@@ -1,6 +1,5 @@
 {
   "pages": [
-    "pages/tippage/tippage",
     "pages/keepaccounts/keepaccounts",
     "pages/community/community",
     "pages/keepthing/keepthing",
@@ -13,8 +12,8 @@
     "pages/mycenter/release",
     "pages/mycenter/auditing",
     "pages/community/writePost",
-    "pages/mycenter/auditingdetail"
-    
+    "pages/mycenter/auditingdetail",
+    "pages/tippage/tippage"
     
   ],
   "window": {
