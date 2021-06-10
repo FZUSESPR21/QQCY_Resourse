@@ -1,6 +1,5 @@
-<!--pages/keepthing/notesdetails.wxml-->
-
-<navbar navbar-data='{{nvabarData}}' bindnavback="returnback" id="nav"></navbar>
+<!--miniprogram/pages/mycenter/auditingdetail.wxml-->
+<navbar navbar-data='{{nvabarData}}' bindnavback="returnback"></navbar>
 
 <view class="main">
     <view class="content">
@@ -15,5 +14,5 @@
         </view>
     </view>
     </view>
-</view>
     
+</view>

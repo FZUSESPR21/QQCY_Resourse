@@ -3,6 +3,8 @@ import * as echarts from '../../components/hb/ec-canvas/echarts';
 
 const app = getApp()
 let chart = null;
+var pickid;
+var pickweek;
 var pickyear = "2021";
 var pixelRatio1 = 750 / wx.getSystemInfoSync().windowWidth;
 var yeardata = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
@@ -31,9 +33,9 @@ if (((toYear % 4 == 0 && toYear % 100 != 0) || toYear % 400 == 0) && today.getMo
 } else {
   today_week = parseInt((days[today.getMonth()] + today.getDate() - 8 + firstWeek) / 7 + 1);
 }
-var ctiptext='总支出：'
-var rtiptext='总收入：'
-var tiptext=ctiptext
+var ctiptext = '总支出：'
+var rtiptext = '总收入：'
+var tiptext = ctiptext
 var pieData = []
 Page({
 
@@ -41,6 +43,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    dialogShow: false,
+    dialogbuttons: [{ text: '取消' }, { text: '确定' }],
     tempYearSelected: { id: "y001", name: "2021年" },
     tempMonthSelected: { id: "m001", name: "1月" },
     tempWeekSelected: { id: "w001", name: "第1周" },
@@ -351,6 +355,35 @@ Page({
     listselectshow: "block",
     height: app.globalData.height * 2 + 20, // 此页面 页面内容距最顶部的距离
   },
+  /**
+   * slidebutoon  账单按钮的功能
+   */
+  slidebuttons(e) {
+    console.log(e.detail)
+    pickid = e.detail.data;
+    switch (e.detail.index) {
+      case 0: {
+        console.log("你点击了查看详情");
+
+        break;
+      }
+      case 1: {
+        console.log("你点击了修改");
+
+        break;
+      }
+      case 2: {
+        console.log("你点击了删除");
+        this.setData({
+          dialogShow: true
+        })
+        break;
+      }
+    }
+  },
+  /**
+   * 
+   */
   accountedit(e) {
     console.log(e.detail + "  你触发了父组件的事件");
     wx.navigateTo({//注，无法跳转到tabbar绑定的界面
@@ -372,7 +405,7 @@ Page({
     //     wx.cloud.callFunction({
     //       name: 'addUser',
     //     }).then(res => {
-          
+
     //     })
     //   }
     // })
@@ -414,8 +447,26 @@ Page({
       }
     }).then(res => {
       listdata = new Array()
+      console.log(res.result)
       for (var i = 0; i < res.result.length; i++) {
         listdata.push(res.result[i]);
+      }
+      for (var i = 0; i < listdata.length; i++) {
+        for (var j = 0; j < listdata[i].accountgroup.account.length; j++) {
+          listdata[i].accountgroup.account[j].slideButtons = [{
+            text: '查看详情',
+            src: "../../../images/view-detail.png",
+            data: listdata[i].accountgroup.account[j].id
+          }, {
+            text: '修改',
+            src: "../../../images/edit.png",
+            data: listdata[i].accountgroup.account[j].id
+          }, {
+            text: '删除',
+            src: "../../../images/delete.png",
+            data: listdata[i].accountgroup.account[j].id
+          }]
+        }
       }
       console.log(listdata)
       this.setaccountlist(nowmonth)
@@ -423,6 +474,7 @@ Page({
   },
   setaccountlist(num) {
     var accountdata = [];
+    console.log(num)
     for (var i = 0; i < listdata.length; i++) {
       var k = listdata[i].accountgroup.date;
       k = k.split('月');
@@ -444,18 +496,64 @@ Page({
     this.setData({ costaccountlist: accountdata })
   },
   /**
+   * 
+   * 删除对话框的内容
+   */
+  tapDialogButton(e) {
+    console.log(e.detail)
+    if (e.detail.index == 1) {
+      console.log("删除这条账单")
+      /**调用删除云函数 */
+      wx.cloud.callFunction({
+        name: 'deleteRecord',
+        data: {
+          id: pickid,
+          type:type,
+        },
+        success: res => {
+          for(var i=0;i<listdata.length;i++){
+            for(var j=0;j<listdata[i].accountgroup.account.length;j++){
+              if(listdata[i].accountgroup.account[j].id==pickid)
+              {
+                if(listdata[i].accountgroup.account.length==1)
+                listdata.splice(i,1)
+                else 
+                {listdata[i].accountgroup.account.splice(j,1);
+                  listdata[i].accountgroup.vlheight-=120;
+                  listdata[i].accountgroup.onedayaccountheight-=120;
+                }
+                break;
+              }
+            }
+          }
+          if(this.data.weekselect=="block")
+          this.setaccountlistbyweek(pickweek)
+          else 
+          this.setaccountlist(nowmonth)
+          console.log(this.data.costaccountlist)
+        },
+        fail: err => {
+        }
+      })
+    }
+    this.setData({
+      dialogShow: false,
+    })
+  },
+  /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var date =new Date() 
-    pickyear=date.getFullYear();
+    var date = new Date()
+    pickyear = date.getFullYear();
     nowmonth = date.getMonth();
-    nowmonth=nowmonth+1;
+    nowmonth = nowmonth + 1;
     this.setData({
-      listcurrentmonth:{name:nowmonth+"月"},
-      yearcurrent:{name:pickyear+"年"},
-      monthcurrent:{name:nowmonth+"月"},
-      weekcurrent:{name:"第1周"}});
+      currentmonth: { name: nowmonth + "月" },
+      yearcurrent: { name: pickyear + "年" },
+      monthcurrent: { name: nowmonth + "月" },
+      weekcurrent: { name: "第1周" }
+    });
     if (this.data.chartchange == true) {
       this.changeLineTable();
     }
@@ -466,7 +564,7 @@ Page({
 
     this.getaccountlist(pickyear)
     this.setaccountlist(nowmonth)
-    
+
   },
   slidemove() {
     console.log("你点击了滑块", this.data.slideposition);
@@ -476,21 +574,19 @@ Page({
     else {
       type = 'cRecord'
     }//还需要重新获取数据
-    if(tiptext==ctiptext)
-    {
-      tiptext=rtiptext
+    if (tiptext == ctiptext) {
+      tiptext = rtiptext
     }
-    else
-    {
-      tiptext=ctiptext
+    else {
+      tiptext = ctiptext
     }
 
     if (this.data.chartchange == true) {
-      var i=1+2021-pickyear;
+      var i = 1 + 2021 - pickyear;
       this.setData({
         selected: {
-          id: 'y00'+i,
-          name:pickyear,
+          id: 'y00' + i,
+          name: pickyear,
         }
       })
 
@@ -499,11 +595,11 @@ Page({
     else {
       //这里写饼图的收入支出切换。
       //饼图根据当前的pickyear、selected、type来获取数据
-      var i=1+2021-pickyear;
+      var i = 1 + 2021 - pickyear;
       this.setData({
         selected: {
-          id: 'y00'+i,
-          name:pickyear,
+          id: 'y00' + i,
+          name: pickyear,
         }
       })
       this.changePieTable();
@@ -515,10 +611,10 @@ Page({
       this.animation.translate(px1).step()
       this.setData({ animation: this.animation.export() })
       this.setData({ slideposition: 1, incomecolor: "#FFFFFF", expendcolor: "#909090" })
-      var date =new Date() 
-      pickyear=date.getFullYear();
+      var date = new Date()
+      pickyear = date.getFullYear();
       nowmonth = date.getMonth();
-      nowmonth=nowmonth+1;
+      nowmonth = nowmonth + 1;
       this.setData({
         yearbackcolor: "#FFC8A1",
         yearcolor: "#FFFFFF",
@@ -534,10 +630,10 @@ Page({
         weekselect: "none",
         listselectshow: "block",
         listselect: "auto",
-        listcurrentmonth:{name:nowmonth+"月"},
-        yearcurrent:{name:pickyear+"年"},
-        monthcurrent:{name:nowmonth+"月"},
-        weekcurrent:{name:"第1周"}
+        listcurrentmonth: { name: nowmonth + "月" },
+        yearcurrent: { name: pickyear + "年" },
+        monthcurrent: { name: nowmonth + "月" },
+        weekcurrent: { name: "第1周" }
       })
       this.getaccountlist(pickyear)
       this.setaccountlist(nowmonth)
@@ -546,10 +642,10 @@ Page({
       this.animation.translate(0).step()
       this.setData({ animation: this.animation.export() })
       this.setData({ slideposition: 0, incomecolor: "#909090", expendcolor: "#FFFFFF" })
-      var date =new Date() 
-      pickyear=date.getFullYear();
+      var date = new Date()
+      pickyear = date.getFullYear();
       nowmonth = date.getMonth();
-      nowmonth=nowmonth+1;
+      nowmonth = nowmonth + 1;
       this.setData({
         yearbackcolor: "#FFC8A1",
         yearcolor: "#FFFFFF",
@@ -565,10 +661,10 @@ Page({
         weekselect: "none",
         listselectshow: "block",
         listselect: "auto",
-        listcurrentmonth:{name:nowmonth+"月"},
-        yearcurrent:{name:pickyear+"年"},
-        monthcurrent:{name:nowmonth+"月"},
-        weekcurrent:{name:"第1周"}
+        listcurrentmonth: { name: nowmonth + "月" },
+        yearcurrent: { name: pickyear + "年" },
+        monthcurrent: { name: nowmonth + "月" },
+        weekcurrent: { name: "第1周" }
       })
       this.getaccountlist(pickyear)
       this.setaccountlist(nowmonth)
@@ -610,31 +706,31 @@ Page({
   },
   makeaccount() {
     wx.cloud.callFunction({
-      name:'haveUserProfile',
+      name: 'haveUserProfile',
     })
-    .then(haveProfile=>{
-      if(!haveProfile.result){
-        wx.showModal({
-          title:'提示',
-          content:'您还未授权，请到个人中心点击头像授权',
-          cancelColor: 'cancelColor',
-          success(res){
-            if(res.confirm){
-              wx.reLaunch({
-                url: '../mycenter/mycenter',
-              })
-            }else if(res.cancel){
-              console.log("取消");
+      .then(haveProfile => {
+        if (!haveProfile.result) {
+          wx.showModal({
+            title: '提示',
+            content: '您还未授权，请到个人中心点击头像授权',
+            cancelColor: 'cancelColor',
+            success(res) {
+              if (res.confirm) {
+                wx.reLaunch({
+                  url: '../mycenter/mycenter',
+                })
+              } else if (res.cancel) {
+                console.log("取消");
+              }
             }
-          }
-        })
-      }else{
-        wx.navigateTo({
-              url: '../makeaccount/makeaccount',
-            })
-      }
-    })
-   
+          })
+        } else {
+          wx.navigateTo({
+            url: '../makeaccount/makeaccount',
+          })
+        }
+      })
+
   },
   yearselect(e) {
     console.log("你选择了逐年展示")
@@ -656,13 +752,13 @@ Page({
     })
     //切换展示模式时的默认年份
     var i;
-    var date=new Date();
-    pickyear=date.getFullYear();
-    i=2021+1-pickyear;
+    var date = new Date();
+    pickyear = date.getFullYear();
+    i = 2021 + 1 - pickyear;
     //折线图切换数据
     if (this.data.chartchange) {
       this.setData({
-        selected: {name:pickyear+"年",id:"y00"+i}
+        selected: { name: pickyear + "年", id: "y00" + i }
       })
       this.changeLineTable()
     }
@@ -670,7 +766,7 @@ Page({
     //饼图改变数据
     if (!this.data.chartchange) {
       this.setData({
-        selected: {name:pickyear+"年",id:"y00"+i}
+        selected: { name: pickyear + "年", id: "y00" + i }
       })
       this.changePieTable()
     }
@@ -695,38 +791,38 @@ Page({
       listselect: "none"
     })
     //设置切换月份展示时的默认月份
-    var date=new Date()
-    nowmonth=date.getMonth();
+    var date = new Date()
+    nowmonth = date.getMonth();
     //折线图改变数据
     if (this.data.chartchange) {
       this.setData({
-        selected: {id:"m00"+nowmonth,name:parseInt(nowmonth+1)+"月"}
+        selected: { id: "m00" + nowmonth, name: parseInt(nowmonth + 1) + "月" }
       })
-      nowmonth=nowmonth+1;
+      nowmonth = nowmonth + 1;
       this.changeLineTable()
     }
 
     //饼图改变数据
     if (!this.data.chartchange) {
       this.setData({
-        selected: {id:"m00"+nowmonth,name:parseInt(nowmonth+1)+"月"}
+        selected: { id: "m00" + nowmonth, name: parseInt(nowmonth + 1) + "月" }
       })
       this.changePieTable()
     }
   },
-  
-  getWeeks:function(){
-    var days = [0,31,59,90,120,151,181,212,243,273,304,334];
+
+  getWeeks: function () {
+    var days = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334];
     var today = new Date(this.data.date);
-    var first = new Date(today.getFullYear(),0,1);
+    var first = new Date(today.getFullYear(), 0, 1);
     var firstWeek = first.getDay();
     var today_week;
     var toYear = today.getFullYear();
-    if(((toYear%4==0&&toYear%100!=0)||toYear%400==0)&&today.getMonth()>1){
-      today_week = parseInt((days[today.getMonth()]+today.getDate()+1-8+firstWeek)/7+1);
+    if (((toYear % 4 == 0 && toYear % 100 != 0) || toYear % 400 == 0) && today.getMonth() > 1) {
+      today_week = parseInt((days[today.getMonth()] + today.getDate() + 1 - 8 + firstWeek) / 7 + 1);
       console.log("闰年");
-    }else{
-      today_week = parseInt((days[today.getMonth()]+today.getDate()-8+firstWeek)/7+1);
+    } else {
+      today_week = parseInt((days[today.getMonth()] + today.getDate() - 8 + firstWeek) / 7 + 1);
     }
   },
 
@@ -829,7 +925,8 @@ Page({
       console.log(pickyear + "年 " + this.data.selected.name);//pickyear表示选择的是哪一年
       var s = this.data.selected.name
       var num = s.replace(/[^0-9]/ig, "")
-      num=num-1
+      num = num - 1
+      pickweek=num;
       console.log(num)
       this.setaccountlistbyweek(num)
       wx.cloud.callFunction({
@@ -910,7 +1007,7 @@ Page({
       console.log(this.data.selected.name);
       pickyear = this.data.selected.name.substr(0, 4);
       this.getaccountlist(pickyear);
-      this.setData({ listcurrentmonth: { name: nowmonth+"月" } })
+      this.setData({ listcurrentmonth: { name: nowmonth + "月" } })
       wx.cloud.callFunction({
         name: 'getYearRecord',
         data: {
@@ -1306,7 +1403,7 @@ function processSelected(selected, type) {
   }
   else {
     data.timeType = 'week'
-    data.value = parseInt(selected.name.substr(1, length - 1)) - 1 
+    data.value = parseInt(selected.name.substr(1, length - 1)) - 1
   }
   return data
 }

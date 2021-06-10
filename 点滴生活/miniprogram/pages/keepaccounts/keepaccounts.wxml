@@ -1,6 +1,11 @@
 // 'navbar-data'中navbar是自定义导航栏标题
-<navbar navbar-data='{{nvabarData}}' bindnavedit="accountedit"></navbar>
+<navbar navbar-data='{{nvabarData}}' bindnavedit="accountedit" ></navbar>
 <!--这个bindnavedit是一个属性，后面的值是绑定函数，函数用来跳转到对应的编辑界面-->
+
+<view class="moveview" >
+      <image bindtap="makeaccount" class="makeaccount" src="../../images/makeaccount.png" mode='scaleToFill'>
+      </image>
+</view>
 <view class="mainblock" catchtap="close">
   <view class="limit_hb">
     <limitprogress></limitprogress>
@@ -55,17 +60,14 @@
 
   </view>
   <view class="monthpicker" style="pointer-events: {{listselect}};display:{{listselectshow}}">
-    <select id="select" current="{{listcurrentmonth}}" defaultOption="{{mpdefaultoption}}" options="{{monthoptions}}"
+    <select id="select" current="{{currentmonth}}" defaultOption="{{mpdefaultoption}}" options="{{monthoptions}}"
       key="time_id" text="time_name" bindchange="mpchange"></select>
   </view>
-  <view class="accountlist_zj">
-    <accountlist accountlist='{{costaccountlist}}' account-type="0"></accountlist>
+  <view class="accountlist_zj" >
+    <accountlist bindslidebutton="slidebuttons" accountlist='{{costaccountlist}}' account-type="0"></accountlist>
   </view>
+  <mp-dialog title="你确定要删除这条账单吗" show="{{dialogShow}}" bindbuttontap="tapDialogButton" buttons="{{dialogbuttons}}">
+    </mp-dialog>
   <!--movable-area class="movearea" style="height:{{moveareaheight}}rpx"-->
   <!--/movable-area-->
-</view>
-
-<view class="moveview" >
-      <image bindtap="makeaccount" class="makeaccount" src="../../images/makeaccount.png" mode='scaleToFill'>
-      </image>
 </view>

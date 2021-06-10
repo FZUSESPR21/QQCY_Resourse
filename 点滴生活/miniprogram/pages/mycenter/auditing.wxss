@@ -14,7 +14,8 @@
   border-radius: 12rpx;
   margin-top: 6rpx;
 }
-.weui-slidecells{margin-top: 10rpx;
+.weui-slidecells{
+  margin-top: 10rpx;
   content: close-quote;
   padding: 4rpx;
   border-radius: 12px;
@@ -42,7 +43,12 @@
   position: relative;
   top: 1rpx;
   height: 50rpx;
+  display: -webkit-box;
+  -webkit-line-clamp:1;
+  overflow: hidden;  /*超出隐藏*/
+  text-overflow: ellipsis;  /*超出显示为省略号*/
 }
+
 
 .time{
   position: relative;

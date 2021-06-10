@@ -42,6 +42,9 @@
   left:58rpx;
   float: left;
 }
+.ignore{
+  z-index:1;width:680rpx;height:120rpx;background-color:white;
+}
 .account{
   z-index:1;
   position:absolute;
@@ -53,6 +56,7 @@
   height:120rpx;
   width:680rpx;
   position:relative;
+  left:10rpx;
 }
 .typeimage{
   width:80rpx;
@@ -92,4 +96,7 @@
   height:120rpx;
   width:680rpx;
   position:relative;
+}
+.weui-slideview__btn{
+  background-color: #909090;
 }

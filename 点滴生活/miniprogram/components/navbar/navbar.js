@@ -19,8 +19,15 @@ Component({
   },
   attached: function () {
     // 定义导航栏的高度   方便对齐
-    this.setData({
-      height: app.globalData.height
+    var a=this;
+    wx.getSystemInfo({
+      success: res => {
+        //导航高度
+        a.setData({height:res.statusBarHeight+10})
+        ;
+      }, fail(err) {
+        console.log(err);
+      }
     })
   },
   methods: {

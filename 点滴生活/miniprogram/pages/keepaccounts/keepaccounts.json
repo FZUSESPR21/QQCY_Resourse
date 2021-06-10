@@ -5,6 +5,7 @@
     "ec-canvas":"../../components/hb/ec-canvas/ec-canvas",
     "accountlist":"../../components/hzj/accountlist/accountlist",
     "select":"../../components/select/select",
-    "mp-slideview": "weui-miniprogram/slideview/slideview"
+    "mp-slideview": "weui-miniprogram/slideview/slideview",
+    "mp-dialog": "weui-miniprogram/dialog/dialog"
   }
 }
