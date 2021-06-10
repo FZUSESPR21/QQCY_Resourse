@@ -15,7 +15,8 @@ Page({
     },
     height: app.globalData.height * 2 + 20, // 此页面 页面内容距最顶部的距离
 
-    bannerData: [{
+    posts:[
+      {
         'focus': 'https://www.duoguyu.com/dist/flip/flipImg-1.jpg'
       },
       {
@@ -43,7 +44,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    wx.cloud.callFunction({
+      name:'getAllPost',
+    }).then(res=>{
+      this.setData({
+        posts:res.result.data
+      })
+      console.log(this.data.posts);
+    })
   },
 
   /**
