@@ -93,11 +93,26 @@ Page({
       })
     })
   },
+
+  getComment(){
+    wx.cloud.callFunction({
+      name:'getNotification',
+      data:{
+        type:'评论'
+      }
+    }).then(res=>{
+      console.log('审核通知请求成功',res)
+      this.setData({
+        commentlist: res.result
+      })
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     this.getExamine()
+    this.getComment()
     this.setData({
       loadingHidden: true
     })
