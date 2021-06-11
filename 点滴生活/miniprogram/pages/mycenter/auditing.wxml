@@ -10,5 +10,7 @@
           <view class="time">{{item.createTime}}</view>
         </mp-slideview>
       </view>
+      <mp-dialog title="你确定审核通过这条妙招吗？" show="{{auditingDialogShow}}" bindbuttontap="tapAuditingDialog" buttons="{{dialogbuttons}}">
+    </mp-dialog>
     </view>
 </view>

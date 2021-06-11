@@ -13,7 +13,10 @@ Page({
       showcancel:0,//是否显示左上角关闭图标   1表示显示    0表示不显示
       title: '审核', //导航栏 中间的标题
     },
-    
+    nowIndex:0,
+    nowPostId:'',
+    auditingDialogShow: false,
+    dialogbuttons: [{ text: '取消' }, { text: '确定' }],
     vlheight:"",
     length:[{
       index:1,
@@ -43,58 +46,30 @@ Page({
         username:"用户2",
         content:"文章内容2",
         createTime: "2021年6月9日21:14:28"
-      },
-      {
-        id:"1",
-        username:"用户1",
-        content:"文章内容1",
-        createTime: "2021年6月8日21:14:05"
-      },
-      {
-        id:"1",
-        username:"用户1",
-        content:"文章内容1",
-        createTime: "2021年6月8日21:14:05"
-      },
-      {
-        id:"1",
-        username:"用户1",
-        content:"文章内容1",
-        createTime: "2021年6月8日21:14:05"
-      },
-      {
-        id:"1",
-        username:"用户1",
-        content:"文章内容1",
-        createTime: "2021年6月8日21:14:05"
-      },
-      {
-        id:"1",
-        username:"用户1",
-        content:"文章内容1",
-        createTime: "2021年6月8日21:14:05"
-      },
-      {
-        id:"1",
-        username:"用户1",
-        content:"文章内容1",
-        createTime: "2021年6月8日21:14:05"
-      },
-      {
-        id:"1",
-        username:"用户1",
-        content:"文章内容1",
-        createTime: "2021年6月8日21:14:05"
-      },
-      {
-        id:"1",
-        username:"用户1",
-        content:"文章内容1",
-        createTime: "2021年6月8日21:14:05"
-      },
+      }
     ]
   },
-
+  tapAuditingDialog(e){
+    console.log(this.data.nowPostId)
+    if(e.detail.index == 1)
+    {
+      wx.cloud.callFunction({
+        name: 'passAudit',
+        data:{
+          _id: this.data.nowPostId,
+        },
+        success: res => {
+            console.log('成功了')
+        },
+        fail: err => {
+          console.log("失败了")
+        }
+      })
+    }
+    this.setData({
+      auditingDialogShow:false,
+    })
+  },
   returnback:function(){
     wx.navigateBack();
   },
@@ -121,6 +96,10 @@ getNotAuditingPost:function(){
 slideButtonTap(e) {
   
   var index = e.currentTarget.dataset.index;
+  this.setData({
+    nowIndex:index,
+    nowPostId:this.data.posts[index]._id
+  })
   var id;
   if(e.detail.index==0)
   {
@@ -132,8 +111,9 @@ slideButtonTap(e) {
   }
   else if(e.detail.index==1)
   {
-    console.log("审核通过")
-    console.log(this.data.posts[index])
+    this.setData({
+      auditingDialogShow:true
+    })
   }
   else if(e.detail.index==2){
     console.log("删除该妙招")

@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "navbar":"../../components/navbar/navbar",
-    "mp-slideview": "weui-miniprogram/slideview/slideview"
+    "mp-slideview": "weui-miniprogram/slideview/slideview",
+    "mp-dialog": "weui-miniprogram/dialog/dialog"
   }
 }
