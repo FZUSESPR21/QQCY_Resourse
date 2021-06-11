@@ -118,7 +118,7 @@
 }
 .monthpicker{    
   width: 180rpx;
-  z-index:99;
+  z-index:98;
   position: absolute;
   top: 1095rpx;
   right: 30rpx;
@@ -188,7 +188,7 @@
 .makeaccount{
   width:152rpx;
   height:158rpx;
-  z-index:100;
+  z-index:97;
 }
 .viewdetail{
   width:528rpx;
@@ -249,4 +249,15 @@
   position:absolute;
   top:372rpx;
   left:240rpx;
+}
+.detailclose{
+  width:64rpx;
+  height:64rpx;
+  position:absolute;
+  top:0rpx;
+  right:0rpx;
+}
+.blackbackground{
+  position:fixed;top:0rpx;background-color:#000000;height:100%;width:750rpx;z-index:99;
+  opacity: 30%;
 }

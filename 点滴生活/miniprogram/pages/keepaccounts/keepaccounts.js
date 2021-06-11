@@ -43,6 +43,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    detailnum:"",
     detailshow: "none",
     detailremark:"",
     detailtype:"",
@@ -373,7 +374,23 @@ Page({
     switch (e.detail.index) {
       case 0: {
         console.log("你点击了查看详情");
-
+        if(this.data.detailshow=="none"){
+        console.log("展示详情页面")
+        for(var i=0;i<listdata.length;i++){
+          for(var k=0;k<listdata[i].accountgroup.account.length;k++){
+            if(listdata[i].accountgroup.account[k].id==pickid){
+              this.setData({
+                detailshow:"block",
+                detaildate:listdata[i].accountgroup.date,
+                detailtype:listdata[i].accountgroup.account[k].selecttype,
+                detailremark:listdata[i].accountgroup.account[k].remark,
+                detailnum:listdata[i].accountgroup.account[k].num,
+              })
+              break;
+            }
+          }
+        }
+      }
         break;
       }
       case 1: {
@@ -389,6 +406,14 @@ Page({
         break;
       }
     }
+  },
+  /**
+   * 关闭账单详情
+   */
+  detailclose(e){
+    this.setData({
+      detailshow:"none"
+    })
   },
   /**
    * 

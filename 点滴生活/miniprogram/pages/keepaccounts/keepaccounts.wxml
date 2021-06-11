@@ -78,5 +78,8 @@
   <view class="detaildate">日期：{{detaildate}}</view>
   <view class="linkthings">关联日记：</view>
   <view class="thingstitle" bindtap="thingsjump">{{thingstitle}}</view>
+  <image class="detailclose" src="../../images/cancel.png" bindtap="detailclose"></image>
   </view>
+  <view class="blackbackground" style="display:{{detailshow}};"></view>
 </view>
+
