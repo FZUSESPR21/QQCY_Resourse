@@ -173,4 +173,8 @@ Page({
     })
     // console.log(this.data.commentInputText)
   },
+
+  backToBefore:function(e) {
+    wx.navigateBack();   //返回上一级
+  }
 })

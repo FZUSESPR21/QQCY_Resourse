@@ -1,5 +1,5 @@
 <!--pages/tippage.wxml-->
-<navbar navbar-data='{{nvabarData}}'></navbar>
+<navbar navbar-data='{{nvabarData}}' bindnavback="backToBefore"></navbar>
 <view class="main-area">
 <view class="content-area">
   <view class="publisher-message-area">
