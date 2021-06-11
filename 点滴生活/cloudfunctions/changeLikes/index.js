@@ -7,11 +7,10 @@ const db = cloud.database();
 // 云函数入口函数
 exports.main = async (event, context) => {
     const wxContext = cloud.getWXContext()
-
-    await db.collection('post').doc('cbddf0af60c08ed60f39e9ef769c5458').update({
+    //修改点赞数
+    await db.collection('post').doc(event.id).update({
         data: {
-            //likes: event.newLikesNum,
-            likes: 18,
+            likes: event.likeNum,
         }
     })
 }

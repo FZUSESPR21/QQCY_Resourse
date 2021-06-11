@@ -60,9 +60,35 @@ Page({
     isMark:false//是否收藏
   },
   LikeTip:function (e) {
-    this.setData({
-      isLike:true
-    })
+    //未点赞过
+   // if(this.data.isLike == false) {
+      wx.cloud.callFunction({
+        name: 'changeLikes',
+        data: {
+          id: this.data.tipId,  //文章id
+          likeNum: this.data.likeNum+1,
+        }
+      }).then(res=>{
+        this.setData({
+          likeNum: this.data.likeNum+1,   //点赞数＋1
+          isLike:true,      //点赞过了
+        })
+      })
+    //}
+    // else {
+    //   wx.cloud.callFunction({
+    //     name: 'changeLikes',
+    //     data: {
+    //       id: this.data.tipId,  //文章id
+    //       likeNum: this.data.likeNum-1,
+    //     }
+    //   }).then(res=>{
+    //     this.setData({
+    //       likeNum: this.data.likeNum-1,   //点赞数-1
+    //       isLike:false,      //未点赞
+    //     })
+    //   })
+    // }
   },
   MarkTip:function (e) {
     this.setData({
@@ -126,6 +152,7 @@ Page({
        }
     }).then( tip =>{
       this.setData({
+        tipId: post_id,
         tipContent: tip.result[0].content,
         tipImgUrls: tip.result[0].picArray,
         ['tipNumData.likeNum']: tip.result[0].likes,
