@@ -53,6 +53,6 @@
 </view>
 <view class="input-box">
   <image class="comment-box-head" src="{{ tipPublisherMessage.headUrl}}"></image>
-<textarea bindblur="bindTextAreaBlur" class="input-area" placeholder="留下评论..."></textarea>
-<view class="send-button">发送</view></view>
+<textarea bindinput="bindTextAreaBlur" class="input-area" placeholder="留下评论..." value="{{commentInputText}}"></textarea>
+<view class="send-button" bindtap="postComment">发送</view></view>
 </view>

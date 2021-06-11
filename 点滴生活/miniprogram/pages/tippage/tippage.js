@@ -19,7 +19,7 @@ Page({
       userName:"",//用户名
       publishTime:""//发布时间
     },
-
+      tipId:'1',
       tipContent:'',//小贴士文字内容
       tipImgUrls:[],//小贴士图像url数组
       tipNumData:{//小贴士数字数组
@@ -69,8 +69,48 @@ Page({
       isMark:true
     })
   },
-  postComment:function (e) {
-    
+  postComment:function (e) {//发布评论函数
+    if(this.data.commentInputText!="")
+    {
+      let _this=this;
+      var d=new Date();
+      let createTime="";
+      createTime+=d.getFullYear()+'-';
+      createTime+=(d.getMonth()+1)+'-';
+      createTime+=(d.getDate())+' ';
+      createTime+=(d.getHours())+':';
+      createTime+=(d.getMinutes())+':';
+      createTime+=(d.getSeconds());
+      createTime=createTime.toString();//转化时间戳
+      console.log(createTime)
+      wx.cloud.callFunction({
+        name:'addComment',
+        data : {
+          tipId:_this.data.tipId,   //post_id由小贴士列表传送
+          content:_this.data.commentInputText,
+          createTime:createTime
+        }
+      }).then(res=>{
+        console.log(res.result);
+        wx.showToast({
+          title: '评论发布成功',
+          icon: 'none',//icon
+          duration: 1500 //停留时间
+      })
+        _this.setData({
+          commentInputText:""
+        })
+      })
+      
+    }
+    else{
+      wx.showToast({
+        title: '评论为空',
+        icon: 'none',//icon
+        duration: 1500 //停留时间
+    })
+    }
+   
   },
 
   onLoad(option){
@@ -126,11 +166,11 @@ Page({
   },
 
 
-  bindTextAreaBlur:function(e)
+  bindTextAreaBlur:function(e)//输入框获取内容函数
   {
     this.setData({
       commentInputText:e.detail.value
     })
-    console.log(this.data.commentInputText)
+    // console.log(this.data.commentInputText)
   },
 })
