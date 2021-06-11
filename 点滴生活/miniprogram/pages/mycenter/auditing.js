@@ -15,6 +15,7 @@ Page({
     },
     nowIndex:0,
     nowPostId:'',
+    deleteDialogShow: false,
     auditingDialogShow: false,
     dialogbuttons: [{ text: '取消' }, { text: '确定' }],
     vlheight:"",
@@ -49,6 +50,29 @@ Page({
       }
     ]
   },
+  tapDeleteDialog(e){
+    console.log(this.data.nowPostId)
+    if(e.detail.index == 1)
+    {
+      wx.cloud.callFunction({
+        name: 'deletNotAuditingPost',
+        data:{
+          _id: this.data.nowPostId,
+        },
+        success: res => {
+            console.log('成功了')
+            this.getNotAuditingPost()
+        },
+        fail: err => {
+          console.log("失败了")
+        }
+      })
+    }
+
+    this.setData({
+      deleteDialogShow:false,
+    })
+  },
   tapAuditingDialog(e){
     console.log(this.data.nowPostId)
     if(e.detail.index == 1)
@@ -60,12 +84,14 @@ Page({
         },
         success: res => {
             console.log('成功了')
+            this.getNotAuditingPost()
         },
         fail: err => {
           console.log("失败了")
         }
       })
     }
+    
     this.setData({
       auditingDialogShow:false,
     })
@@ -116,6 +142,9 @@ slideButtonTap(e) {
     })
   }
   else if(e.detail.index==2){
+    this.setData({
+      deleteDialogShow:true,
+    })
     console.log("删除该妙招")
   }
 },
