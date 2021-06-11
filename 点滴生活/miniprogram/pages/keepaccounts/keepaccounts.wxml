@@ -17,7 +17,7 @@
   </view>
   <image class="tablechange" src='{{imageSrc}}' mode='aspectFit' bindtap="handleChartChange"></image>
 
-  <view class="datatableblock" style="display:none">
+  <view class="datatableblock">
 
     <view class="select_wrap" style="display:{{yearselect}}">
       <select id="select" current="{{yearcurrent}}" defaultOption="{{yeardefaultoption}}" options="{{yearoptions}}" key="time_id" text="time_name"
@@ -69,7 +69,7 @@
     </mp-dialog>
   <!--movable-area class="movearea" style="height:{{moveareaheight}}rpx"-->
   <!--/movable-area-->
-  <view class="viewdetail" style="display:none">
+  <view class="viewdetail" style="display:{{detailshow}}">
   <view class="yellowpoint"></view>
   <view class="detailline"></view>
   <view class="detailremark">备注：{{detailremark}}</view>

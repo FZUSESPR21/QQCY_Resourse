@@ -43,6 +43,11 @@ Page({
    * 页面的初始数据
    */
   data: {
+    detailshow: "none",
+    detailremark:"",
+    detailtype:"",
+    detaildate:"",
+    thingstitle:"",
     dialogShow: false,
     dialogbuttons: [{ text: '取消' }, { text: '确定' }],
     tempYearSelected: { id: "y001", name: "2021年" },
@@ -515,6 +520,7 @@ Page({
           type:type,
         },
         success: res => {
+          console.log(listdata);
           for(var i=0;i<listdata.length;i++){
             for(var j=0;j<listdata[i].accountgroup.account.length;j++){
               if(listdata[i].accountgroup.account[j].id==pickid)
@@ -581,6 +587,7 @@ Page({
           })
         },
         fail: err => {
+          console.log("失败了")
         }
       })
       
