@@ -6,9 +6,29 @@ const db = cloud.database();
 // 云函数入口函数
 exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
-
-  return await db.collection('post')
+  var postdata;
+  await db.collection('post')
   .skip(event.length)
   .limit(5)
-  .get();
+  .get()
+  .then(res=>{
+    postdata = res.data;
+  })
+  for(var i=0;i<postdata.length;i++){
+    await db.collection('like')
+    .where({
+      postid:postdata[i]._id,
+      userid:wxContext.OPENID
+    })
+    .count()
+    .then(res=>{
+      if(res.total==0){
+        postdata[i]['haveThumbup'] = 0;
+      }
+      else{
+        postdata[i]['haveThumbup'] = 1;
+      }
+    })
+  }
+  return postdata 
 }

@@ -53,7 +53,7 @@
               </view>
               <view class="inOpe">
                 <view class="like" catchtap="thumbup" hover-stop-propagation="true" data-index="{{index}}">
-                  <image class="picItem" src="{{likeSrc[0]}}" mode="aspectFill"></image>
+                  <image class="picItem" src="{{likeSrc[item.haveThumbup]}}" mode="aspectFill"></image>
                 </view>
                 <view class="number-cs">{{item.likes}}</view>
                 <view class="like">

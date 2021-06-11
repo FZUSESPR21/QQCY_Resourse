@@ -61,7 +61,7 @@ Page({
 
   swiperChange:function(e){
     var index = e.detail.current;
-    if(index == this.data.posts.length-1){
+    if(index == this.data.posts.length-2){
       wx.cloud.callFunction({
         name:'getAllPost',
         data:{
@@ -69,7 +69,7 @@ Page({
         }
       }).then(res=>{
         this.setData({
-          posts:this.data.posts.concat(res.result.data)
+          posts:this.data.posts.concat(res.result)
         })
       })
     }
@@ -78,13 +78,26 @@ Page({
   thumbup:function(e){
     var index = e.currentTarget.dataset.index;
     //需要设置一个人只能点一次
-    this.setData({
-      likeSrc:this.data.likeSrc.reverse()
-    })
+    var up = "posts["+parseInt(index)+"].haveThumbup"
+    var likes = "posts["+parseInt(index)+"].likes"
+    if(this.data.posts[index].haveThumbup == 1){
+      this.setData({
+        [up]:0,
+        [likes]:this.data.posts[index].likes-1
+      })
+      console.log(this.data.posts[index].haveThumbup);
+    }else{
+      this.setData({
+        [up]:1,
+        [likes]:this.data.posts[index].likes+1
+      })
+      console.log(this.data.posts[index].haveThumbup);
+    }
     wx.cloud.callFunction({
       name:'thumbup',
       data:{
         id:this.data.posts[index]._id,
+        haveThumbup:this.data.posts[index].haveThumbup,
       }
     }).then(res1=>{
       console.log(res1);
@@ -116,8 +129,10 @@ Page({
       }
     }).then(res=>{
       this.setData({
-        posts:res.result.data
-      })
+         posts:res.result
+     })
+
+     console.log(this.data.posts);
     })
   },
 

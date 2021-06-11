@@ -19,7 +19,8 @@ exports.main = async (event, context) => {
   })
   console.log(res1);
   if(res1==0){
-    await db.collection('post')
+    if(event.haveThumbup==1){
+      await db.collection('post')
       .where({
         _id:event.id
       })
@@ -35,8 +36,25 @@ exports.main = async (event, context) => {
           postid:event.id
         }
       })
+    }
   }else{
-    return res1;
+    if(event.haveThumbup==0){
+      await db.collection('post')
+      .where({
+        _id:event.id
+      })
+      .update({
+        data:{
+          "likes":_.inc(-1)
+        }
+      })
+      return await db.collection("like")
+      .where({
+        userid:wxContext.OPENID,
+        postid:event.id
+      })
+      .remove()
+    }
   }
   
 }
