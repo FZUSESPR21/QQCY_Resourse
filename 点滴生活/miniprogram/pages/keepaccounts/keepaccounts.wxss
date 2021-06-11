@@ -259,5 +259,5 @@
 }
 .blackbackground{
   position:fixed;top:0rpx;background-color:#000000;height:100%;width:750rpx;z-index:99;
-  opacity: 30%;
+  opacity: 50%;
 }
