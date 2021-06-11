@@ -11,8 +11,10 @@ exports.main = async (event, context) => {
   var id = event.id;
   var type = event.type;
   var num;
+  var date;
   console.log(type)
   console.log(id)
+
   if (type == "cRecord") {
     //取消支出 所以减预算使用度
     await db.collection(type).where(
@@ -23,8 +25,14 @@ exports.main = async (event, context) => {
       .then(res => {
         console.log(res.data)
         num = res.data[0].number;
+        date=res.data[0].createTime;
       })
-
+    var day=new Date();
+    var nowmonth=day.getMonth();
+    nowmonth+=1;
+    var nowyear=day.getFullYear();
+    var getmonth=date[0].split('-');
+    if(getmonth[1]==nowmonth&&nowyear==getmonth[0]){
     var num1 = 0 - num;
     var limit= parseFloat(num1)
     await db.collection('user')
@@ -36,7 +44,7 @@ exports.main = async (event, context) => {
       "userlimit.1":_.inc(limit),
     }
   })
-
+    }
   }
   db.collection(type).doc(id).remove()
   return true
