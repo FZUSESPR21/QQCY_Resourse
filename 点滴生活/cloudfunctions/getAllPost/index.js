@@ -7,5 +7,8 @@ const db = cloud.database();
 exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
 
-  return await db.collection('post').get();
+  return await db.collection('post')
+  .skip(event.length)
+  .limit(5)
+  .get();
 }

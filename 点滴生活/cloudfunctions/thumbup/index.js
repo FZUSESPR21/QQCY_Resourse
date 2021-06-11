@@ -7,23 +7,36 @@ const _ = db.command
 // 云函数入口函数
 exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
-  await db.collection('post')
+  var res1;
+  await db.collection('like')
   .where({
-    _id:event.id
+    postid:event.id,
+    userid:wxContext.OPENID
   })
-  .update({
-    data:{
-      "likes":_.inc(1)
-    }
-    
+  .count()
+  .then(res=>{
+    res1 = res.total;
   })
-  return db.collection("like")
-  .add({
-    data:{
-      userid:wxContext.OPENID,
-      postid:event.id
-    }
-  }).then(res=>{
-    console.log(res);
-  })
+  console.log(res1);
+  if(res1==0){
+    await db.collection('post')
+      .where({
+        _id:event.id
+      })
+      .update({
+        data:{
+          "likes":_.inc(1)
+        }
+      })
+      return await db.collection("like")
+      .add({
+        data:{
+          userid:wxContext.OPENID,
+          postid:event.id
+        }
+      })
+  }else{
+    return res1;
+  }
+  
 }

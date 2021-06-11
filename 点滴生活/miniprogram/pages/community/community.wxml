@@ -3,7 +3,7 @@
 
 <view class="swiper">
 
-  <swiper class='bannerGrid' previous-margin="60rpx" next-margin="60rpx">
+  <swiper class='bannerGrid' previous-margin="60rpx" next-margin="60rpx" bindchange="swiperChange">
 
     <swiper-item class="item" wx:for="{{ posts }}" wx:key="index">
       <view class="swiper-item">
@@ -28,7 +28,7 @@
                 </view>
             </view>
             <!-- 文章主体内容 -->
-            <view class="post" catchtap="move2detail" data-index="{{index}}">
+            <view class="post">
 
               <view class="userPic">
                 <image class="picItem" src="{{item.userPic}}" mode="aspectFill"></image>
@@ -42,18 +42,18 @@
                   {{item.createTime}}
                 </view>
               </view>
-              <view class="postText">
+              <view class="postText" catchtap="move2detail" data-index="{{index}}">
                   {{item.content}}
               </view>
               <!-- 预览3张图 -->
-              <view class="inPic" wx:for="{{item.picArray}}" wx:key="index">
-                <view class="imgView" wx:if="{{index<3}}">
-                  <image class="picItem" src="{{item}}" mode="aspectFill"></image>
+              <view class="inPic" wx:for="{{item.picArray}}" wx:for-index="childindex" wx:key="index">
+                <view class="imgView" wx:if="{{childindex<3}}">
+                <image class="picItem" src="{{item}}" mode="aspectFill" catchtap="preview" data-src="{{item}}" data-index="{{index}}"></image>
                 </view>
               </view>
               <view class="inOpe">
                 <view class="like" catchtap="thumbup" hover-stop-propagation="true" data-index="{{index}}">
-                  <image class="picItem" src="../../images/agree.png" mode="aspectFill"></image>
+                  <image class="picItem" src="{{likeSrc[0]}}" mode="aspectFill"></image>
                 </view>
                 <view class="number-cs">{{item.likes}}</view>
                 <view class="like">
