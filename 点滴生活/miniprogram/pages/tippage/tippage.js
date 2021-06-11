@@ -60,35 +60,35 @@ Page({
     isMark:false//是否收藏
   },
   LikeTip:function (e) {
-    //未点赞过
-   // if(this.data.isLike == false) {
+  //未点赞过
+   if(this.data.isLike == false) {
       wx.cloud.callFunction({
         name: 'changeLikes',
         data: {
           id: this.data.tipId,  //文章id
-          likeNum: this.data.likeNum+1,
+          likeNum: this.data.tipNumData.likeNum+1,
         }
       }).then(res=>{
         this.setData({
-          likeNum: this.data.likeNum+1,   //点赞数＋1
+          ['tipNumData.likeNum']: this.data.tipNumData.likeNum+1,   //点赞数＋1
           isLike:true,      //点赞过了
         })
       })
-    //}
-    // else {
-    //   wx.cloud.callFunction({
-    //     name: 'changeLikes',
-    //     data: {
-    //       id: this.data.tipId,  //文章id
-    //       likeNum: this.data.likeNum-1,
-    //     }
-    //   }).then(res=>{
-    //     this.setData({
-    //       likeNum: this.data.likeNum-1,   //点赞数-1
-    //       isLike:false,      //未点赞
-    //     })
-    //   })
-    // }
+    }
+    else {
+      wx.cloud.callFunction({
+        name: 'changeLikes',
+        data: {
+          id: this.data.tipId,  //文章id
+          likeNum: this.data.tipNumData.likeNum-1,
+        }
+      }).then(res=>{
+        this.setData({
+          ['tipNumData.likeNum']: this.data.tipNumData.likeNum-1,   //点赞数-1
+          isLike:false,      //未点赞
+        })
+      })
+    }
   },
   MarkTip:function (e) {
     this.setData({
@@ -164,31 +164,31 @@ Page({
       console.log(tip.result[0].content)
     })
 
-    //读取评论列表
-    wx.cloud.callFunction({
-      name:'getComment',
-      data : {
-        id: post_id   //post_id由小贴士列表传送
-      }
-    }).then(res=>{
-      console.log(res.result);
-      this.setData({
-        commentList: commentList.result,
-      })
-    })
-    for( var i = 0 ; i<commentListlength ; i++){
-      wx.cloud.callFunction({
-        name:'getCommentUser',
-        data : {
-          id: ['commentList[i].userid']   //post_id由小贴士列表传送
-        }
-      }).then(res=>{
-        console.log(res.result);
-        this.setData({
-          commenterHead: res.result[0],
-        })
-      })
-    }
+    // //读取评论列表
+    // wx.cloud.callFunction({
+    //   name:'getComment',
+    //   data : {
+    //     id: post_id   //post_id由小贴士列表传送
+    //   }
+    // }).then(res=>{
+    //   console.log(res.result);
+    //   this.setData({
+    //     commentList: commentList.result,
+    //   })
+    // })
+    // for( var i = 0 ; i<commentListlength ; i++){
+    //   wx.cloud.callFunction({
+    //     name:'getCommentUser',
+    //     data : {
+    //       id: ['commentList[i].userid']   //post_id由小贴士列表传送
+    //     }
+    //   }).then(res=>{
+    //     console.log(res.result);
+    //     this.setData({
+    //       commenterHead: res.result[0],
+    //     })
+    //   })
+    // }
     
   },
 
