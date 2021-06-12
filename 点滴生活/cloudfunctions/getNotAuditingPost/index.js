@@ -15,7 +15,8 @@ exports.main = async (event, context) => {
       _id:true,
       userName:true,
       createTime:true,
-      content:true
+      content:true,
+      userid:true
     })
     .get()
     .then(res=>{
