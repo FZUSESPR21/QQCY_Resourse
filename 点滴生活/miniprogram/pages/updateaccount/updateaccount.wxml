@@ -1,0 +1,40 @@
+<!--miniprogram/pages/makeaccount/makeaccount.wxml-->
+<navbar navbar-data='{{nvabarData}}' bindnavback="returnA"></navbar>
+<view class="border"></view>
+
+<view class="in_pay_tapbar" bindtap="slidemove" >
+      <image class="slide" animation="{{animation}}"src="../../images/income.png" mode='scaleToFill' ></image>
+      <text class="income" style="color:{{incomecolor}}">收入</text>
+      <text class="expend" style="color:{{expendcolor}}">支出</text>
+</view>
+<view class="border1"></view>
+
+<view catchtap="hideKeyboard">
+<view class="csk-number-border">
+  <view class="csk-type" >{{selectedType==''?'类型':selectedType}}</view>
+  <view class="csk-number" catchtap="showKeyboard">
+      {{numberText==''?'金额':numberText}}
+  </view>
+</view>
+<view class="text1-csk">
+  <text class="txt2-csk">请选择{{switchType==1?'支出':'收入'}}类型</text>
+</view>
+<view class="typeList"> 
+  <view wx:for="{{switchType==1?ctype:rtype}}" wx:key="des">
+    <view class="type" catchtap="selectType" data-value="{{item.des}}" data-url="{{item.url}}">
+      <image class="img" src="{{item.url}}"></image>
+      <text class="txt1-csk">{{item.des}}</text>
+    </view>
+  </view>
+</view>
+</view>
+<view class="keyboard" wx:if="{{isShow}}">
+  <view class="remark">
+    <input class="textnormal" bindinput="remarkChange" value="{{remark}}" placeholder="备注"></input>
+  </view>
+  <view class="keynum" wx:for="{{keyNumber}}" wx:key="keyNumber" data-value="{{item}}" catchtap="keyboardTap" >
+    <view class="normal{{index%4}}" hover-class="normalhover{{index%4}}">{{index==3?'':item}}
+      <picker mode="date" value="{{date}}" wx:if="{{index==3}}" bindchange="bindDateChange">{{item}}</picker>
+    </view>
+  </view>
+  </view>

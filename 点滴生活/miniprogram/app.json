@@ -14,7 +14,8 @@
     "pages/mycenter/auditing",
     "pages/community/writePost",
     "pages/mycenter/auditingdetail",
-    "pages/keepaccounts/none"
+    "pages/keepaccounts/none",
+    "pages/updateaccount/updateaccount"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

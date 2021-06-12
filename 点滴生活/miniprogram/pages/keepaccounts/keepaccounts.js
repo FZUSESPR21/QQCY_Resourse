@@ -395,7 +395,9 @@ Page({
       }
       case 1: {
         console.log("你点击了修改");
-
+        wx.navigateTo({
+          url: '../updateaccount/updateaccount?id='+e.detail.data+'&type='+type,
+        })
         break;
       }
       case 2: {

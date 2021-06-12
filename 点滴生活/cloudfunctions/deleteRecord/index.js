@@ -25,25 +25,25 @@ exports.main = async (event, context) => {
       .then(res => {
         console.log(res.data)
         num = res.data[0].number;
-        date=res.data[0].createTime;
+        date = res.data[0].createTime;
       })
-    var day=new Date();
-    var nowmonth=day.getMonth();
-    nowmonth+=1;
-    var nowyear=day.getFullYear();
-    var getmonth=date[0].split('-');
-    if(getmonth[1]==nowmonth&&nowyear==getmonth[0]){
-    var num1 = 0 - num;
-    var limit= parseFloat(num1)
-    await db.collection('user')
-  .where({
-    userid:wxContext.OPENID
-  })
-  .update({
-    data:{
-      "userlimit.1":_.inc(limit),
-    }
-  })
+    var day = new Date();
+    var nowmonth = day.getMonth();
+    nowmonth += 1;
+    var nowyear = day.getFullYear();
+    var getmonth = date[0].split('-');
+    if (getmonth[1] == nowmonth && nowyear == getmonth[0]) {
+      var num1 = 0 - num;
+      var limit = parseFloat(num1)
+      await db.collection('user')
+        .where({
+          userid: wxContext.OPENID
+        })
+        .update({
+          data: {
+            "userlimit.1": _.inc(limit),
+          }
+        })
     }
   }
   db.collection(type).doc(id).remove()
