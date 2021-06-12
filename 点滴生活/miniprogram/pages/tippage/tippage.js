@@ -177,13 +177,12 @@ Page({
         commentList: commentList.result,
       })
     })
-    // var picList = new Array();
+    //var picList = new Array();
     // for( var i = 0 ; i < this.data.commentList.length ; i++){
     //   wx.cloud.callFunction({
     //     name:'getCommentUser',
     //     data : {
     //       id: ['commentList[i].userid'],   //post_id由小贴士列表传送   
-
     //     }
     //   }).then(res=>{
     //     console.log(res.result);
@@ -191,9 +190,10 @@ Page({
         
     //   })
     // }
-    // this.setData({ 
+    // this.setData({
     //   commenterHead: picList
     // })
+    
   },
 
 
