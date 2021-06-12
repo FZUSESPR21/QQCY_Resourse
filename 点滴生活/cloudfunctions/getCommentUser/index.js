@@ -12,7 +12,7 @@ exports.main = async (event, context) => {
   var userPic
   await db.collection('user')
     .where({
-        userid: 'oxmoK5iLdJN3LwnL9zathV1Iqvzw',
+        userid: id,
     })
     .get()
     .then(res=>{

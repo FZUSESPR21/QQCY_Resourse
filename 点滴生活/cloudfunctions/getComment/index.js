@@ -13,7 +13,7 @@ exports.main = async (event, context) => {
 
   await db.collection('comment')
     .where({
-        postid: 'b00064a760c1cbda1f1bceff41df3499',
+        postid: id,
     })
     .get()
     .then(res=>{
