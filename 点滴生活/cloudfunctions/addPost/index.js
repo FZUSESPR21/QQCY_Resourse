@@ -27,7 +27,8 @@ exports.main = async (event, context) => {
       picArray:event.picArray,
       comments:0,
       likes:0,
-      state:0
+      state:0,
+      recommend:0,
     }
   })
 }

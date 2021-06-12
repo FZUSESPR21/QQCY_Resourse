@@ -39,6 +39,7 @@ exports.main = async (event, context) => {
     }
   }else{
     if(event.haveThumbup==0){
+      
       await db.collection('post')
       .where({
         _id:event.id

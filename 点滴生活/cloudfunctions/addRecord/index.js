@@ -27,7 +27,8 @@ exports.main = async (event, context) => {
     today_week = parseInt((days[today.getMonth()]+today.getDate()-8+firstWeek)/7+1);
   }
   var week = today.getDay();
-  if(type==='cRecord'){
+  var newDate = new Date();
+  if(type==='cRecord'&&today.getMonth()==newDate.getMonth()&&today.getFullYear()==newDate.getFullYear()){
     await db.collection('user')
   .where({
     userid:wxContext.OPENID

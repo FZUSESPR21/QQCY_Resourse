@@ -14,7 +14,10 @@ Page({
       title: '每日精选', //导航栏 中间的标题
     },
     height: app.globalData.height * 2 + 20, // 此页面 页面内容距最顶部的距离
-
+    day:"",
+    month:"",
+    weeks:["星期天","星期一","星期二","星期三","星期四","星期五","星期六"],
+    week:0,
     likeSrc:["../../images/agree.png","../../images/agree-active.png"],
     posts:[
       {
@@ -108,7 +111,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    var date = new Date();
+    console.log(date.getFullYear().toString());
+    var year = date.getFullYear().toString() + '.';
+    var eMonth = (date.getMonth()<9)?"0"+(date.getMonth()+1).toString():(date.getMonth()+1).toString();
+    this.setData({
+      day:date.getDate(),
+      week:date.getDay(),
+      month:year+eMonth,
+    })
   },
 
   /**
