@@ -27,7 +27,7 @@ Page({
       commentNum:0,
     },
     commenterHead: [''],   //评论者头像
-    idd:'',  //测试一下
+    idd:'111',  //测试一下
     commentList: [//小贴士评论列表
       {
         _id: '',
@@ -153,6 +153,7 @@ Page({
        }
     }).then( tip =>{
       this.setData({
+        
         tipId: post_id,
         tipContent: tip.result[0].content,
         tipImgUrls: tip.result[0].picArray,
@@ -176,24 +177,23 @@ Page({
         commentList: commentList.result,
       })
     })
-    var picList = new Array();
-    for( var i = 0 ; i<commentList.length ; i++){
-      wx.cloud.callFunction({
-        name:'getCommentUser',
-        data : {
-          id: ['commentList[i].userid'],   //post_id由小贴士列表传送
-          idd: commentList[i].userid
+    // var picList = new Array();
+    // for( var i = 0 ; i < this.data.commentList.length ; i++){
+    //   wx.cloud.callFunction({
+    //     name:'getCommentUser',
+    //     data : {
+    //       id: ['commentList[i].userid'],   //post_id由小贴士列表传送   
 
-        }
-      }).then(res=>{
-        console.log(res.result);
-        picList[picList.length] = res.result[0]
-      })
-    }
-    this.setData({
-      commenterHead: picList,
-    })
-    
+    //     }
+    //   }).then(res=>{
+    //     console.log(res.result);
+    //     picList[picList.length] = res.result[0]
+        
+    //   })
+    // }
+    // this.setData({ 
+    //   commenterHead: picList
+    // })
   },
 
 
