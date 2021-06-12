@@ -101,9 +101,22 @@ Page({
         type:'评论'
       }
     }).then(res=>{
-      console.log('审核通知请求成功',res)
+      console.log('评论通知请求成功',res)
       this.setData({
         commentlist: res.result
+      })
+    })
+  },
+  getThumbsup(){
+    wx.cloud.callFunction({
+      name:'getNotification',
+      data:{
+        type:'点赞'
+      }
+    }).then(res=>{
+      console.log('点赞通知请求成功',res)
+      this.setData({
+        thumbsuplist: res.result
       })
     })
   },

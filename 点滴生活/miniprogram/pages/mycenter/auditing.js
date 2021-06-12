@@ -13,6 +13,7 @@ Page({
       showcancel:0,//是否显示左上角关闭图标   1表示显示    0表示不显示
       title: '审核', //导航栏 中间的标题
     },
+    nowUserid:'',
     nowIndex:0,
     nowPostId:'',
     deleteDialogShow: false,
@@ -52,6 +53,12 @@ Page({
   },
   tapDeleteDialog(e){
     console.log(this.data.nowPostId)
+    var createTime;
+    var date = new Date();
+    createTime = date.toLocaleString('zh', { hour12: false,year:'numeric',month: '2-digit',  day: '2-digit',  hour: '2-digit',  minute: '2-digit',  second: '2-digit'});
+    createTime = createTime.replace(',',' ');
+    createTime = createTime.replaceAll('/','-');
+    var content='您的内容为“'+this.data.posts[this.data.nowIndex].content+'”的妙招未通过审核！被管理员删除，请重新撰写！';
     if(e.detail.index == 1)
     {
       wx.cloud.callFunction({
@@ -62,10 +69,18 @@ Page({
         success: res => {
             console.log('成功了')
             this.getNotAuditingPost()
+            wx.cloud.callFunction({
+              name: 'addAuditingNotify',
+              data:{
+                "content": content,
+                "createTime":createTime,
+                "userid":this.data.nowUserid
+              },
+            })
         },
         fail: err => {
           console.log("失败了")
-        }
+        } 
       })
     }
 
@@ -75,6 +90,12 @@ Page({
   },
   tapAuditingDialog(e){
     console.log(this.data.nowPostId)
+    var createTime;
+    var date = new Date();
+    createTime = date.toLocaleString('zh', { hour12: false,year:'numeric',month: '2-digit',  day: '2-digit',  hour: '2-digit',  minute: '2-digit',  second: '2-digit'});
+    createTime = createTime.replace(',',' ');
+    createTime = createTime.replaceAll('/','-');
+    var content='您的内容为“'+this.data.posts[this.data.nowIndex].content+'”的妙招通过审核！';
     if(e.detail.index == 1)
     {
       wx.cloud.callFunction({
@@ -85,6 +106,14 @@ Page({
         success: res => {
             console.log('成功了')
             this.getNotAuditingPost()
+            wx.cloud.callFunction({
+              name: 'addAuditingNotify',
+              data:{
+                "content": content,
+                "createTime":createTime,
+                "userid":this.data.nowUserid
+              },
+            })
         },
         fail: err => {
           console.log("失败了")
@@ -124,7 +153,8 @@ slideButtonTap(e) {
   var index = e.currentTarget.dataset.index;
   this.setData({
     nowIndex:index,
-    nowPostId:this.data.posts[index]._id
+    nowPostId:this.data.posts[index]._id,
+    nowUserid:this.data.posts[index].userid
   })
   var id;
   if(e.detail.index==0)
