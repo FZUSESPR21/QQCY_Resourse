@@ -28,6 +28,9 @@ Page({
     },
     limit:'',
   },
+  exportbtn:function(e){
+
+  },
 
   getUserProfile(e) {
     // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认
