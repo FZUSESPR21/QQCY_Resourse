@@ -26,40 +26,21 @@ Page({
       likeNum:0,
       commentNum:0,
     },
-    commenterHead: [''],   //评论者头像
-    idd:'111',  //测试一下
+
     commentList: [//小贴士评论列表
       {
-        _id: '',
         content: '',
         createTime: '',
-        postid: '',
-        userid:'',
         username:'',
-      },
-      // {
-      //   /*commenterHead:'../../images/tt3x.png',//评论者头像
-      //   commenterName:"用户1",//评论者用户名
-      //   commentCreateTime:"2000.10.16.10.31",//评论发布时间
-      //   commentContent:"哈喽朋友们",//评论内容*/
-      // },
-      // {
-      //   /*commenterHead:'../../images/tt3x.png',//评论者头像
-      //   commenterName:"用户1",//评论者用户名
-      //   commentCreateTime:"2000.10.16.10.31",//评论发布时间
-      //   commentContent:"哈喽朋友们",//评论内容*/
-      // },
-      // {
-      //   /*commenterHead:'../../images/tt3x.png',//评论者头像
-      //   commenterName:"用户1",//评论者用户名
-      //   commentCreateTime:"2000.10.16.10.31",//评论发布时间
-      //   commentContent:"哈喽朋友们",//评论内容*/
-      // },
+        userPic:'',   //评论者头像
+      },   
     ],
+
     commentInputText:"",//文字框输入内容
     isLike:false,//是否点赞
     isMark:false//是否收藏
   },
+
   LikeTip:function (e) {
   //未点赞过
    if(this.data.isLike == false) {
@@ -96,6 +77,7 @@ Page({
       isMark:true
     })
   },
+
   postComment:function (e) {//发布评论函数
     if(this.data.commentInputText!="")
     {
@@ -129,7 +111,6 @@ Page({
           commentInputText:""
         })
       })
-      
     }
     else{
       wx.showToast({
@@ -137,9 +118,9 @@ Page({
         icon: 'none',//icon
         duration: 1500 //停留时间
     })
-    }
-   
+    }  
   },
+
  getTipsDetail:function (post_id) {
    let that=this;
   wx.cloud.callFunction({
@@ -149,8 +130,6 @@ Page({
      }
   }).then( tip =>{
     that.setData({
-      
-      tipId: post_id,
       tipContent: tip.result[0].content,
       tipImgUrls: tip.result[0].picArray,
       ['tipNumData.likeNum']: tip.result[0].likes,
@@ -167,13 +146,14 @@ Page({
     data : {
       id: post_id   //post_id由小贴士列表传送
     }
-  }).then( commentList => {
-    console.log( commentList.result );
+  }).then( commentDetail => {
+    console.log( commentDetail.result );
     that.setData({
-      commentList: commentList.result,
+      commentList: commentDetail.result,
     })
   })
  },
+
 onLoad(option){
     const post_id = option.id;
     this.setData({
@@ -181,25 +161,7 @@ onLoad(option){
     })
     //从数据库获取内容
     this.getTipsDetail(post_id)
-    //var picList = new Array();
-    // for( var i = 0 ; i < this.data.commentList.length ; i++){
-    //   wx.cloud.callFunction({
-    //     name:'getCommentUser',
-    //     data : {
-    //       id: ['commentList[i].userid'],   //post_id由小贴士列表传送   
-    //     }
-    //   }).then(res=>{
-    //     console.log(res.result);
-    //     picList[picList.length] = res.result[0]
-        
-    //   })
-    // }
-    // this.setData({
-    //   commenterHead: picList
-    // })
-    
   },
-
 
   bindTextAreaBlur:function(e)//输入框获取内容函数
   {

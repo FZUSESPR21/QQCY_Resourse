@@ -122,7 +122,7 @@
 .comment-area-title{
   width: 100%;
   padding-left: 80rpx;
-  font-size: 20px;
+  font-size: 17px;
   border-bottom:4px solid #fafafa;
 }
 .tip-images-area image{
