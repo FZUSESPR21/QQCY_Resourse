@@ -9,6 +9,9 @@ Page({
    * 页面的初始数据
    */
   data: {
+    email:"",
+    dialogShow:false,
+    dialogbuttons: [{ text: '取消' }, { text: '确定' }],
     permission:false,
     list:[],
     hasUserInfo: false,
@@ -125,12 +128,50 @@ Page({
   onReady: function () {
   
   },
-
+  /**
+   * 账单导出
+   */
+  getInputValue(e){
+    this.setData({email:e.detail.value})
+    console.log(e.detail)// 
+  },
+  exportbtn(){
+    this.setData({dialogShow:true})
+  },
+  tapDialogButton(e){
+    console.log(e)
+    var a=this;
+    if(e.detail.index==1){
+    var text="";
+    text+="以下是支出账单\n"
+    wx.cloud.callFunction({
+      name:"getallrecord",
+    }).then(res=>{
+      for(var i=0;i<res.result[0].length;i++){
+        text+="时间："+res.result[0][i].时间+" 类别："+res.result[0][i].类别+" 金额："+res.result[0][i].金额+"元 备注："+res.result[0][i].备注+"\n";
+      }
+      text+="以下是收入账单\n";
+      for(var i=0;i<res.result[1].length;i++){
+        text+="时间："+res.result[1][i].时间+" 类别："+res.result[1][i].类别+" 金额："+res.result[1][i].金额+"元 备注："+res.result[1][i].备注+"\n";
+      }
+      console.log(text)
+      wx.cloud.callFunction({
+        name:"sendemail",
+        data:{
+          text:text,
+          to:a.data.email,
+        }
+      }).then(res=>{
+        console.log(res)
+      })
+    })
+  }
+  this.setData({dialogShow:false})
+  },
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
     //目前阶段getUser云函数目前只搜索openid为test01的用户
     wx.cloud.callFunction({
       name: 'getUser',
