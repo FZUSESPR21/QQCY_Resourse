@@ -98,8 +98,12 @@
   top:10rpx;
 }
 .recommend{
-  width: 70rpx;
-  padding-left: 300rpx;
+  font-size: 20rpx;
+  margin-left: 20rpx;
+  /* width: 70rpx; */
+  border: 1rpx solid #48aee9;
+  border-radius: 10rpx;
+  color: #48aee9;
 }
 
 .weui-slidecell-2 {

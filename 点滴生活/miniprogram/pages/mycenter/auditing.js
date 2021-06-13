@@ -18,9 +18,13 @@ Page({
     slideposition:"0",//0表示此时滑块在左边，1表示在右边
     incomecolor:"",
     expendcolor:"",
+    nowUserid2:'',
+    nowIndex2:0,
+    nowPostId2:'',
     nowUserid:'',
     nowIndex:0,
     nowPostId:'',
+    backAuditingDialogShow:false,
     deleteDialogShow: false,
     auditingDialogShow: false,
     dialogbuttons: [{ text: '取消' }, { text: '确定' }],
@@ -28,6 +32,15 @@ Page({
     length:[{
       index:1,
     },{index:2}],
+    slideButtons2: [{
+      text: '查看具体',
+     
+    },{
+      type: 'warn',
+      text: '取消审核',
+      extClass: 'test',
+      
+    }],
     slideButtons: [{
       text: '查看具体',
      
@@ -40,7 +53,22 @@ Page({
       text: '删除',
       extClass: 'test',
     }],
-
+    Aposts: [
+      {
+        id:"1",
+        recommend:0,
+        userName:"用户1",
+        content:"文章内容1",
+        createTime: "2021年6月8日21:14:05"
+      },
+      {
+        id:"2",
+        recommend:1,
+        userName:"用户2",
+        content:"文章内容2",
+        createTime: "2021年6月9日21:14:28"
+      }
+    ],
     posts: [
       {
         id:"1",
@@ -94,6 +122,43 @@ Page({
       deleteDialogShow:false,
     })
   },
+  tapBackAuditingDialog(e){
+    var createTime;
+    var date = new Date();
+    createTime = date.toLocaleString('zh', { hour12: false,year:'numeric',month: '2-digit',  day: '2-digit',  hour: '2-digit',  minute: '2-digit',  second: '2-digit'});
+    createTime = createTime.replace(',',' ');
+    createTime = createTime.replaceAll('/','-');
+    var content='您的内容为“'+this.data.Aposts[this.data.nowIndex2].content+'”的妙招被退回未审核状态！';
+    if(e.detail.index == 1)
+    {
+      wx.cloud.callFunction({
+        name: 'backPost',
+        data:{
+          _id: this.data.nowPostId2,
+        },
+        success: res => {
+            console.log('成功了')
+            this.getNotAuditingPost()
+            this.getAuditingPost()
+            wx.cloud.callFunction({
+              name: 'addAuditingNotify',
+              data:{
+                "content": content,
+                "createTime":createTime,
+                "userid":this.data.nowUserid2
+              },
+            })
+        },
+        fail: err => {
+          console.log("失败了")
+        }
+      })
+    }
+    this.setData({
+      backAuditingDialogShow:false,
+    })
+  },
+
   tapAuditingDialog(e){
     console.log(this.data.nowPostId)
     var createTime;
@@ -112,6 +177,7 @@ Page({
         success: res => {
             console.log('成功了')
             this.getNotAuditingPost()
+            this.getAuditingPost()
             wx.cloud.callFunction({
               name: 'addAuditingNotify',
               data:{
@@ -139,6 +205,20 @@ Page({
    */
   onLoad: function (options) {
     this.getNotAuditingPost();
+    this.getAuditingPost();
+},
+
+getAuditingPost:function(){
+  var data 
+    wx.cloud.callFunction({
+      name: 'getAuditingPost',
+    }).then(res => {
+      data =res.result
+      console.log(res.result)
+      this.setData({
+        Aposts: data,
+      })
+    })
 },
 
 getNotAuditingPost:function(){
@@ -196,8 +276,85 @@ slideButtonTap(e) {
     })
     console.log("删除该妙招")
   }
-},
+
   
+},
+
+slideButtonTap2(e) {
+  
+  var index = e.currentTarget.dataset.index;
+  this.setData({
+    nowIndex2:index,
+    nowPostId2:this.data.Aposts[index]._id,
+    nowUserid2:this.data.Aposts[index].userid
+  })
+  var id;
+  if(e.detail.index==0)
+  {
+    id=this.data.Aposts[index]._id;
+    wx.navigateTo({
+      url: '../mycenter/auditingdetail?id='+id
+    })
+    console.log("跳转详细文章内容")
+  }
+  else if(e.detail.index==1)
+  {
+    this.setData({
+      backAuditingDialogShow:true
+    })
+  }
+
+  
+},
+
+  tapRecommend(e){
+    var index = e.currentTarget.dataset.index;
+    console.log("当前推荐的是第"+index+"");
+    this.setData({
+      nowIndex2:index,
+      nowPostId2:this.data.Aposts[index]._id,
+      nowUserid2:this.data.Aposts[index].userid
+    })
+    var createTime;
+    var date = new Date();
+    createTime = date.toLocaleString('zh', { hour12: false,year:'numeric',month: '2-digit',  day: '2-digit',  hour: '2-digit',  minute: '2-digit',  second: '2-digit'});
+    createTime = createTime.replace(',',' ');
+    createTime = createTime.replaceAll('/','-');
+    if(this.data.Aposts[this.data.nowIndex2].recommend==0)
+    {
+      var content='您的内容为“'+this.data.Aposts[this.data.nowIndex2].content+'”的妙招!被管理员推荐啦！！';
+    }
+    else{
+      var content='您的内容为“'+this.data.Aposts[this.data.nowIndex2].content+'”的妙招被管理员取消推荐了T.T';
+    }
+    
+    var rn="Aposts["+this.data.nowIndex2+"].recommend"
+      wx.cloud.callFunction({
+        name: 'changeRecommend',
+        data:{
+          _id: this.data.nowPostId2,
+          recommend:this.data.Aposts[this.data.nowIndex2].recommend
+        },
+        success: res => {
+            console.log('成功了')
+            this.setData({
+              [rn]: this.data.Aposts[this.data.nowIndex2].recommend==0?1:0,
+            })
+            wx.cloud.callFunction({
+              name: 'addAuditingNotify',
+              data:{
+                "content": content,
+                "createTime":createTime,
+                "userid":this.data.nowUserid2
+              },
+            })
+        },
+        fail: err => {
+          console.log("失败了")
+        }
+      })
+    
+},
 
   /**
    * 生命周期函数--监听页面初次渲染完成
