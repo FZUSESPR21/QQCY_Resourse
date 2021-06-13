@@ -33,8 +33,9 @@
     <input class="textnormal" bindinput="remarkChange" value="{{remark}}" placeholder="备注"></input>
   </view>
   <view class="keynum" wx:for="{{keyNumber}}" wx:key="keyNumber" data-value="{{item}}" catchtap="keyboardTap" >
-    <view class="normal{{index%4}}" hover-class="normalhover{{index%4}}">{{index==3?'':item}}
+    <view class="normal{{index%4}}" hover-class="normalhover{{index%4}}">{{(index==3)||(index==11)?'':item}}
       <picker mode="date" value="{{date}}" wx:if="{{index==3}}" bindchange="bindDateChange">{{item}}</picker>
+      <picker bindchange="bindNoteChange" value="{{Index}}" wx:if="{{index==11}}" range="{{noteList}}" range-key="title" header-text="请选择绑定的日记标题">{{item}}</picker>
     </view>
   </view>
   </view>

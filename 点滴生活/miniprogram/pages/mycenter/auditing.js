@@ -1,6 +1,7 @@
 // miniprogram/pages/makeaccount/makeaccount.js
 const app = getApp()
-const db = wx.cloud.database(); 
+const db = wx.cloud.database();
+var pixelRatio1 = 750 / wx.getSystemInfoSync().windowWidth;   
 Page({
 
   /**
@@ -13,6 +14,10 @@ Page({
       showcancel:0,//是否显示左上角关闭图标   1表示显示    0表示不显示
       title: '审核', //导航栏 中间的标题
     },
+    slideAuditing: true,
+    slideposition:"0",//0表示此时滑块在左边，1表示在右边
+    incomecolor:"",
+    expendcolor:"",
     nowUserid:'',
     nowIndex:0,
     nowPostId:'',
@@ -51,6 +56,7 @@ Page({
       }
     ]
   },
+
   tapDeleteDialog(e){
     console.log(this.data.nowPostId)
     var createTime;
@@ -147,7 +153,20 @@ getNotAuditingPost:function(){
       })
     })
 },
-
+slidemove(){
+  console.log("你点击了滑块",this.data.slideposition);
+  var px1 = 126 / pixelRatio1;
+  if(this.data.slideposition==0){
+  this.animation.translate(px1).step()
+  this.setData({animation: this.animation.export()})
+  this.setData({slideAuditing: false,slideposition:1,incomecolor:"#FFFFFF",expendcolor:"#909090"})
+}
+  else{
+    this.animation.translate(0).step()
+    this.setData({animation: this.animation.export()})
+    this.setData({slideAuditing: true,slideposition:0,incomecolor:"#909090",expendcolor:"#FFFFFF"})
+  }
+},
 slideButtonTap(e) {
   
   var index = e.currentTarget.dataset.index;
@@ -184,6 +203,8 @@ slideButtonTap(e) {
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+    this.animation = wx.createAnimation({ duration: 300 });
+
   },
 
   /**

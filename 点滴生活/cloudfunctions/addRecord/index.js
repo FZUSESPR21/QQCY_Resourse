@@ -3,7 +3,7 @@ const cloud = require('wx-server-sdk')
 
 cloud.init()
 const db = cloud.database();
-const _ = db.command
+const _ = db.command;
 // 云函数入口函数
 exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
@@ -30,27 +30,27 @@ exports.main = async (event, context) => {
   var newDate = new Date();
   if(type==='cRecord'&&today.getMonth()==newDate.getMonth()&&today.getFullYear()==newDate.getFullYear()){
     await db.collection('user')
-  .where({
-    userid:wxContext.OPENID
-  })
-  .update({
-    data:{
-      "userlimit.1":_.inc(num),
-      'userTotalRecord':_.inc(1)
-    }
-  })
+            .where({
+              userid:wxContext.OPENID
+            })
+            .update({
+              data:{
+                "userlimit.1":_.inc(num),
+                'userTotalRecord':_.inc(1)
+              }
+            })
   }else{
-    await db.collection('user')
-  .where({
-    userid:wxContext.OPENID
-  })
-  .update({
-    data:{
-      'userTotalRecord':_.inc(1)
-    }
-  })
+        await db.collection('user')
+      .where({
+        userid:wxContext.OPENID
+      })
+      .update({
+        data:{
+          'userTotalRecord':_.inc(1)
+        }
+      })
+}
 
-  
   return await db.collection(type).add({
     data:{
       number:num,
@@ -61,7 +61,7 @@ exports.main = async (event, context) => {
       selectType:event.selectType,
       weeks:today_week,
       week:week,
+      selectNoteId:event.selectNoteId,
     }
   })
-}
 }

@@ -31,7 +31,7 @@ Page({
     rtype:[{des:"投资",url: "cloud://cloud1-2g1cvw78a2d7648f.636c-cloud1-2g1cvw78a2d7648f-1305707823/投资.png"},
           {des:"工资",url: "cloud://cloud1-2g1cvw78a2d7648f.636c-cloud1-2g1cvw78a2d7648f-1305707823/工资.png"},
           {des:"其他",url: "cloud://cloud1-2g1cvw78a2d7648f.636c-cloud1-2g1cvw78a2d7648f-1305707823/其他.png"}],
-    keyNumber:[7,8,9,'📆',4,5,6,'+',1,2,3,'😅','.',0,'删除','确认'],
+    keyNumber:[7,8,9,'📆',4,5,6,'+',1,2,3,'📓日记','.',0,'删除','确认'],
     numberText:'',
     isShow:false,
     selectedType:'',
@@ -41,6 +41,8 @@ Page({
     slideposition:"0",//0表示此时滑块在左边，1表示在右边
     incomecolor:"",
     expendcolor:"",
+    noteList:[],
+    selectNoteId:"",
   },
   switchT:function(){
     switch (this.data.switchType) {
@@ -153,6 +155,7 @@ Page({
     console.log(this.data.remark);
     console.log(this.data.date);
     console.log(this.data.switchType);
+    console.log(this.data.selectNoteId);
     wx.showLoading({
       title: '正在添加',
     })
@@ -166,6 +169,7 @@ Page({
         'selectType':this.data.selectedType,
         'switchType':this.data.switchType,
         'selectType':this.data.selectedType,
+        "selectNoteId":this.data.selectNoteId,
       }
     }).then(res=>{
   
@@ -202,11 +206,7 @@ Page({
           })
         }
         break;
-      case '😅':
-        wx.showToast({
-          title: '流汗',
-          icon:"none"
-        })
+      case '📓日记':
         break;
       case '.':
         if(arrval.length!=0&&!arrval.includes('.')){
@@ -242,6 +242,12 @@ Page({
           arrval.pop();
         }
     }
+  },
+
+  bindNoteChange:function(e){
+    this.setData({
+      selectNoteId:this.data.noteList[e.detail.value]._id
+    })
   },
 
   slidemove(){
@@ -289,7 +295,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    wx.cloud.callFunction({
+      name:'getOrdinary'
+    })
+    .then(res=>{
+     this.setData({
+       noteList:res.result
+     })
+    })
   },
 
   /**

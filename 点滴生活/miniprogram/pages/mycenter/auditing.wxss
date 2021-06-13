@@ -1,7 +1,8 @@
 .page{
+  margin-top: 120rpx;
   position: relative;
   height: 100%;
-  width:100%;
+  width: 100%;
 }
 .page__bd
 {
@@ -56,4 +57,55 @@
   display: inline;
   top: 1rpx;
   padding-left: 300rpx;
+}
+
+.in_pay_tapbar{
+  z-index: 1;
+  border:1px solid #CCC;
+  width: 262rpx;
+  height: 64rpx;
+  border-radius: 60rpx;
+  background-color:  rgba(253, 242, 241, 100);
+  position:absolute;
+  margin-top: 260rpx;
+  margin-bottom: 25rpx;
+  left:30%; 
+}
+
+.slide{
+  width: 136rpx;
+  height: 64rpx;
+  position: absolute;
+  pointer-events: none;
+  left:0rpx;
+}
+
+.income{
+  font-size:28rpx;
+  color:#909090;
+  pointer-events: none;/*解决文字遮挡点击事件的问题*/
+  position: absolute;
+  left:154rpx;
+  top:10rpx;
+}
+
+.expend{
+  font-size:28rpx;
+  color:#FFFFFF;
+  pointer-events: none;/*解决文字遮挡点击事件的问题*/
+  position:absolute;
+  left:30rpx;
+  top:10rpx;
+}
+.recommend{
+  width: 70rpx;
+  padding-left: 300rpx;
+}
+
+.weui-slidecell-2 {
+  padding-top: 10rpx;
+  padding-left: 20rpx;
+  height: 40rpx;
+  /* width: 340rpx; */
+  display: flex;
 }

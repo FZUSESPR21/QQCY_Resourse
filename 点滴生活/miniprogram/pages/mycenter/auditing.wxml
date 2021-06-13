@@ -1,11 +1,25 @@
 <navbar navbar-data='{{nvabarData}}' bindnavback="returnback"></navbar>
 
+<view class="in_pay_tapbar" bindtap="slidemove" >
+      <image class="slide" animation="{{animation}}"src="../../images/income.png" mode='scaleToFill' ></image>
+      <text class="income" style="color:{{incomecolor}}">已审核</text>
+      <text class="expend" style="color:{{expendcolor}}">未审核</text>
+</view>
+
 <view class="page">
     <view class="page__bd">
-      <view class="weui-slidecells"wx:for="{{posts}}" wx:key="index">
+      <view wx:if="{{slideAuditing}}" class="weui-slidecells"wx:for="{{posts}}" wx:key="index">
         <mp-slideview buttons="{{slideButtons}}" bindbuttontap="slideButtonTap" 
         class="ondayaccount" data-index="{{index}}">
           <view class="weui-slidecell">{{item.userName}}</view>
+          <text class="context">{{item.content}}</text>
+          <view class="time">{{item.createTime}}</view>
+        </mp-slideview>
+      </view>
+      <view wx:if="{{!slideAuditing}}" class="weui-slidecells"wx:for="{{posts}}" wx:key="index">
+        <mp-slideview buttons="{{slideButtons}}" bindbuttontap="slideButtonTap" 
+        class="ondayaccount" data-index="{{index}}">
+          <view class="weui-slidecell-2">{{item.userName}}<view class="recommend">推荐</view></view>
           <text class="context">{{item.content}}</text>
           <view class="time">{{item.createTime}}</view>
         </mp-slideview>
