@@ -101,6 +101,11 @@ Page({
       url: 'auditing',
     })
   },
+  toAboutus:function(){
+    wx.navigateTo({
+      url: 'aboutus',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
