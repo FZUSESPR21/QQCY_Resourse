@@ -103,9 +103,9 @@
   border-radius: 0.5rem;
 }
 .comment-box-head{
-  height: 50px;
+  height: 40px;
   width: 50px;
-  border-radius: 20rem;
+  border-radius: 50%;
   margin-left: 10px;
 }
 .comment-content-area{
