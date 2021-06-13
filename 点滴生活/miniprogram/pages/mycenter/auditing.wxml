@@ -19,7 +19,8 @@
       <view wx:if="{{!slideAuditing}}" class="weui-slidecells"wx:for="{{Aposts}}" wx:key="index">
         <mp-slideview buttons="{{slideButtons2}}" bindbuttontap="slideButtonTap2" 
         class="ondayaccount" data-index="{{index}}">
-          <view class="weui-slidecell-2" >{{item.userName}}<view class="recommend" bindtap="tapRecommend" data-index="{{index}}">{{item.recommend ==0 ? "点击推荐":"取消推荐"}}</view></view>
+          <view class="weui-slidecell-2" >{{item.userName}}<view class="recommend" bindtap="tapRecommend" 
+          data-index="{{index}}" style="color: {{item.recommend ==0 ? '#48aee9':'#eb1616'}}">{{item.recommend ==0 ? "点击推荐":"取消推荐"}}</view></view>
           <text class="context">{{item.content}}</text>
           <view class="time">{{item.createTime}}</view>
         </mp-slideview>
