@@ -126,6 +126,7 @@ Page({
   onLoad: function (options) {
     this.getExamine()
     this.getComment()
+    this.getThumbsup()
     this.setData({
       loadingHidden: true
     })
