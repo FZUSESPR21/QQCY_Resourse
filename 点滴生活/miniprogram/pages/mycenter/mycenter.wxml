@@ -56,5 +56,8 @@
     <image class='btnImg' src='../../images/export.png'></image>
     <view>导出账单</view>
  </button>
+ <mp-dialog title="我们将发送邮件给你" show="{{dialogShow}}" bindbuttontap="tapDialogButton" buttons="{{dialogbuttons}}">
+  <input bindinput='getInputValue' value="{{emailvalue}}"class="weui-input" auto-focus placeholder="请输入您的邮箱地址"/>
+  </mp-dialog>
 </view>
 
