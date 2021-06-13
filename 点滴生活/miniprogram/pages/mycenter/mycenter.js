@@ -106,6 +106,11 @@ Page({
       url: 'aboutus',
     })
   },
+  toHelp:function(){
+    wx.navigateTo({
+      url: 'help',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

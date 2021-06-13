@@ -44,7 +44,7 @@
     <image src="../../images/we.png" class="about"></image>
     <view class="abouttext">关于我们</view>
   </view>
-  <view class="myhelp">
+  <view class="myhelp" bindtap="toHelp">
     <image src="../../images/help.png" class="help"></image>
     <view class="helptext">帮助</view>
   </view>

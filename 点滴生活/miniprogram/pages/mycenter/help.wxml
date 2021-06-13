@@ -1,0 +1,11 @@
+<navbar navbar-data='{{nvabarData}}' bindnavback='backToMycenter'></navbar>
+<view class="main">
+  <view class="team">团队名称:青青草原团队</view>
+<view class="name">
+  开发者:黄镔 陈耀 黄志杰 雷振康 李畅 林楚婷 吴伟峰 邹普凡 陈舒凯 余兰
+</view>
+<view class="use">
+  用于软件工程实践
+</view>
+<view class="time">开发时间:2021.3.16-2021.6.13</view>
+</view>
