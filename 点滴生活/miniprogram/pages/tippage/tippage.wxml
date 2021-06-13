@@ -51,8 +51,8 @@
     </view>
   </view>
 </view>
-<view class="input-box">
+<view class="input-box" >
   <image class="comment-box-head" src="{{ tipPublisherMessage.headUrl}}"></image>
-<textarea bindinput="bindTextAreaBlur" class="input-area" placeholder="留下评论..." value="{{commentInputText}}" show-confirm-bar="{{false}}"></textarea>
+<textarea bindfocus='settingMbShow' bindblur='settingMbNoShow' bindinput="bindTextAreaBlur" class="input-area" placeholder="留下评论..." value="{{commentInputText}}" show-confirm-bar="{{false}}" fixed="true" cursor-spacing="35"></textarea>
 <view class="send-button" bindtap="postComment">发送</view></view>
 </view>

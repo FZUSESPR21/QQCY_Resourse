@@ -38,7 +38,8 @@ Page({
 
     commentInputText:"",//文字框输入内容
     isLike:false,//是否点赞
-    isMark:false//是否收藏
+    isMark:false,//是否收藏
+    inputMarBot: false//设置底部输入框与输入法的距离
   },
 
   LikeTip:function (e) {
@@ -162,7 +163,16 @@ onLoad(option){
     //从数据库获取内容
     this.getTipsDetail(post_id)
   },
-
+  settingMbShow:function (params) {
+    this.setData({
+      inputMarBot:true
+    })
+  },
+  settingMbNoShow:function (params) {
+    this.setData({
+      inputMarBot:false
+    })
+  },
   bindTextAreaBlur:function(e)//输入框获取内容函数
   {
     this.setData({
