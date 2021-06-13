@@ -1,8 +1,14 @@
 <navbar navbar-data='{{nvabarData}}' bindnavback="returnback"></navbar>
 
+<view class="in_pay_tapbar" bindtap="slidemove"  style="position: absolute; left: 242rpx; top: -27rpx">
+      <image class="slide" animation="{{animation}}"src="../../images/income.png" mode='scaleToFill' ></image>
+      <text class="income" style="color:{{incomecolor}}">已审核</text>
+      <text class="expend" style="color:{{expendcolor}}">未审核</text>
+</view>
+
 <view class="page">
     <view class="page__bd">
-      <view class="weui-slidecells"wx:for="{{posts}}" wx:key="index">
+      <view wx:if="{{slideAuditing}}" class="weui-slidecells"wx:for="{{posts}}" wx:key="index">
         <mp-slideview buttons="{{slideButtons}}" bindbuttontap="slideButtonTap" 
         class="ondayaccount" data-index="{{index}}">
           <view class="weui-slidecell">{{item.userName}}</view>
@@ -10,6 +16,16 @@
           <view class="time">{{item.createTime}}</view>
         </mp-slideview>
       </view>
+      <view wx:if="{{!slideAuditing}}" class="weui-slidecells"wx:for="{{Aposts}}" wx:key="index">
+        <mp-slideview buttons="{{slideButtons2}}" bindbuttontap="slideButtonTap2" 
+        class="ondayaccount" data-index="{{index}}">
+          <view class="weui-slidecell-2" >{{item.userName}}<view class="recommend" bindtap="tapRecommend" 
+          data-index="{{index}}" style="color: {{item.recommend ==0 ? '#48aee9':'#eb1616'}}">{{item.recommend ==0 ? "点击推荐":"取消推荐"}}</view></view>
+          <text class="context">{{item.content}}</text>
+          <view class="time">{{item.createTime}}</view>
+        </mp-slideview>
+      </view>
+      <mp-dialog title="你确定取消审核吗？文章将回到未审核状态" show="{{backAuditingDialogShow}}" bindbuttontap="tapBackAuditingDialog" buttons="{{dialogbuttons}}"></mp-dialog>
       <mp-dialog title="你确定审核通过这条妙招吗？" show="{{auditingDialogShow}}" bindbuttontap="tapAuditingDialog" buttons="{{dialogbuttons}}"></mp-dialog>
       <mp-dialog title="你确定删除这条妙招吗？删除后无法恢复" show="{{deleteDialogShow}}" bindbuttontap="tapDeleteDialog" buttons="{{dialogbuttons}}"></mp-dialog>
     </view>

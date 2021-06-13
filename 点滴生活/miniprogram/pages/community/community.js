@@ -96,15 +96,25 @@ Page({
       })
       console.log(this.data.posts[index].haveThumbup);
     }
+    //给通知表加入通知信息
+    var createTime;
+    var date = new Date();
+    createTime = date.toLocaleString('zh', { hour12: false,year:'numeric',month: '2-digit',  day: '2-digit',  hour: '2-digit',  minute: '2-digit',  second: '2-digit'});
+    createTime = createTime.replace(',',' ');
+    createTime = createTime.replaceAll('/','-');    
     wx.cloud.callFunction({
       name:'thumbup',
       data:{
         id:this.data.posts[index]._id,
         haveThumbup:this.data.posts[index].haveThumbup,
+        authorId:this.data.posts[index].userid,
+        postContent:this.data.posts[index].content,
+        createTime:createTime
       }
     }).then(res1=>{
       console.log(res1);
     })
+
   },
 
   /**

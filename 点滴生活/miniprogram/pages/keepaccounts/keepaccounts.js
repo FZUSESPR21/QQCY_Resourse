@@ -36,19 +36,20 @@ if (((toYear % 4 == 0 && toYear % 100 != 0) || toYear % 400 == 0) && today.getMo
 var ctiptext = '总支出：'
 var rtiptext = '总收入：'
 var tiptext = ctiptext
-var pieData = []
+var pieData = [] ;
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    detailnum:"",
+    detailnum: "",
     detailshow: "none",
-    detailremark:"",
-    detailtype:"",
-    detaildate:"",
-    thingstitle:"",
+    detailremark: "",
+    detailtype: "",
+    detaildate: "",
+    thinsid: "",
+    thingstitle: "",
     dialogShow: false,
     dialogbuttons: [{ text: '取消' }, { text: '确定' }],
     tempYearSelected: { id: "y001", name: "2021年" },
@@ -341,10 +342,10 @@ Page({
       showcancel: 0,//是否显示左上角关闭图标   1表示显示    0表示不显示
       title: '账本', //导航栏 中间的标题
     },
-    remain:"",
-    noticetext:"",
-    percent:"",
-    progresscolor:"",
+    remain: "",
+    noticetext: "",
+    percent: "",
+    progresscolor: "",
     costaccountlist: [],
     slideposition: "0",//0表示此时滑块在左边，1表示在右边
     incomecolor: "",
@@ -363,6 +364,7 @@ Page({
     weekselect: "none",
     listselect: "auto",
     listselectshow: "block",
+    thingsjumpurl:"",
     height: app.globalData.height * 2 + 20, // 此页面 页面内容距最顶部的距离
   },
   /**
@@ -374,28 +376,58 @@ Page({
     switch (e.detail.index) {
       case 0: {
         console.log("你点击了查看详情");
-        if(this.data.detailshow=="none"){
-        console.log("展示详情页面")
-        for(var i=0;i<listdata.length;i++){
-          for(var k=0;k<listdata[i].accountgroup.account.length;k++){
-            if(listdata[i].accountgroup.account[k].id==pickid){
-              this.setData({
-                detailshow:"block",
-                detaildate:listdata[i].accountgroup.date,
-                detailtype:listdata[i].accountgroup.account[k].selecttype,
-                detailremark:listdata[i].accountgroup.account[k].remark,
-                detailnum:listdata[i].accountgroup.account[k].num,
-              })
-              break;
+        if (this.data.detailshow == "none") {
+          console.log("展示详情页面")
+          var index;
+          var kindex;
+          var a=this;
+          for (var i = 0; i < listdata.length; i++) {
+            index=i;
+            for (var k = 0; k < listdata[i].accountgroup.account.length; k++) {
+              kindex=k;
+              if (listdata[i].accountgroup.account[k].id == pickid) {
+                var nodetitle;
+                wx.cloud.callFunction({
+                  name: "getonenote",
+                  data: {
+                    id: listdata[index].accountgroup.account[kindex].selectNoteId
+                  },
+                  success: function (res) {
+                    console.log(res.result);
+                    const{
+                      mood,
+                      day,
+                      week,
+                      year,
+                      month,
+                      title,
+                      content,
+                    }=res.result;
+                    nodetitle = res.result.title;
+                    a.setData({
+                      detailshow: "block",
+                      detaildate: listdata[index].accountgroup.date,
+                      detailtype: listdata[index].accountgroup.account[kindex].selecttype,
+                      detailremark: listdata[index].accountgroup.account[kindex].remark,
+                      detailnum: listdata[index].accountgroup.account[kindex].num,
+                      thingstitle: nodetitle,
+                      thinsid: listdata[index].accountgroup.account[kindex].selectNoteId,
+                      thingsjumpurl:'../keepthing/notesdetails?year='+year+'&day='+day+'&month='+month+'&week='+week+'&title='+title+'&content='+content+'&mood='+mood+'&picArray='+JSON.stringify(res.result.picArray)
+                    })
+                  },
+                })
+                break;
+              }
             }
           }
         }
-      }
         break;
       }
       case 1: {
         console.log("你点击了修改");
-
+        wx.navigateTo({
+          url: '../updateaccount/updateaccount?id=' + e.detail.data + '&type=' + type,
+        })
         break;
       }
       case 2: {
@@ -408,11 +440,20 @@ Page({
     }
   },
   /**
+   * 跳转日记 
+   */
+  thingsjump(){
+    
+    wx.navigateTo({
+      url: this.data.thingsjumpurl
+    })
+  },
+  /**
    * 关闭账单详情
    */
-  detailclose(e){
+  detailclose(e) {
     this.setData({
-      detailshow:"none"
+      detailshow: "none"
     })
   },
   /**
@@ -542,67 +583,64 @@ Page({
         name: 'deleteRecord',
         data: {
           id: pickid,
-          type:type,
+          type: type,
         },
         success: res => {
           console.log(listdata);
-          for(var i=0;i<listdata.length;i++){
-            for(var j=0;j<listdata[i].accountgroup.account.length;j++){
-              if(listdata[i].accountgroup.account[j].id==pickid)
-              {
-                if(listdata[i].accountgroup.account.length==1)
-                listdata.splice(i,1)
-                else 
-                {listdata[i].accountgroup.account.splice(j,1);
-                  listdata[i].accountgroup.vlheight-=120;
-                  listdata[i].accountgroup.onedayaccountheight-=120;
+          for (var i = 0; i < listdata.length; i++) {
+            for (var j = 0; j < listdata[i].accountgroup.account.length; j++) {
+              if (listdata[i].accountgroup.account[j].id == pickid) {
+                if (listdata[i].accountgroup.account.length == 1)
+                  listdata.splice(i, 1)
+                else {
+                  listdata[i].accountgroup.account.splice(j, 1);
+                  listdata[i].accountgroup.vlheight -= 120;
+                  listdata[i].accountgroup.onedayaccountheight -= 120;
                 }
                 break;
               }
             }
           }
-          if(this.data.weekselect=="block")
-          this.setaccountlistbyweek(pickweek)
-          else 
-          this.setaccountlist(nowmonth)
+          if (this.data.weekselect == "block")
+            this.setaccountlistbyweek(pickweek)
+          else
+            this.setaccountlist(nowmonth)
           console.log(this.data.costaccountlist)
           /**更新额度 */
           wx.cloud.callFunction({
-            name:'getLimit',
-            success:res=>{
+            name: 'getLimit',
+            success: res => {
               console.log(res.result)
-              if((res.result[1]/res.result[0])*100 <=50){
+              if ((res.result[1] / res.result[0]) * 100 <= 50) {
                 this.setData({
-                  percent : (res.result[1]/res.result[0])*100,
-                  remain :(res.result[0]-res.result[1]).toFixed(2),
-                  progresscolor : "#33FFCC",
-                  noticetext : "额度还在计划之内，但也别挥霍哟~"
+                  percent: (res.result[1] / res.result[0]) * 100,
+                  remain: (res.result[0] - res.result[1]).toFixed(2),
+                  progresscolor: "#33FFCC",
+                  noticetext: "额度还在计划之内，但也别挥霍哟~"
                 })
               }
-              else if((res.result[1]/res.result[0])*100<=75)
-              {
+              else if ((res.result[1] / res.result[0]) * 100 <= 75) {
                 this.setData({
-                percent : (res.result[1]/res.result[0])*100,
-                remain :(res.result[0]-res.result[1]).toFixed(2),
-                progresscolor : "#FFC8A1",
-                noticetext : "额度已经过半，注意节约使用~"
-              })
-              }
-              else if((res.result[1]/res.result[0])*100<100)
-              {
-                this.setData({
-                  percent : (res.result[1]/res.result[0])*100,
-                  remain :(res.result[0]-res.result[1]).toFixed(2),
-                  progresscolor : "#F58B7E",
-                  noticetext : "额度即将用完，请规划使用剩下额度~"
+                  percent: (res.result[1] / res.result[0]) * 100,
+                  remain: (res.result[0] - res.result[1]).toFixed(2),
+                  progresscolor: "#FFC8A1",
+                  noticetext: "额度已经过半，注意节约使用~"
                 })
               }
-              else{
+              else if ((res.result[1] / res.result[0]) * 100 < 100) {
                 this.setData({
-                  percent : (res.result[1]/res.result[0])*100,
-                  remain :(res.result[0]-res.result[1]).toFixed(2),
-                  progresscolor : "#FF0000",
-                  noticetext : "额度已经用完！"
+                  percent: (res.result[1] / res.result[0]) * 100,
+                  remain: (res.result[0] - res.result[1]).toFixed(2),
+                  progresscolor: "#F58B7E",
+                  noticetext: "额度即将用完，请规划使用剩下额度~"
+                })
+              }
+              else {
+                this.setData({
+                  percent: (res.result[1] / res.result[0]) * 100,
+                  remain: (res.result[0] - res.result[1]).toFixed(2),
+                  progresscolor: "#FF0000",
+                  noticetext: "额度已经用完！"
                 })
               }
               console.log(this.data.remain)
@@ -615,8 +653,8 @@ Page({
           console.log("失败了")
         }
       })
-      
-      
+
+
     }
     /**
      * 下面设置可用额度
@@ -972,12 +1010,8 @@ Page({
    * 自定义事件bindchange的处理，select组件的数据传到这里
    */
   change(e) {
-    console.log(e)
     this.setData({
       selected: { ...e.detail }
-    })
-    console.log({//弹出对话框
-      title: `${this.data.selected.id} - ${this.data.selected.name}`,
     })
 
     if (this.data.chartchange == true) {
@@ -1011,7 +1045,7 @@ Page({
       var s = this.data.selected.name
       var num = s.replace(/[^0-9]/ig, "")
       num = num - 1
-      pickweek=num;
+      pickweek = num;
       console.log(num)
       this.setaccountlistbyweek(num)
       wx.cloud.callFunction({
@@ -1090,7 +1124,7 @@ Page({
     if (this.data.selected.id.substr(0, 1) == "y")//选择以某一年
     {
       console.log(this.data.selected.name);
-      pickyear = this.data.selected.name.substr(0, 4);
+      pickyear = this.data.selected.name.toString().substr(0, 4);
       this.getaccountlist(pickyear);
       this.setData({ listcurrentmonth: { name: nowmonth + "月" } })
       wx.cloud.callFunction({

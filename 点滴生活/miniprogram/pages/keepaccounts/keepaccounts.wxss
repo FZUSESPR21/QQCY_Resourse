@@ -249,6 +249,8 @@
   position:absolute;
   top:372rpx;
   left:240rpx;
+  color:rgb(26, 192, 221);
+  border-bottom: 2rpx solid rgb(26, 192, 221);
 }
 .detailclose{
   width:64rpx;

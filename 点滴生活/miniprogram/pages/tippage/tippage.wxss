@@ -1,6 +1,7 @@
 /* pages/tippage.wxss */
 .main-area{
-  margin-top:200rpx;
+  overflow-x: hidden;
+  margin-top:235rpx;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -66,7 +67,7 @@
   width: 100%;
   position: fixed;
   bottom: 0rpx;
-  height: 50px;
+  height: 60px;
   border-top: 3px solid #f9f9f9;
   display: flex;
   align-items: center;
@@ -74,8 +75,8 @@
 }
 .input-area{
   background-color: #fff;
-  min-height: 40px;
-  height: 40px;
+  min-height: 50px;
+  height: 50px;
   margin-left: 10px;
   width: 80%;
 }
@@ -93,7 +94,7 @@
   width: 60px;
   height: 40px;
   margin-left: 5px;
-  margin-right: 5px;
+  margin-right: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -103,8 +104,8 @@
 }
 .comment-box-head{
   height: 40px;
-  width: 40px;
-  border-radius: 20rem;
+  width: 50px;
+  border-radius: 50%;
   margin-left: 10px;
 }
 .comment-content-area{
@@ -122,7 +123,7 @@
 .comment-area-title{
   width: 100%;
   padding-left: 80rpx;
-  font-size: 20px;
+  font-size: 17px;
   border-bottom:4px solid #fafafa;
 }
 .tip-images-area image{

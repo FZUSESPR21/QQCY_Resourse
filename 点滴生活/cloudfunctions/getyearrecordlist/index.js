@@ -84,7 +84,8 @@ exports.main = async (event, context) => {
               num: res.data[i].number,
               remark: res.data[i].remark,
               id:res.data[i]._id,
-              selecttype: res.data[i].selectType
+              selecttype: res.data[i].selectType,
+              selectNoteId:res.data[i].selectNoteId
             })
             var a = 120;
             data[data_index].accountgroup.vlheight += parseInt(a);
@@ -97,7 +98,8 @@ exports.main = async (event, context) => {
                 type: res.data[i].typeid,
                 num: res.data[i].number,
                 remark: res.data[i].remark,
-                selecttype: res.data[i].selectType
+                selecttype: res.data[i].selectType,
+                selectNoteId:res.data[i].selectNoteId
               }]
             var a = 120;
             data[data_index].accountgroup.vlheight += parseInt(a);
@@ -114,7 +116,8 @@ exports.main = async (event, context) => {
               type: res.data[i].typeid,
               num: res.data[i].number,
               remark: res.data[i].remark,
-              selecttype: res.data[i].selectType
+              selecttype: res.data[i].selectType,
+              selectNoteId:res.data[i].selectNoteId
             })
             var a = 120;
             data[data_index].accountgroup.vlheight += parseInt(a);
@@ -127,7 +130,8 @@ exports.main = async (event, context) => {
                 type: res.data[i].typeid,
                 num: res.data[i].number,
                 remark: res.data[i].remark,
-                selecttype: res.data[i].selectType
+                selecttype: res.data[i].selectType,
+                selectNoteId:res.data[i].selectNoteId
               }]
             var a = 120;
             data[data_index].accountgroup.vlheight += parseInt(a);
