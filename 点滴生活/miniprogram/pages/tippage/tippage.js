@@ -19,7 +19,7 @@ Page({
       userName:"",//用户名
       publishTime:""//发布时间
     },
-      tipId:'1',
+      tipId:'cbddf0af60c366ba0fa85909225fcc8e',
       tipContent:'',//小贴士文字内容
       tipImgUrls:[],//小贴士图像url数组
       tipNumData:{//小贴士数字数组
@@ -119,6 +119,7 @@ Page({
         }
       }).then(res=>{
         console.log(res.result);
+        this.getTipsDetail(this.data.tipId)
         wx.showToast({
           title: '评论发布成功',
           icon: 'none',//icon
@@ -139,44 +140,47 @@ Page({
     }
    
   },
+ getTipsDetail:function (post_id) {
+   let that=this;
+  wx.cloud.callFunction({
+    name:'getTipsDetail',
+     data : {
+       id: post_id  //post_id由小贴士列表传送
+     }
+  }).then( tip =>{
+    that.setData({
+      
+      tipId: post_id,
+      tipContent: tip.result[0].content,
+      tipImgUrls: tip.result[0].picArray,
+      ['tipNumData.likeNum']: tip.result[0].likes,
+      ['tipNumData.commentNum']: tip.result[0].comments,
+      ['tipPublisherMessage.headUrl']: tip.result[0].userPic,
+      ['tipPublisherMessage.userName']: tip.result[0].userName,
+      ['tipPublisherMessage.publishTime']: tip.result[0].createTime,
+    })
+  })
 
-  onLoad(option){
+  //读取评论列表
+  wx.cloud.callFunction({
+    name:'getComment',
+    data : {
+      id: post_id   //post_id由小贴士列表传送
+    }
+  }).then( commentList => {
+    console.log( commentList.result );
+    that.setData({
+      commentList: commentList.result,
+    })
+  })
+ },
+onLoad(option){
     const post_id = option.id;
     this.setData({
-      tipContent: post_id,
+      tipId: post_id,
     })
     //从数据库获取内容
-    wx.cloud.callFunction({
-      name:'getTipsDetail',
-       data : {
-         id: post_id  //post_id由小贴士列表传送
-       }
-    }).then( tip =>{
-      this.setData({
-        
-        tipId: post_id,
-        tipContent: tip.result[0].content,
-        tipImgUrls: tip.result[0].picArray,
-        ['tipNumData.likeNum']: tip.result[0].likes,
-        ['tipNumData.commentNum']: tip.result[0].comments,
-        ['tipPublisherMessage.headUrl']: tip.result[0].userPic,
-        ['tipPublisherMessage.userName']: tip.result[0].userName,
-        ['tipPublisherMessage.publishTime']: tip.result[0].createTime,
-      })
-    })
-
-    //读取评论列表
-    wx.cloud.callFunction({
-      name:'getComment',
-      data : {
-        id: post_id   //post_id由小贴士列表传送
-      }
-    }).then( commentList => {
-      console.log( commentList.result );
-      this.setData({
-        commentList: commentList.result,
-      })
-    })
+    this.getTipsDetail(post_id)
     //var picList = new Array();
     // for( var i = 0 ; i < this.data.commentList.length ; i++){
     //   wx.cloud.callFunction({

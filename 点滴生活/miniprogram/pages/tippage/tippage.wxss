@@ -1,6 +1,6 @@
 /* pages/tippage.wxss */
 .main-area{
-  margin-top:200rpx;
+  margin-top:235rpx;
   width: 100%;
   display: flex;
   flex-direction: column;
