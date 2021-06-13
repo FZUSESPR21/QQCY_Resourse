@@ -136,7 +136,7 @@ Page({
     console.log(e.detail)// 
   },
   exportbtn(){
-    this.setData({dialogShow:true})
+    this.setData({emailvalue:"",dialogShow:true})
   },
   tapDialogButton(e){
     console.log(e)
