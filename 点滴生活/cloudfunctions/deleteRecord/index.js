@@ -26,26 +26,30 @@ exports.main = async (event, context) => {
         console.log(res.data)
         num = res.data[0].number;
         date = res.data[0].createTime;
+        var day = new Date();
+        var nowmonth = day.getMonth();
+        nowmonth += 1;
+        var nowyear = day.getFullYear();
+        var getmonth = date.split('-');
+        console.log(nowyear)
+        console.log(getmonth)
+        if (getmonth[1] == nowmonth && nowyear == getmonth[0]) {
+          var num1 = 0 - num;
+          var limit = parseFloat(num1)
+          db.collection('user')
+            .where({
+              userid: wxContext.OPENID
+            })
+            .update({
+              data: {
+                "userlimit.1": _.inc(limit),
+              }
+            })
+        }
+        db.collection(type).doc(id).remove()
       })
-    var day = new Date();
-    var nowmonth = day.getMonth();
-    nowmonth += 1;
-    var nowyear = day.getFullYear();
-    var getmonth = date[0].split('-');
-    if (getmonth[1] == nowmonth && nowyear == getmonth[0]) {
-      var num1 = 0 - num;
-      var limit = parseFloat(num1)
-      await db.collection('user')
-        .where({
-          userid: wxContext.OPENID
-        })
-        .update({
-          data: {
-            "userlimit.1": _.inc(limit),
-          }
-        })
-    }
+  } else {
+    db.collection(type).doc(id).remove()
   }
-  db.collection(type).doc(id).remove()
   return true
 }
