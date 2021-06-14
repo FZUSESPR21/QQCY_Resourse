@@ -27,35 +27,35 @@ Page({
     //心情图片
     moods:[
       {
-        imgPath: "cloud://cloud1-2g1cvw78a2d7648f.636c-cloud1-2g1cvw78a2d7648f-1305707823/mood-icon/8.png",
+        imgPath: "cloud://cloud1-1gk8uhyp9aa86daf.636c-cloud1-1gk8uhyp9aa86daf-1306232604/mood-icon/8.png",
         imgId: "mood8",
       },
       {
-        imgPath: "cloud://cloud1-2g1cvw78a2d7648f.636c-cloud1-2g1cvw78a2d7648f-1305707823/mood-icon/7.png",
+        imgPath: "cloud://cloud1-1gk8uhyp9aa86daf.636c-cloud1-1gk8uhyp9aa86daf-1306232604/mood-icon/7.png",
         imgId: "mood7",
       },
       {
-        imgPath: "cloud://cloud1-2g1cvw78a2d7648f.636c-cloud1-2g1cvw78a2d7648f-1305707823/mood-icon/6.png",
+        imgPath: "cloud://cloud1-1gk8uhyp9aa86daf.636c-cloud1-1gk8uhyp9aa86daf-1306232604/mood-icon/6.png",
         imgId: "mood6",
       },
       {
-        imgPath: "cloud://cloud1-2g1cvw78a2d7648f.636c-cloud1-2g1cvw78a2d7648f-1305707823/mood-icon/5.png",
+        imgPath: "cloud://cloud1-1gk8uhyp9aa86daf.636c-cloud1-1gk8uhyp9aa86daf-1306232604/mood-icon/5.png",
         imgId: "mood5",
       },
       {
-        imgPath: "cloud://cloud1-2g1cvw78a2d7648f.636c-cloud1-2g1cvw78a2d7648f-1305707823/mood-icon/4.png",
+        imgPath: "cloud://cloud1-1gk8uhyp9aa86daf.636c-cloud1-1gk8uhyp9aa86daf-1306232604/mood-icon/4.png",
         imgId: "mood4",
       },
       {
-        imgPath: "cloud://cloud1-2g1cvw78a2d7648f.636c-cloud1-2g1cvw78a2d7648f-1305707823/mood-icon/3.png",
+        imgPath: "cloud://cloud1-1gk8uhyp9aa86daf.636c-cloud1-1gk8uhyp9aa86daf-1306232604/mood-icon/3.png",
         imgId: "mood3",
       },
       {
-        imgPath: "cloud://cloud1-2g1cvw78a2d7648f.636c-cloud1-2g1cvw78a2d7648f-1305707823/mood-icon/2.png",
+        imgPath: "cloud://cloud1-1gk8uhyp9aa86daf.636c-cloud1-1gk8uhyp9aa86daf-1306232604/mood-icon/2.png",
         imgId: "mood2",
       },
       {
-        imgPath: "cloud://cloud1-2g1cvw78a2d7648f.636c-cloud1-2g1cvw78a2d7648f-1305707823/mood-icon/1.png",
+        imgPath: "cloud://cloud1-1gk8uhyp9aa86daf.636c-cloud1-1gk8uhyp9aa86daf-1306232604/mood-icon/1.png",
         imgId: "mood1",
       },
     ],

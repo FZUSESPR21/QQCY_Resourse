@@ -13,4 +13,22 @@ exports.main = async (event, context) => {
             likes: event.likeNum,
         }
     })
+
+    //修改Like表
+    if(event.state == true){
+        await db.collection('like').add({
+            data:{
+                postid: event.id,
+                userid: wxContext.OPENID
+            }
+        })
+    }
+    else{
+        await db.collection('like')
+        .where({
+            postid: event.id,
+            userid: wxContext.OPENID
+        })
+        .remove()
+    }
 }

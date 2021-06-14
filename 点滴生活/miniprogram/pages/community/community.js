@@ -23,25 +23,37 @@ Page({
       {
         'focus': 'https://www.duoguyu.com/dist/flip/flipImg-1.jpg'
       },
-      {
-        'focus': 'https://www.duoguyu.com/dist/flip/flipImg-2.jpg'
-      },
-      {
-        'focus': 'https://www.duoguyu.com/dist/flip/flipImg-3.jpg'
-      },
-      {
-        'focus': 'https://www.duoguyu.com/dist/flip/flipImg-4.jpg'
-      },
-      {
-        'focus': 'https://www.duoguyu.com/dist/flip/flipImg-5.jpg'
-      },
     ],
+    currentGird:0,
   },
 
   toWritePost:function(){
-    wx.navigateTo({
-      url: '../community/writePost',
+
+    wx.cloud.callFunction({
+      name: 'haveUserProfile',
     })
+      .then(haveProfile => {
+        if (!haveProfile.result) {
+          wx.showModal({
+            title: '提示',
+            content: '您还未授权，请到个人中心点击头像授权',
+            cancelColor: 'cancelColor',
+            success(res) {
+              if (res.confirm) {
+                wx.reLaunch({
+                  url: '../mycenter/mycenter',
+                })
+              } else if (res.cancel) {
+                console.log("取消");
+              }
+            }
+          })
+        } else {
+          wx.navigateTo({
+            url: '../community/writePost',
+          })
+        }
+      })
   },
 
   move2detail:function(e){
@@ -64,6 +76,10 @@ Page({
 
   swiperChange:function(e){
     var index = e.detail.current;
+    console.log(index);
+    this.setData({
+      currentGird:index
+    })
     if(index == this.data.posts.length-2){
       wx.cloud.callFunction({
         name:'getAllPost',
@@ -101,7 +117,7 @@ Page({
     var date = new Date();
     createTime = date.toLocaleString('zh', { hour12: false,year:'numeric',month: '2-digit',  day: '2-digit',  hour: '2-digit',  minute: '2-digit',  second: '2-digit'});
     createTime = createTime.replace(',',' ');
-    createTime = createTime.replaceAll('/','-');    
+    createTime = createTime.replaceAll('/','-');
     wx.cloud.callFunction({
       name:'thumbup',
       data:{

@@ -135,13 +135,14 @@ swiper,
   text-align: left;
   width: 90%;
   margin-left: 7%;
-  height: 420rpx;
+  height: auto;
   overflow : hidden;
-  text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 8;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  word-break: break-all;
   -webkit-box-orient: vertical;
-  word-break: break-all; /* 追加这一行代码 */
+  -webkit-line-clamp: 9;
 }
 .imgView{
   /* margin-top: -100rpx; */

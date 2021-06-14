@@ -43,6 +43,28 @@ Page({
   },
 
   LikeTip:function (e) {
+    //判断用户有没有点赞文章
+    wx.cloud.callFunction({
+      name: 'judgeLikes',
+      data: {
+        id: this.data.tipId,  //文章id
+      }
+    })
+    .then(isLikes=>{
+      console.log('点过没？')
+      console.log(isLikes)
+      if(isLikes.result == 0){
+        console.log(this.data.isLike);
+        this.setData({
+          isLike:false,      //未点赞
+        })
+      }
+      else {
+        this.setData({
+          isLike:true,      //未点赞
+        })
+      }
+    })
    //未点赞过
    if(this.data.isLike == false) {
       wx.cloud.callFunction({
@@ -50,11 +72,12 @@ Page({
         data: {
           id: this.data.tipId,  //文章id
           likeNum: this.data.tipNumData.likeNum+1,
+          state: true
         }
       }).then(res=>{
         this.setData({
           ['tipNumData.likeNum']: this.data.tipNumData.likeNum+1,   //点赞数＋1
-          isLike:true,      //点赞过了
+          isLike: true,
         })
       })
     }
@@ -64,11 +87,12 @@ Page({
         data: {
           id: this.data.tipId,  //文章id
           likeNum: this.data.tipNumData.likeNum-1,
+          state: false
         }
       }).then(res=>{
         this.setData({
           ['tipNumData.likeNum']: this.data.tipNumData.likeNum-1,   //点赞数-1
-          isLike:false,      //未点赞
+          isLike: false,
         })
       })
     }

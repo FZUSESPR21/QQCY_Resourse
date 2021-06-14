@@ -30,7 +30,7 @@
   padding: 10rpx;
   top: 35rpx;
   right: 10rpx;
-  font-size: 30rpx;
+  font-size: 34rpx;
   color: #0c0c0c;
 }
 .edit{

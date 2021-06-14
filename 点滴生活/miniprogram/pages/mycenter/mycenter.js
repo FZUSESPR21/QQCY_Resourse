@@ -44,11 +44,14 @@ Page({
           userInfo: res.userInfo,
           hasUserInfo: true
         })
+        var date = new Date()
+        var time = date.toLocaleDateString();
         wx.cloud.callFunction({
           name:'addUser',
           data:{
             userPic:this.data.userInfo.avatarUrl,
-            userName:this.data.userInfo.nickName
+            userName:this.data.userInfo.nickName,
+            time:time
           }
         })
       }

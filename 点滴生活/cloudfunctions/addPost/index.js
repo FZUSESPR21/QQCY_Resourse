@@ -29,6 +29,7 @@ exports.main = async (event, context) => {
       likes:0,
       state:0,
       recommend:0,
+      sortTime:event.sortTime
     }
   })
 }
