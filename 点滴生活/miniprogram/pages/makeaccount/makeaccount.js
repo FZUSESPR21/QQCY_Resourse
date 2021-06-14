@@ -148,14 +148,17 @@ Page({
       }
       
     }
-    console.log("csk")
-    console.log(this.data.selectedType)
-    console.log(this.data.numberText);
-    console.log(this.data.selectedTypeUrl);
-    console.log(this.data.remark);
-    console.log(this.data.date);
-    console.log(this.data.switchType);
-    console.log(this.data.selectNoteId);
+    // console.log("csk")
+    // console.log(this.data.selectedType)
+    // console.log(this.data.numberText);
+    // console.log(this.data.selectedTypeUrl);
+    // console.log(this.data.remark);
+    // console.log(this.data.date);
+    // console.log(this.data.switchType);
+    // console.log(this.data.selectNoteId);
+    
+    var date = new Date();
+    var time = date.toLocaleDateString();
     wx.showLoading({
       title: '正在添加',
     })
@@ -170,6 +173,7 @@ Page({
         'switchType':this.data.switchType,
         'selectType':this.data.selectedType,
         "selectNoteId":this.data.selectNoteId,
+        time:time
       }
     }).then(res=>{
   
