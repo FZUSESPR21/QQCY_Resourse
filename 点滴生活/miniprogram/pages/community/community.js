@@ -23,19 +23,8 @@ Page({
       {
         'focus': 'https://www.duoguyu.com/dist/flip/flipImg-1.jpg'
       },
-      {
-        'focus': 'https://www.duoguyu.com/dist/flip/flipImg-2.jpg'
-      },
-      {
-        'focus': 'https://www.duoguyu.com/dist/flip/flipImg-3.jpg'
-      },
-      {
-        'focus': 'https://www.duoguyu.com/dist/flip/flipImg-4.jpg'
-      },
-      {
-        'focus': 'https://www.duoguyu.com/dist/flip/flipImg-5.jpg'
-      },
     ],
+    currentGird:0,
   },
 
   toWritePost:function(){
@@ -64,6 +53,10 @@ Page({
 
   swiperChange:function(e){
     var index = e.detail.current;
+    console.log(index);
+    this.setData({
+      currentGird:index
+    })
     if(index == this.data.posts.length-2){
       wx.cloud.callFunction({
         name:'getAllPost',

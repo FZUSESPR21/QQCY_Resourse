@@ -3,7 +3,7 @@
 
 <view class="swiper">
 
-  <swiper class='bannerGrid' previous-margin="60rpx" next-margin="60rpx" bindchange="swiperChange">
+  <swiper class='bannerGrid' previous-margin="60rpx" next-margin="60rpx" bindchange="swiperChange" current="{{currentGird}}">
 
     <swiper-item class="item" wx:for="{{ posts }}" wx:key="_id">
       <view class="swiper-item">
