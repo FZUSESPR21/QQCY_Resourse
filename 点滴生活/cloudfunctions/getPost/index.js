@@ -15,7 +15,7 @@ exports.main = async (event, context) => {
   if(state==='2'||state==='0'){
     await db.collection('post')
     .where({
-      state:_.or(_.eq('0'), _.eq('2')),
+      state:_.or(_.eq(0), _.eq(2)),
       userid:openid,
     })
     .get()
@@ -26,7 +26,7 @@ exports.main = async (event, context) => {
   }
   await db.collection('post')
   .where({
-    state:state,  
+    state:1,  
     userid:openid,
   })
   .get()

@@ -188,7 +188,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    //目前阶段getUser云函数目前只搜索openid为test01的用户
     wx.cloud.callFunction({
       name: 'getUser',
     }).then(rest=>{

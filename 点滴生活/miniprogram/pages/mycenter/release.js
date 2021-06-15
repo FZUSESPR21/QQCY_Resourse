@@ -123,10 +123,16 @@ Page({
           ["nonchosenList["+i+"].id"]:res.result[i]._id
         })
       }
-      console.log("getnonchosen", res)
     })
     .catch(err=>{
       console.log('未入选请求失败', err)
+    })
+  },
+
+  move2detail:function(e){
+    var index = e.currentTarget.dataset.index;
+    wx.navigateTo({
+      url: '../tippage/tippage?id='+index,
     })
   },
   /**

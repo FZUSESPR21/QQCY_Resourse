@@ -84,7 +84,7 @@ Page({
     wx.cloud.callFunction({
       name:'getNotification',
       data:{
-        type:'审核'
+        type:'审核信息'
       }
     }).then(res=>{
       console.log('审核通知请求成功',res)
