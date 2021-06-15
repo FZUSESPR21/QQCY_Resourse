@@ -92,7 +92,7 @@ Page({
                 console.log(createTime);
               })
               wx.showToast({
-                title: '发布成功！', // 标题
+                title: '等待人工审核！', // 标题
                 icon: 'success',  // 图标类型，默认success
                 duration: 1500  // 提示窗停留时间，默认1500ms
               })
