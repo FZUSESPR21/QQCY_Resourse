@@ -26,7 +26,10 @@ Page({
       likeNum:0,
       commentNum:0,
     },
-
+    userInfo:{
+      nickName:"用户昵称",  //用户昵称
+      avatarUrl:"../../images/tt3x.png",  //用户头像
+    },
     commentList: [//小贴士评论列表
       {
         content: '',
@@ -39,7 +42,8 @@ Page({
     commentInputText:"",//文字框输入内容
     isLike:false,//是否点赞
     isMark:false,//是否收藏
-    inputMarBot: false//设置底部输入框与输入法的距离
+    inputMarBot: false,//设置底部输入框与输入法的距离
+    hasUserInfo:false
   },
 
   LikeTip:function (e) {
@@ -121,6 +125,46 @@ Page({
     })
     }  
   },
+  getUserProfile(e) {
+    // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认
+    // 开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
+    if(!this.data.hasUserInfo){
+       wx.getUserProfile({
+      desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+      success: (res) => {
+        console.log(res)
+        this.setData({
+          userInfo: res.userInfo,
+          hasUserInfo: true
+        })
+        wx.cloud.callFunction({
+          name:'addUser',
+          data:{
+            userPic:this.data.userInfo.avatarUrl,
+            userName:this.data.userInfo.nickName
+          }
+        })
+      }
+    })
+    }
+   
+  },
+  onShow: function () {//获取用户头像
+    //目前阶段getUser云函数目前只搜索openid为test01的用户
+    wx.cloud.callFunction({
+      name: 'getUser',
+    }).then(rest=>{
+      console.log(rest);
+      if(rest.result!=null){
+        this.setData({
+          ['userInfo.avatarUrl']:rest.result.userPic,
+          ['userInfo.nickName']:rest.result.userName,
+          hasUserInfo:true
+        })
+      }
+    })
+    
+  },
 
  getTipsDetail:function (post_id) {
    let that=this;
@@ -156,6 +200,21 @@ Page({
  },
 
 onLoad(option){
+  let that=this;
+  wx.getSetting({
+    success: function(res){
+      if (res.authSetting['scope.userInfo']) {
+        // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+        wx.getUserInfo({
+          success: function(res) {
+           that.setData({
+             userInfo:res.userInfo
+           })
+          }
+        })
+      }
+    }
+  })
     const post_id = option.id;
     this.setData({
       tipId: post_id,
@@ -183,5 +242,12 @@ onLoad(option){
 
   backToBefore:function(e) {
     wx.navigateBack();   //返回上一级
-  }
+  },
+  previewImage: function (e) {  //图片预览
+		var current=e.target.dataset.src;
+		wx.previewImage({
+		  	current: current, // 当前显示图片的http链接
+		  	urls: this.data.tipImgUrls // 需要预览的图片http链接列表
+		})
+	}  
 })

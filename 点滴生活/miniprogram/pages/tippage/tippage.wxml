@@ -14,7 +14,7 @@
   </view>
   <view class="tip-images-area">
     <view wx:for="{{tipImgUrls}}" wx:key="index" wx:for-item="item">
-    <image src="{{item}}" ></image>
+    <image src="{{item}}" data-src="{{item}}" bindtap="previewImage"></image>
     </view>
   </view>
   <view class="tip-operation-area">
@@ -52,7 +52,9 @@
   </view>
 </view>
 <view class="input-box" >
-  <image class="comment-box-head" src="{{ tipPublisherMessage.headUrl}}"></image>
+  <!-- <image class="comment-box-head" src="{{ tipPublisherMessage.headUrl}}"></image> -->
+  <!-- <open-data type="userAvataUrl" class="comment-box-head"></open-data> -->
+  <image src="{{userInfo.avatarUrl}}"  class="comment-box-head" mode="aspectFill" bindtap="getUserProfile"></image>
 <textarea bindfocus='settingMbShow' bindblur='settingMbNoShow' bindinput="bindTextAreaBlur" class="input-area" placeholder="留下评论..." value="{{commentInputText}}" show-confirm-bar="{{false}}" fixed="true" cursor-spacing="35"></textarea>
 <view class="send-button" bindtap="postComment">发送</view></view>
 </view>
