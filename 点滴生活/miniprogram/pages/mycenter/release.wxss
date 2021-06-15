@@ -12,7 +12,7 @@
   background-color:  rgba(253, 242, 241, 100);
   position:absolute;
   top:230rpx;
-  left:215rpx; 
+  left:245rpx; 
 }
 .income{
   font-size:28rpx;
