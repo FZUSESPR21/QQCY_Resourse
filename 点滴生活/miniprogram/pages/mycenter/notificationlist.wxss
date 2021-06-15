@@ -4,7 +4,7 @@
   flex-direction: column;
 }
 .tab-nav{
-  top:100rpx;
+  top:150rpx;
 	height: 80rpx;
 	background: #fff;
 	border-bottom: 0.5rpx dotted #ddd;
