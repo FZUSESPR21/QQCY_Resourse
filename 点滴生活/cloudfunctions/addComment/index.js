@@ -20,6 +20,17 @@ exports.main = async (event, context) => {
   }).get()
   .then(res=>{
     commentCount=res.data[0].comments
+    db.collection('notify')
+    .add({
+      data:{
+        content:"您发布的内容“"+res.data[0].content+"”被评论了",
+        userid:res.data[0].userid,
+        mark:0,
+        title:"您发布的社区文章被评论了",
+        type:'评论',
+        time:event.createTime,
+      }
+    })
   })
   commentCount=commentCount+1;
   var newData={

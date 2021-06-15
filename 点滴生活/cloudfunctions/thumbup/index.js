@@ -32,7 +32,7 @@ exports.main = async (event, context) => {
       await db.collection('notify')
       .add({
         data:{
-          content:'您发布的内容"'+event.postContent+'"被点赞了',
+          content:'您发布的内容“'+event.postContent+'”被点赞了',
           mark:0,
           time:event.createTime,
           title:'您发布的社区文章被点赞了',
