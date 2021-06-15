@@ -34,7 +34,7 @@
   left: 10rpx;
   width: 730rpx;
   height: 250rpx;
-  top:100rpx;
+  top:150rpx;
   line-height: 20px;
   border-radius: 10px 10px 10px 10px;
   background-color: rgba(255, 255, 255, 100);
