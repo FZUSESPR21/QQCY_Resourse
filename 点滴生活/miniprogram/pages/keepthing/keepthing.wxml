@@ -14,7 +14,7 @@
     <view class="bottom_menu" style="bottom:{{inputBottom}}rpx">
         <image src="/images/image.png" class="img" id="picture" bindtap="selectImg"></image>
         <image src="/images/moodmenu.png" class="img" id="mood" bindtap="selectMood"></image>
-        <button  class="bt_submit" bindtap="toNoteslist">保存（仅能自看）</button>
+        <button  class="bt_submit" bindtap="toNoteslist">保存</button>
     </view>
 
     <!--flag==true显示组件-->
