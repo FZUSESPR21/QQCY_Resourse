@@ -10,7 +10,7 @@
     </view>
 <block wx:if="{{condition}}" wx:for='{{chosenList}}' wx:key='id' wx:for-item="item">
     <image src="../../images/modification.png" class="modification"></image>
-    <view class="content">
+    <view class="content" catchtap="move2detail" data-index="{{item.id}}">
         <image src="../../images/beer.png" class="beer"></image>
         <view class="time">{{item.time}}</view>
         <view class="contenttype">{{item.type}}</view>
@@ -18,9 +18,9 @@
     </view>
     
 </block>
-<block wx:if="{{condition1}}" wx:for='{{nonchosenList}}' wx:key='id' wx:for-item="item">
+<block wx:if="{{condition1}}" wx:for='{{nonchosenList}}' wx:key='_id' wx:for-item="item">
     <image src="../../images/modification.png" class="modification"></image>
-    <view class="content">
+    <view class="content" catchtap="move2detail" data-index="{{item.id}}">
         <image src="../../images/right.png" class="right"></image>
         <view class="time">{{item.time}}</view>
         <view class="contenttype">{{item.type}}</view>

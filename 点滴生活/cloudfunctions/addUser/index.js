@@ -27,7 +27,9 @@ exports.main = async (event, context) => {
         userid:wxContext.OPENID,
         userName:event.userName,
         userPic:event.userPic,
-        userTotalRecord:0
+        userTotalRecord:0,
+        permission:0,
+        lastTimeAddRecord:"2000/0/0"
       }
     })
   }

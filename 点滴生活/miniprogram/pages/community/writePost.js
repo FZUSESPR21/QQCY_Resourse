@@ -43,7 +43,7 @@ Page({
             createTime = date.toLocaleString('zh', { hour12: false,year:'numeric',month: '2-digit',  day: '2-digit',  hour: '2-digit',  minute: '2-digit',  second: '2-digit'});
             createTime = createTime.replace(',',' ');
             createTime = createTime.replaceAll('/','-');
-    
+            var sortTime = date.toLocaleDateString();
             wx.showLoading({
               title: '正在上传',
               mask:true
@@ -85,13 +85,14 @@ Page({
                   text:this.data.text,
                   picArray:this.data.picId,
                   createTime:createTime,
+                  sortTime:sortTime
                 }
               }).then(res=>{
                 console.log(res);
                 console.log(createTime);
               })
               wx.showToast({
-                title: '发布成功！', // 标题
+                title: '等待人工审核！', // 标题
                 icon: 'success',  // 图标类型，默认success
                 duration: 1500  // 提示窗停留时间，默认1500ms
               })

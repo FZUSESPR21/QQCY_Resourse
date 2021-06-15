@@ -1,0 +1,52 @@
+
+.main{
+  line-height: 20px;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 100);
+  color: rgba(16, 16, 16, 100);
+  min-height: 400rpx;
+  width: 700rpx;
+  position: relative;
+  top:230rpx;
+  margin-left: 25rpx;
+  border:1px solid #CCC;
+  box-shadow: 0px 3px 10px #c7c7c7fb;
+}
+.team{
+  position: absolute;
+  height: 40rpx;
+  width: 500rpx;
+  top: 60rpx;
+  left: 50rpx;
+  color: rgba(47, 47, 47, 100);
+  font-size: 40rpx;
+text-align: left;
+font-family: PingFangSC-bold;
+}
+.name{
+  position: absolute;
+  top: 150rpx;
+  left: 50rpx;
+  color: rgba(47, 47, 47, 100);
+  font-size: 32rpx;
+text-align: left;
+font-family: PingFangSC-bold;
+}
+.use{
+  position: absolute;
+  top: 250rpx;
+  left: 50rpx;
+  color: rgba(47, 47, 47, 100);
+  font-size: 32rpx;
+text-align: left;
+font-family: PingFangSC-bold;
+}
+.time{
+  position: absolute;
+  top: 300rpx;
+  left: 50rpx;
+  color: rgba(47, 47, 47, 100);
+  font-size: 32rpx;
+text-align: left;
+font-family: PingFangSC-bold;
+}

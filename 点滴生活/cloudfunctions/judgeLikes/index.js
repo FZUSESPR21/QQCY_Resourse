@@ -2,39 +2,25 @@
 const cloud = require('wx-server-sdk')
 
 cloud.init()
-const db = cloud.database();
+
 // 云函数入口函数
 exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
-  var postdata;
-  await db.collection('post')
+  var isLikes;
+  const db = cloud.database();
+  await db.collection('like')
   .where({
-    state:1
+    postid:event.id,
+    userid:wxContext.OPENID
   })
-  .orderBy('recommend','desc')
-  .orderBy('likes','desc')
-  .orderBy('createTime', 'desc')
-  .skip(event.length)
-  .limit(5)
-  .get()
+  .count()
   .then(res=>{
-    postdata = res.data;
+    if(res.total==0){
+      isLikes = 0;
+    }
+    else{
+      isLikes = 1;
+    }
   })
-  for(var i=0;i<postdata.length;i++){
-    await db.collection('like')
-    .where({
-      postid:postdata[i]._id,
-      userid:wxContext.OPENID
-    })
-    .count()
-    .then(res=>{
-      if(res.total==0){
-        isLikes = 0;
-      }
-      else{
-        isLikes = 1;
-      }
-    })
-  }
   return isLikes; 
 }

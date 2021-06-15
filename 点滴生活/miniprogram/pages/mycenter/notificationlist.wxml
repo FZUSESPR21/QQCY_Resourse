@@ -1,14 +1,15 @@
 <!--pages/mycenter/notificationlist.wxml-->
 <navbar navbar-data='{{nvabarData}}' bindnavback='backToMycenter'></navbar>
 <loading hidden="{{loadingHidden}}">
-    加载中...
+  加载中...
 </loading>
 <text bindtap="backToMycenter">这里将是通知列表</text>
 <view class="tab">
 
   <view class="tab-nav" style='font-size:12px'>
     <view wx:for="{{tabnav.tabitem}}" wx:key='id' bindtap="setTab" data-tabindex="{{index}}"
-      style="min-width:20%;max-width:20%;text-align:center;color: rgba(16, 16, 16, 100);height: 80rpx;display: inline-block;">{{item.text}}
+      style="min-width:20%;max-width:20%;text-align:center;color: rgba(16, 16, 16, 100);height: 80rpx;display: inline-block;">
+      {{item.text}}
     </view>
     <view>
       <view class="tab-line" style="width:{{100/tabnav.tabnum}}%;transform:translateX({{100*showtab}}%);"></view>

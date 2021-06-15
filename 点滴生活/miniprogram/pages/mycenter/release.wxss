@@ -11,7 +11,7 @@
   border-radius: 60rpx;
   background-color:  rgba(253, 242, 241, 100);
   position:absolute;
-  top:200rpx;
+  top:230rpx;
   left:215rpx; 
 }
 .income{

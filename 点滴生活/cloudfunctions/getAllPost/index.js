@@ -12,8 +12,8 @@ exports.main = async (event, context) => {
     state:1
   })
   .orderBy('recommend','desc')
+  .orderBy('sortTime', 'desc')
   .orderBy('likes','desc')
-  .orderBy('createTime', 'desc')
   .skip(event.length)
   .limit(5)
   .get()

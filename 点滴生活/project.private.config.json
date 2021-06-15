@@ -75,6 +75,18 @@
         {
           "name": "pages/mycenter/auditing",
           "pathName": "pages/mycenter/auditing",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/mycenter/aboutus",
+          "pathName": "pages/mycenter/aboutus",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/mycenter/help",
+          "pathName": "pages/mycenter/help",
           "scene": null
         }
       ]

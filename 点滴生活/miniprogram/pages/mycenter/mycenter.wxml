@@ -40,11 +40,11 @@
     <view class="release_notificationtext">我的通知</view>
     <image src="../../images/goto.png" class="goto"></image>
   </view>
-  <view class="myabout" style="border-bottom:white;">
+  <view class="myabout" style="border-bottom:white;" bindtap="toAboutus">
     <image src="../../images/we.png" class="about"></image>
     <view class="abouttext">关于我们</view>
   </view>
-  <view class="myhelp">
+  <view class="myhelp" bindtap="toHelp">
     <image src="../../images/help.png" class="help"></image>
     <view class="helptext">帮助</view>
   </view>

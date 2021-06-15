@@ -28,6 +28,9 @@ Page({
     },
     limit:'',
   },
+  exportbtn:function(e){
+
+  },
 
   getUserProfile(e) {
     // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认
@@ -41,11 +44,14 @@ Page({
           userInfo: res.userInfo,
           hasUserInfo: true
         })
+        var date = new Date()
+        var time = date.toLocaleDateString();
         wx.cloud.callFunction({
           name:'addUser',
           data:{
             userPic:this.data.userInfo.avatarUrl,
-            userName:this.data.userInfo.nickName
+            userName:this.data.userInfo.nickName,
+            time:time
           }
         })
       }
@@ -96,6 +102,16 @@ Page({
   toAuditing:function(){
     wx.navigateTo({
       url: 'auditing',
+    })
+  },
+  toAboutus:function(){
+    wx.navigateTo({
+      url: 'aboutus',
+    })
+  },
+  toHelp:function(){
+    wx.navigateTo({
+      url: 'help',
     })
   },
   /**
@@ -172,7 +188,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    //目前阶段getUser云函数目前只搜索openid为test01的用户
     wx.cloud.callFunction({
       name: 'getUser',
     }).then(rest=>{

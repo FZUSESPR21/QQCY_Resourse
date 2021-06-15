@@ -17,20 +17,20 @@ Page({
     },
     height: app.globalData.height * 2 + 20 , // 此页面 页面内容距最顶部的距离
     switchType:1,
-    ctype:[{des:"餐饮",url: "cloud://cloud1-2g1cvw78a2d7648f.636c-cloud1-2g1cvw78a2d7648f-1305707823/餐饮.png"},
-           {des:"交通",url: "cloud://cloud1-2g1cvw78a2d7648f.636c-cloud1-2g1cvw78a2d7648f-1305707823/交通.png"},
-          {des:"医疗",url: "cloud://cloud1-2g1cvw78a2d7648f.636c-cloud1-2g1cvw78a2d7648f-1305707823/医疗.png"},
-          {des:"服装",url: "cloud://cloud1-2g1cvw78a2d7648f.636c-cloud1-2g1cvw78a2d7648f-1305707823/服装.png"},
-          {des:"娱乐",url: "cloud://cloud1-2g1cvw78a2d7648f.636c-cloud1-2g1cvw78a2d7648f-1305707823/娱乐.png"},
-          {des:"投资",url: "cloud://cloud1-2g1cvw78a2d7648f.636c-cloud1-2g1cvw78a2d7648f-1305707823/投资.png"},
-          {des:"学业",url: "cloud://cloud1-2g1cvw78a2d7648f.636c-cloud1-2g1cvw78a2d7648f-1305707823/学业.png"},
-          {des:"捐赠",url: "cloud://cloud1-2g1cvw78a2d7648f.636c-cloud1-2g1cvw78a2d7648f-1305707823/捐赠.png"},
-          {des:"购物",url: "cloud://cloud1-2g1cvw78a2d7648f.636c-cloud1-2g1cvw78a2d7648f-1305707823/购物.png"},
-          {des:"美妆",url: "cloud://cloud1-2g1cvw78a2d7648f.636c-cloud1-2g1cvw78a2d7648f-1305707823/美妆.png"},
-          {des:"其他",url: "cloud://cloud1-2g1cvw78a2d7648f.636c-cloud1-2g1cvw78a2d7648f-1305707823/其他.png"}],
-    rtype:[{des:"投资",url: "cloud://cloud1-2g1cvw78a2d7648f.636c-cloud1-2g1cvw78a2d7648f-1305707823/投资.png"},
-          {des:"工资",url: "cloud://cloud1-2g1cvw78a2d7648f.636c-cloud1-2g1cvw78a2d7648f-1305707823/工资.png"},
-          {des:"其他",url: "cloud://cloud1-2g1cvw78a2d7648f.636c-cloud1-2g1cvw78a2d7648f-1305707823/其他.png"}],
+    ctype:[{des:"餐饮",url: "cloud://cloud1-1gk8uhyp9aa86daf.636c-cloud1-1gk8uhyp9aa86daf-1306232604/账单类型/餐饮.png"},
+           {des:"交通",url: "cloud://cloud1-1gk8uhyp9aa86daf.636c-cloud1-1gk8uhyp9aa86daf-1306232604/账单类型/交通.png"},
+          {des:"医疗",url: "cloud://cloud1-1gk8uhyp9aa86daf.636c-cloud1-1gk8uhyp9aa86daf-1306232604/账单类型/医疗.png"},
+          {des:"服装",url: "cloud://cloud1-1gk8uhyp9aa86daf.636c-cloud1-1gk8uhyp9aa86daf-1306232604/账单类型/服装.png"},
+          {des:"娱乐",url: "cloud://cloud1-1gk8uhyp9aa86daf.636c-cloud1-1gk8uhyp9aa86daf-1306232604/账单类型/娱乐.png"},
+          {des:"投资",url: "cloud://cloud1-1gk8uhyp9aa86daf.636c-cloud1-1gk8uhyp9aa86daf-1306232604/账单类型/投资.png"},
+          {des:"学业",url: "cloud://cloud1-1gk8uhyp9aa86daf.636c-cloud1-1gk8uhyp9aa86daf-1306232604/账单类型/学业.png"},
+          {des:"捐赠",url: "cloud://cloud1-1gk8uhyp9aa86daf.636c-cloud1-1gk8uhyp9aa86daf-1306232604/账单类型/捐赠.png"},
+          {des:"购物",url: "cloud://cloud1-1gk8uhyp9aa86daf.636c-cloud1-1gk8uhyp9aa86daf-1306232604/账单类型/购物.png"},
+          {des:"美妆",url: "cloud://cloud1-1gk8uhyp9aa86daf.636c-cloud1-1gk8uhyp9aa86daf-1306232604/账单类型/美妆.png"},
+          {des:"其他",url: "cloud://cloud1-1gk8uhyp9aa86daf.636c-cloud1-1gk8uhyp9aa86daf-1306232604/账单类型/其他.png"}],
+    rtype:[{des:"投资",url: "cloud://cloud1-1gk8uhyp9aa86daf.636c-cloud1-1gk8uhyp9aa86daf-1306232604/账单类型/投资.png"},
+          {des:"工资",url: "cloud://cloud1-1gk8uhyp9aa86daf.636c-cloud1-1gk8uhyp9aa86daf-1306232604/账单类型/工资.png"},
+          {des:"其他",url: "cloud://cloud1-1gk8uhyp9aa86daf.636c-cloud1-1gk8uhyp9aa86daf-1306232604/账单类型/其他.png"}],
     keyNumber:[7,8,9,'📆',4,5,6,'+',1,2,3,'📓日记','.',0,'删除','确认'],
     numberText:'',
     isShow:false,
@@ -148,14 +148,17 @@ Page({
       }
       
     }
-    console.log("csk")
-    console.log(this.data.selectedType)
-    console.log(this.data.numberText);
-    console.log(this.data.selectedTypeUrl);
-    console.log(this.data.remark);
-    console.log(this.data.date);
-    console.log(this.data.switchType);
-    console.log(this.data.selectNoteId);
+    // console.log("csk")
+    // console.log(this.data.selectedType)
+    // console.log(this.data.numberText);
+    // console.log(this.data.selectedTypeUrl);
+    // console.log(this.data.remark);
+    // console.log(this.data.date);
+    // console.log(this.data.switchType);
+    // console.log(this.data.selectNoteId);
+    
+    var date = new Date();
+    var time = date.toLocaleDateString();
     wx.showLoading({
       title: '正在添加',
     })
@@ -170,6 +173,7 @@ Page({
         'switchType':this.data.switchType,
         'selectType':this.data.selectedType,
         "selectNoteId":this.data.selectNoteId,
+        time:time
       }
     }).then(res=>{
   

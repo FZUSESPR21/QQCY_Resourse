@@ -29,7 +29,7 @@ exports.main = async (event, context) => {
   var week = today.getDay();
   var newDate = new Date();
   if(type==='cRecord'&&today.getMonth()==newDate.getMonth()&&today.getFullYear()==newDate.getFullYear()){
-    await db.collection('user')
+     db.collection('user')
             .where({
               userid:wxContext.OPENID
             })
@@ -40,7 +40,7 @@ exports.main = async (event, context) => {
               }
             })
   }else{
-        await db.collection('user')
+      db.collection('user')
       .where({
         userid:wxContext.OPENID
       })
@@ -49,7 +49,115 @@ exports.main = async (event, context) => {
           'userTotalRecord':_.inc(1)
         }
       })
-}
+  }
+
+  await db.collection('user')
+  .where({
+    userid:wxContext.OPENID,
+  })
+  .get()
+  .then(res=>{
+    var oldDate = new Date(res.data[0].lastTimeAddRecord);
+    var newDate = new Date(event.time);
+    if(oldDate.toLocaleDateString()==newDate.toLocaleDateString()){
+
+    }else{
+      oldDate.setDate(oldDate.getDate()+1);
+      if(oldDate.toLocaleDateString()==newDate.toLocaleDateString()){
+        if((oldDate.getMonth()!=newDate.getMonth())){
+          if((type=='cRecord')){
+            console.log("连续记账，新的一月，每月已消费额度归0，再加上此次记账的数额");
+            db.collection('user')
+            .where({
+              userid:wxContext.OPENID
+            })
+            .update({
+              data:{
+                "userlimit.1":num,
+                userDuration:_.inc(1),
+                userTotalDays:_.inc(1),
+                lastTimeAddRecord:event.time,
+              }
+            })
+          }else{
+            console.log("连续记账，新的一月，每月已消费额度归0");
+            db.collection('user')
+            .where({
+              userid:wxContext.OPENID
+            })
+            .update({
+              data:{
+                "userlimit.1":0,
+                userDuration:_.inc(1),
+                userTotalDays:_.inc(1),
+                lastTimeAddRecord:event.time,
+              }
+            })
+          }
+        }else{
+          console.log("不是新的一月,但是连续记账");
+          db.collection('user')
+          .where({
+            userid:wxContext.OPENID
+          })
+            .update({
+              data:{
+                userDuration:_.inc(1),
+                userTotalDays:_.inc(1),
+                lastTimeAddRecord:event.time,
+              }
+            })
+        }
+      }else{
+        //00
+        if((oldDate.getMonth()!=newDate.getMonth())){
+          if((type=='cRecord')){
+            console.log("不是连续记账且是新的一月，每月已消费额度归0，再加上此次记账的数额");
+            db.collection('user')
+            .where({
+              userid:wxContext.OPENID
+            })
+            .update({
+              data:{
+                "userlimit.1":num,
+                userDuration:1,
+                userTotalDays:_.inc(1),
+                lastTimeAddRecord:event.time,
+              }
+            })
+          }else{
+            console.log("不是连续记账且新的一月，每月已消费额度归0");
+            db.collection('user')
+            .where({
+              userid:wxContext.OPENID
+            })
+            .update({
+              data:{
+                "userlimit.1":0,
+                userDuration:1,
+                userTotalDays:_.inc(1),
+                lastTimeAddRecord:event.time,
+              }
+            })
+          }
+        }else{
+          console.log("不是连续记账也不是新的一月,连续记账记录变成1");
+          db.collection('user')
+          .where({
+            userid:wxContext.OPENID
+          })
+          .update({
+            data:{
+              userDuration:1,
+              userTotalDays:_.inc(1),
+              lastTimeAddRecord:event.time,
+            }
+          })
+        }
+      }
+    }
+  })
+
 
   return await db.collection(type).add({
     data:{
