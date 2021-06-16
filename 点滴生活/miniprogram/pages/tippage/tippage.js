@@ -122,24 +122,42 @@ Page({
       createTime=createTime.toString();//转化时间戳
       console.log(createTime)
       wx.cloud.callFunction({
-        name:'addComment',
-        data : {
-          tipId:_this.data.tipId,   //post_id由小贴士列表传送
-          content:_this.data.commentInputText,
-          createTime:createTime
+        name: 'msgesc',
+        data: {
+          text: _this.data.commentInputText,
         }
-      }).then(res=>{
-        console.log(res.result);
-        this.getTipsDetail(this.data.tipId)
-        wx.showToast({
-          title: '评论发布成功',
-          icon: 'none',//icon
-          duration: 1500 //停留时间
+      }).then(res => {console.log(res.result)
+        if(res.result.errCode==0){
+          wx.cloud.callFunction({
+            name:'addComment',
+            data : {
+              tipId:_this.data.tipId,   //post_id由小贴士列表传送
+              content:_this.data.commentInputText,
+              createTime:createTime
+            }
+          }).then(res=>{
+            console.log(res.result);
+            _this.getTipsDetail(_this.data.tipId)
+            wx.showToast({
+              title: '评论发布成功',
+              icon: 'none',//icon
+              duration: 1500 //停留时间
+          })
+            _this.setData({
+              commentInputText:""
+            })
+          })
+        }else{
+          wx.showToast({
+            title: '你的标题含有违规内容,请重新编辑',
+            icon:'none',
+          })
+          _this.setData({
+            commentInputText:""
+          })
+        }
       })
-        _this.setData({
-          commentInputText:""
-        })
-      })
+     
     }
     else{
       wx.showToast({
@@ -237,6 +255,9 @@ onLoad(option){
           }
         })
       }
+    },
+    fail:function (res) {
+      console.log(res)
     }
   })
     const post_id = option.id;
