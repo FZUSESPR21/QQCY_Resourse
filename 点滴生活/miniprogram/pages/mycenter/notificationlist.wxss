@@ -82,6 +82,7 @@ color: rgba(47, 47, 47, 100);
 font-size: 28rpx;
 text-align: left;
 font-family: PingFangSC-regular;
+white-space: pre-wrap;
 }
 .commentpic{
   position: absolute;

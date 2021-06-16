@@ -23,7 +23,7 @@ exports.main = async (event, context) => {
     db.collection('notify')
     .add({
       data:{
-        content:"您发布的内容“"+res.data[0].content+"”被评论了",
+        content:"您发布的内容“"+res.data[0].content.slice(0,30)+"..."+"”被评论了"+"\n"+userName+":“"+event.content+"”",
         userid:res.data[0].userid,
         mark:0,
         title:"您发布的社区文章被评论了",
