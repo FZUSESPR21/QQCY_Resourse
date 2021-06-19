@@ -40,7 +40,7 @@ Page({
           if(res.result.errCode==0){
             var createTime;
             var date = new Date();
-            createTime = date.toLocaleString('zh', { hour12: false,year:'numeric',month: '2-digit',  day: '2-digit',  hour: '2-digit',  minute: '2-digit',  second: '2-digit'});
+            createTime = date.toLocaleString("zh", { hour12: false,year:'numeric',month: '2-digit',  day: '2-digit',  hour: '2-digit',  minute: '2-digit',  second: '2-digit'});
             createTime = createTime.replace(',',' ');
             createTime = createTime.replaceAll('/','-');
             var sortTime = date.toLocaleDateString();
